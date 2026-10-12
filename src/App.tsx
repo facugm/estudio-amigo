@@ -20,7 +20,7 @@ function AppInner(): JSX.Element {
         Saltar al contenido
       </a>
       <Header />
-      <main id="main">
+      <main id="main" className="app-main">
         {variant.sectionOrder.map(section => {
           const SectionComponent = variant.sections[section];
           return <SectionComponent key={section} />;

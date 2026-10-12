@@ -10,8 +10,8 @@ export const orillaTokens: VariantTokens = {
     accentFg: '#ffffff'
   },
   fonts: {
-    display: "'Bricolage Grotesque', Georgia, serif",
-    body: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    display: "'Museo Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+    body: "'Museo Sans', -apple-system, BlinkMacSystemFont, sans-serif"
   },
   radius: '2px',
   space: '10px'

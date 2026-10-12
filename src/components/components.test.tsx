@@ -11,8 +11,13 @@ import { defaultContent } from '../content/ContentProvider';
 
 const p = defaultContent.projects[0]!;
 
+const placeholderProject = {
+  ...p,
+  media: { kind: 'placeholder' as const, hue: 28, label: 'Identidad y packaging Foster Café' }
+};
+
 it('placeholder media has an accessible name flagged as provisional', () => {
-  render(<ProjectMedia project={p} />);
+  render(<ProjectMedia project={placeholderProject} />);
   expect(screen.getByRole('img', { name: /imagen provisional/i })).toBeInTheDocument();
 });
 

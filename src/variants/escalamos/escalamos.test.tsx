@@ -9,7 +9,7 @@ describe('Escalamos variant', () => {
     expect(buildInterestMessage([])).toBe('');
     const msg = buildInterestMessage(['Branding y rebranding', 'Pauta digital']);
     expect(msg).toContain('Branding y rebranding, Pauta digital');
-    expect(msg).toContain('Hola TEA');
+    expect(msg).toContain('Hola estudio amigo');
   });
 
   const mount = () => render(<App storage={null} initialVariantId="escalamos" />);

@@ -41,9 +41,9 @@ export type SectionId = 'hero' | 'portfolio' | 'services' | 'process' | 'about' 
 
 export interface SiteContent {
   brand: {
-    short: 'TEA';
-    long: 'Tu Estudio Amigo';
-    full: 'TEA | Tu Estudio Amigo';
+    short: string;
+    long: string;
+    full: string;
   };
   nav: readonly { label: string; section: SectionId }[];
   hero: {

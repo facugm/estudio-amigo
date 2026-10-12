@@ -6,19 +6,19 @@ export function OrillaHero(): JSX.Element {
   const { site } = useContent();
 
   useEffect(() => {
-    const main = document.querySelector<HTMLElement>('.app-main');
-    if (!main) return;
-
-    const onWheel = (e: WheelEvent) => {
+    const handleWheel = (e: WheelEvent) => {
       if (window.innerWidth <= 860) return;
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      const main = document.getElementById('main') || document.querySelector('.app-main');
+      if (!main) return;
+
+      if (e.deltaY !== 0) {
         e.preventDefault();
-        main.scrollLeft += e.deltaY * 1.2;
+        main.scrollLeft += e.deltaY;
       }
     };
 
-    main.addEventListener('wheel', onWheel, { passive: false });
-    return () => main.removeEventListener('wheel', onWheel);
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    return () => window.removeEventListener('wheel', handleWheel);
   }, []);
 
   return (

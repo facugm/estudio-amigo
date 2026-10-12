@@ -1,0 +1,343 @@
+/* 02 · Nefiu - Identity + Commercial Presentation */
+
+[data-variant='nefiu'] {
+  --nefiu-border: 1px solid rgba(14, 18, 26, 0.1);
+  --nefiu-card-bg: #f8fafc;
+  --nefiu-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  background-color: var(--c-bg);
+  color: var(--c-fg);
+}
+
+[data-variant='nefiu'] .site-header {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: var(--nefiu-border);
+}
+
+[data-variant='nefiu'] .header-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+[data-variant='nefiu'] .header-cta {
+  background-color: var(--c-accent);
+  color: var(--c-accent-fg);
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
+[data-variant='nefiu'] .variant-option.is-active {
+  background-color: var(--c-accent);
+  color: var(--c-accent-fg);
+  border-color: var(--c-accent);
+}
+
+[data-variant='nefiu'] section {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+/* Hero: Graphical composition */
+[data-variant='nefiu'] [data-layout='nefiu-composition'] {
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+}
+
+[data-variant='nefiu'] .nefiu-hero-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+[data-variant='nefiu'] .nefiu-hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+[data-variant='nefiu'] .nefiu-hero-support {
+  font-size: 1.15rem;
+  color: var(--c-muted);
+  line-height: 1.55;
+  margin-bottom: 2rem;
+}
+
+[data-variant='nefiu'] .nefiu-hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+[data-variant='nefiu'] .nefiu-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.75rem 1.75rem;
+  background-color: var(--c-accent);
+  color: var(--c-accent-fg);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+[data-variant='nefiu'] .nefiu-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(11, 87, 208, 0.25);
+}
+
+[data-variant='nefiu'] .nefiu-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.75rem 1.75rem;
+  background-color: var(--c-surface);
+  color: var(--c-fg);
+  border: 1px solid var(--c-muted);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: background-color 0.15s ease;
+}
+
+[data-variant='nefiu'] .nefiu-btn-outline:hover {
+  background-color: #e8ecf4;
+}
+
+[data-variant='nefiu'] .nefiu-hero-graphic {
+  background: linear-gradient(135deg, #0b57d0 0%, #1e293b 100%);
+  color: #ffffff;
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 340px;
+  box-shadow: var(--nefiu-shadow);
+}
+
+[data-variant='nefiu'] .nefiu-graphic-tag {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+}
+
+[data-variant='nefiu'] .nefiu-graphic-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+[data-variant='nefiu'] .nefiu-graphic-meta {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* Services Modules Tablist */
+[data-variant='nefiu'] [data-layout='nefiu-modules'] {
+  background-color: var(--c-surface);
+  border-radius: var(--radius);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+[data-variant='nefiu'] .nefiu-section-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+[data-variant='nefiu'] .nefiu-services-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+[data-variant='nefiu'] .nefiu-tablist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+[data-variant='nefiu'] .nefiu-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background-color: #ffffff;
+  color: var(--c-fg);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-variant='nefiu'] .nefiu-tab:hover {
+  border-color: var(--c-accent);
+}
+
+[data-variant='nefiu'] .nefiu-tab[aria-selected='true'] {
+  background-color: var(--c-accent);
+  color: var(--c-accent-fg);
+  box-shadow: 0 4px 12px rgba(11, 87, 208, 0.2);
+}
+
+[data-variant='nefiu'] .nefiu-tabpanel {
+  background-color: #ffffff;
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  border: var(--nefiu-border);
+  box-shadow: var(--nefiu-shadow);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+[data-variant='nefiu'] .nefiu-tabpanel-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--c-fg);
+}
+
+[data-variant='nefiu'] .nefiu-tabpanel-desc {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--c-muted);
+  margin-bottom: 2rem;
+}
+
+/* Portfolio Bento Grid */
+[data-variant='nefiu'] .nefiu-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+[data-variant='nefiu'] .nefiu-bento-tile {
+  background-color: var(--c-surface);
+  border: var(--nefiu-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-variant='nefiu'] .nefiu-bento-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--nefiu-shadow);
+}
+
+[data-variant='nefiu'] .nefiu-bento-tile[data-size='large'] {
+  grid-column: span 2;
+  grid-row: span 2;
+  background-color: #f1f4fa;
+}
+
+[data-variant='nefiu'] .nefiu-bento-tile[data-size='wide'] {
+  grid-column: span 2;
+}
+
+[data-variant='nefiu'] .nefiu-bento-tile[data-size='small'] {
+  grid-column: span 1;
+}
+
+[data-variant='nefiu'] .nefiu-bento-media {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: calc(var(--radius) - 4px);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+[data-variant='nefiu'] .nefiu-bento-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+[data-variant='nefiu'] .nefiu-bento-desc {
+  font-size: 0.95rem;
+  color: var(--c-muted);
+  line-height: 1.45;
+  margin-bottom: 1rem;
+}
+
+/* Process, About, Contact */
+[data-variant='nefiu'] [data-layout='nefiu-steps'] .nefiu-process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+[data-variant='nefiu'] .nefiu-process-card {
+  background-color: var(--c-surface);
+  border-radius: var(--radius);
+  padding: 2rem;
+  border: var(--nefiu-border);
+}
+
+[data-variant='nefiu'] [data-layout='nefiu-about'] .nefiu-about-card {
+  background: #ffffff;
+  border: var(--nefiu-border);
+  border-radius: var(--radius);
+  padding: 3rem;
+  box-shadow: var(--nefiu-shadow);
+}
+
+[data-variant='nefiu'] [data-layout='nefiu-contact'] {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+}
+
+@media (max-width: 900px) {
+  [data-variant='nefiu'] .nefiu-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  [data-variant='nefiu'] .nefiu-services-layout {
+    grid-template-columns: 1fr;
+  }
+
+  [data-variant='nefiu'] .nefiu-bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  [data-variant='nefiu'] .nefiu-bento-tile[data-size='large'],
+  [data-variant='nefiu'] .nefiu-bento-tile[data-size='wide'],
+  [data-variant='nefiu'] .nefiu-bento-tile[data-size='small'] {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  [data-variant='nefiu'] [data-layout='nefiu-contact'] {
+    grid-template-columns: 1fr;
+  }
+}

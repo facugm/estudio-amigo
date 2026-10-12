@@ -1,32 +1,28 @@
-import { ComponentType, createElement } from 'react';
-import { VariantDefinition, SectionId } from '../types';
+import './nefiu.css';
+import { VariantDefinition } from '../types';
 import { nefiuTokens } from './tokens';
-import { SectionShell } from '../../components/SectionShell';
-
-const createStub = (section: SectionId): ComponentType => {
-  return function StubSection() {
-    return createElement(
-      SectionShell,
-      { section, layout: 'stub' },
-      section === 'hero' ? createElement('h1', null, 'hero') : createElement('h2', null, section)
-    );
-  };
-};
+import { NefiuHero } from './Hero';
+import { NefiuServices } from './Services';
+import { NefiuPortfolio } from './Portfolio';
+import { NefiuProcess } from './Process';
+import { NefiuAbout } from './About';
+import { NefiuContact } from './Contact';
 
 export const nefiuVariant: VariantDefinition = {
   id: 'nefiu',
   number: '02',
   label: 'Nefiu',
-  sectionOrder: ['hero', 'portfolio', 'services', 'process', 'about', 'contact'],
+  sectionOrder: ['hero', 'services', 'portfolio', 'process', 'about', 'contact'],
   sections: {
-    hero: createStub('hero'),
-    portfolio: createStub('portfolio'),
-    services: createStub('services'),
-    process: createStub('process'),
-    about: createStub('about'),
-    contact: createStub('contact')
+    hero: NefiuHero,
+    services: NefiuServices,
+    portfolio: NefiuPortfolio,
+    process: NefiuProcess,
+    about: NefiuAbout,
+    contact: NefiuContact
   },
   tokens: nefiuTokens,
-  fontsHref: null,
-  ready: false
+  fontsHref:
+    'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Space+Grotesk:wght@500;600;700&display=swap',
+  ready: true
 };

@@ -1,6 +1,6 @@
-# TEA | Tu Estudio Amigo - Prototipo Web Multi-Dirección
+# estudio amigo - Prototipo Web Multi-Dirección
 
-Prototipo web navegable de alta fidelidad para **TEA | Tu Estudio Amigo**, estudio creativo y de comunicación integral radicado en San Juan, Argentina.
+Prototipo web navegable de alta fidelidad para **estudio amigo** (Tu Estudio Amigo), estudio creativo y de comunicación integral radicado en San Juan, Argentina.
 
 El sitio implementa **cuatro direcciones creativas intercambiables en caliente desde el header**, permitiendo evaluar cuatro enfoques de marca, jerarquía de contenido y tono de comunicación sobre el mismo conjunto de datos reales.
 
@@ -8,12 +8,22 @@ El sitio implementa **cuatro direcciones creativas intercambiables en caliente d
 
 ## 🎯 Direcciones Creativas
 
-| # | Dirección | Tono & Filosofía | Tipografías | Orden de Secciones |
-|---|---|---|---|---|
-| **01** | **Orilla** | **Editorial & Rigor Conceptual**<br>Diseño sobrio, monocromático, líneas precisas de 2px, lectura pausada. | *Bricolage Grotesque* + *Plus Jakarta Sans* | Hero → Sobre TEA → Trabajos → Servicios → Cómo trabajamos → Contacto |
-| **02** | **Nefiu** | **Identidad & Presentación Comercial**<br>Posicionamiento pragmático, tabs interactivos por módulo, portfolio en grilla Bento. | *Space Grotesk* + *DM Sans* | Hero → Servicios → Trabajos → Cómo trabajamos → Sobre TEA → Contacto |
-| **03** | **Escalamos** | **Claridad de Valor & Evidencia**<br>Estética tecnológica oscura, selector interactivo de servicios con prellenado de contacto. | *Montserrat* + *Inter* | Hero → Servicios → Cómo trabajamos → Evidencia → Sobre TEA → Contacto |
-| **04** | **Creativewise** | **Portfolio-First & Alto Impacto Visual**<br>Protagonismo absoluto de piezas, muro visual dinámico con chips de filtro por categoría. | *Syne* + *Plus Jakarta Sans* | Hero → Portfolio → Servicios → Cómo trabajamos → Sobre TEA → Contacto |
+| # | Dirección | Tono & Filosofía | Tipografía de Marca | Orden de Secciones | Comportamiento Clave |
+|---|---|---|---|---|---|
+| **01** | **Orilla** | **Editorial & Rigor Conceptual**<br>Líneas precisas de 2px, estética de catálogo de autor y lectura pausada. | *Museo Sans* (Logo: *Monod*) | Hero → Sobre nosotros → Trabajos → Servicios → Cómo trabajamos → Contacto | **Scroll Horizontal Predominante** en desktop (con control por rueda de mouse) y mazo de cartas swipeable en mobile. |
+| **02** | **Nefiu** | **Identidad & Presentación Comercial**<br>Posicionamiento pragmático, tabs interactivos por módulo, portfolio en grilla Bento. | *Museo Sans* (Logo: *Monod*) | Hero → Servicios → Trabajos → Cómo trabajamos → Sobre nosotros → Contacto | **Tabs accesibles de servicios** con navegación por teclado y **Grilla Bento** de proyectos adaptativa. |
+| **03** | **Escalamos** | **Claridad de Valor & Evidencia**<br>Estética tecnológica oscura, selector interactivo de servicios con prellenado de contacto. | *Museo Sans* (Logo: *Monod*) | Hero → Servicios → Cómo trabajamos → Evidencia → Sobre nosotros → Contacto | **Selector múltiple con checkboxes** que prellena automáticamente el mensaje de consulta en el formulario. |
+| **04** | **Creativewise** | **Portfolio-First & Alto Impacto Visual**<br>Protagonismo absoluto de piezas, muro visual dinámico con chips de filtro por categoría. | *Museo Sans* (Logo: *Monod*) | Hero → Portfolio → Servicios → Cómo trabajamos → Sobre nosotros → Contacto | **Muro visual enriquecido con stock photography** y chips interactivos de filtrado por categoría (`aria-pressed`). |
+
+---
+
+## 🎨 Identidad & Tipografía Oficial
+
+- **Tipografía de marca unificada**: **Museo Sans** aplicada en todas las variantes como la tipografía institucional oficial de estudio amigo.
+- **Tipografía del logo**: **Monod** aplicada en el identificador de cabecera `estudio amigo`.
+- **Fotografía**: Fotografías stock de alta resolución integradas en todos los proyectos y casos de estudio.
+- **Marca**: Eliminadas las siglas provisionales TEA; uso oficial y exclusivo de **estudio amigo**.
+- **Versiones Mobile**: Cada dirección cuenta con maquetación móvil optimizada para pantallas táctiles (deslizamiento horizontal en Orilla, grillas responsivas de 1 columna en Bento, chips scrolleables en Creativewise).
 
 ---
 
@@ -21,69 +31,31 @@ El sitio implementa **cuatro direcciones creativas intercambiables en caliente d
 
 - **Framework**: [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) (modo estricto).
 - **Bundler & Dev Server**: [Vite 5](https://vitejs.dev/).
-- **Testing**: [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/) con jsdom (100% de suites en verde con TDD).
-- **Estilos**: Vanilla CSS con Custom Properties (`tokens`), sin dependencias pesadas de runtime (`tailwind` o bibliotecas UI externas).
-- **Persistencia**: Preferencia de variante persistida en `localStorage` con preservación de ancla de scroll al alternar entre variantes.
-- **Inyección dinámica de fuentes**: Solo se cargan las fuentes de Google Fonts requeridas por la variante activa.
-- **Accesibilidad**: WCAG AA verificado, navegación accesible por teclado en tabs (con wraparound en Flecha Izq/Der), roles ARIA semánticos (`tablist`, `tab`, `tabpanel`, `toolbar`, `article`).
+- **Testing**: [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/) con jsdom (112 tests en verde).
+- **Estilos**: Vanilla CSS con Custom Properties (`tokens`), sin dependencias pesadas de runtime.
+- **Persistencia**: Preferencia de variante persistida en `localStorage` con preservación de estado de formulario entre variantes.
 
 ---
 
 ## 🚀 Inicio Rápido
 
-### Prerrequisitos
-- Node.js 18+ (o Node.js 20 recomendado).
-- npm 9+.
-
-### Instalación & Ejecución
-
 ```bash
-# 1. Instalar dependencias
-npm install
-
-# 2. Iniciar servidor de desarrollo local
+# Iniciar servidor de desarrollo local
 npm run dev
 
-# 3. Ejecutar suite completa de tests automatizados
+# Ejecutar suite completa de tests automatizados
 npm test -- --run
 
-# 4. Validar tipos TypeScript
+# Validar chequeo de tipos estricto de TypeScript
 npm run typecheck
 
-# 5. Compilar bundle de producción
+# Compilar bundle de producción
 npm run build
 ```
 
 ---
 
-## 📁 Estructura del Proyecto
-
-```
-tea-website/
-├── docs/
-│   ├── design/
-│   │   └── directions.md             # Notas de inspección y decisiones visuales
-│   ├── superpowers/specs/
-│   │   └── 2026-10-12-tea-brief.md    # Brief consolidado de TEA
-│   ├── MISSING_INFO.md               # Información pendiente de confirmación con el cliente
-│   └── EVALUATION.md                 # Matriz de evaluación comparativa de las 4 direcciones
-├── src/
-│   ├── components/                   # Componentes shell y compartidos (Header, Footer, Formulario, etc.)
-│   ├── content/                      # Capa desacoplada de contenido (7 servicios, proyectos, datos de sitio)
-│   ├── lib/                          # Utilidades (contraste WCAG, scroll, motion, carga de tipografías)
-│   ├── styles/                       # CSS base y estilos de shell
-│   └── variants/                     # 4 variantes creativas completas y pruebas de contrato
-│       ├── orilla/
-│       ├── nefiu/
-│       ├── escalamos/
-│       ├── creativewise/
-│       ├── variantContract.test.tsx  # Test de contrato ejecutado contra todas las variantes
-│       └── differentiation.test.tsx  # Verificación de unicidad y diferenciación entre variantes
-```
-
----
-
-## 📋 Los 7 Servicios Obligatorios de TEA
+## 📋 Los 7 Servicios Obligatorios de estudio amigo
 
 1. **Branding y rebranding**
 2. **Pauta digital**
@@ -92,5 +64,3 @@ tea-website/
 5. **Creación de contenido para redes sociales**
 6. **Fotoproducto**
 7. **Sitios web**
-
-Todos los servicios y proyectos de muestra están tipados rigurosamente y protegidos contra desincronización mediante la suite de tests automatizada.

@@ -1,6 +1,6 @@
-# Información Faltante y Requerimientos de Producción para TEA
+# Información Faltante y Requerimientos de Producción para estudio amigo
 
-Este documento detalla las definiciones comerciales, de contenido y de infraestructura pendientes de entrega por parte del equipo de **TEA | Tu Estudio Amigo** para la puesta en producción del sitio definitivo.
+Este documento detalla las definiciones comerciales, de contenido y de infraestructura pendientes de entrega por parte del equipo de **estudio amigo** para la puesta en producción del sitio definitivo.
 
 ---
 
@@ -22,9 +22,9 @@ En el prototipo actual, los canales de contacto están configurados como marcado
 
 ## 2. Material Audiovisual y Casos de Estudio
 
-Los proyectos actuales en el catálogo son casos de muestra creados para validar las composiciones visuales (con la etiqueta obligatoria de advertencia provisoria):
+Los proyectos actuales en el catálogo cuentan con fotografía stock curada de alta resolución para validar las composiciones visuales:
 
-- **Fotografía de Proyectos Reales**:
+- **Fotografía de Proyectos Propios de estudio amigo**:
   - Fotografías de alta resolución (mínimo 1600px de ancho) en formatos modernos (WebP o JPG optimizado) de trabajos de:
     - Branding y packaging.
     - Piezas de fotoproducto.
@@ -32,7 +32,7 @@ Los proyectos actuales en el catálogo son casos de muestra creados para validar
   - Ratios recomendados: `16:10` y `4:3`.
 - **Casos de Estudio Detallados (`caseUrl`)**:
   - Enlaces a publicaciones en Behance, Notion, Figma o páginas de detalle para cada proyecto que cuente con documentación ampliada.
-  - Confirmación de si TEA desea páginas de caso individuales dentro del sitio web o enlaces a plataformas externas en esta primera etapa.
+  - Confirmación de si estudio amigo desea páginas de caso individuales dentro del sitio web o enlaces a plataformas externas en esta primera etapa.
 
 ---
 
@@ -54,5 +54,5 @@ Los proyectos actuales en el catálogo son casos de muestra creados para validar
   - Elección de plataforma de despliegue recomendada (Vercel, Netlify, Cloudflare Pages o servidor propio).
 - **Herramientas de Analítica & Privacidad**:
   - Código de Google Analytics 4 (GA4) o plataforma alternativa (Plausible, Umami).
-  - Píxel de Meta / LinkedIn Insight Tag si TEA realiza campañas de pauta digital para captación de leads.
+  - Píxel de Meta / LinkedIn Insight Tag si se realizan campañas de pauta digital para captación de leads.
   - Texto legal de Política de Privacidad y Términos y Condiciones.

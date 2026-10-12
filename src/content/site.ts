@@ -1,0 +1,100 @@
+import { SiteContent } from './types';
+
+export const siteContent: SiteContent = {
+  brand: {
+    short: 'TEA',
+    long: 'Tu Estudio Amigo',
+    full: 'TEA | Tu Estudio Amigo'
+  },
+  nav: [
+    { label: 'Inicio', section: 'hero' },
+    { label: 'Trabajos', section: 'portfolio' },
+    { label: 'Servicios', section: 'services' },
+    { label: 'Cómo trabajamos', section: 'process' },
+    { label: 'Sobre TEA', section: 'about' },
+    { label: 'Contacto', section: 'contact' }
+  ],
+  hero: {
+    headline: 'Estrategia, creatividad y comunicación para marcas que buscan conectar de verdad.',
+    support:
+      'Acompañamos a marcas, proyectos y organizaciones en el diseño de su identidad y en la articulación de sus mensajes en canales digitales y físicos.',
+    cta: {
+      label: 'Iniciar una conversación'
+    },
+    secondaryCta: {
+      label: 'Ver trabajos'
+    }
+  },
+  process: {
+    title: 'Cómo trabajamos',
+    steps: [
+      {
+        id: 'comprender',
+        title: 'Comprender el desafío',
+        description:
+          'Escuchamos la realidad de tu proyecto, entendemos a tus públicos y analizamos el contexto antes de proponer cualquier solución.'
+      },
+      {
+        id: 'estrategia',
+        title: 'Definir la estrategia',
+        description:
+          'Trazamos un plan de comunicación claro, con objetivos concretos y canales adecuados para cada etapa.'
+      },
+      {
+        id: 'propuesta',
+        title: 'Desarrollar la propuesta',
+        description:
+          'Creamos conceptos visuales, piezas, mensajes y experiencias con criterio estético riguroso y sentido práctico.'
+      },
+      {
+        id: 'implementar',
+        title: 'Implementar y acompañar',
+        description:
+          'Llevamos las ideas a la práctica, coordinamos la ejecución y medimos el impacto para ajustar continuamente.'
+      }
+    ]
+  },
+  about: {
+    title: 'Sobre TEA',
+    paragraphs: [
+      'TEA (Tu Estudio Amigo) es una agencia de comunicación integral que une pensamiento estratégico, dirección creativa y ejecución técnica. Creemos en el trabajo cercano, donde cada decisión visual responde a una necesidad concreta de tu marca.',
+      'Trabajamos con proyectos en distintas etapas: desde la creación de una identidad desde cero hasta el fortalecimiento de canales digitales y la producción de contenidos con impacto real.'
+    ]
+  },
+  contact: {
+    title: 'Contacto',
+    invitation:
+      '¿Tenés un proyecto en mente? Conversemos sobre los desafíos de tu marca y cómo podemos acompañarte.',
+    ctaLabel: 'Enviar mensaje',
+    channels: [
+      {
+        id: 'email',
+        label: 'contacto@tuestudioamigo.com',
+        href: null,
+        isPlaceholder: true
+      },
+      {
+        id: 'whatsapp',
+        label: '+54 9 11 0000-0000',
+        href: null,
+        isPlaceholder: true
+      },
+      {
+        id: 'instagram',
+        label: '@tuestudioamigo',
+        href: null,
+        isPlaceholder: true
+      },
+      {
+        id: 'linkedin',
+        label: 'linkedin.com/company/tuestudioamigo',
+        href: null,
+        isPlaceholder: true
+      }
+    ]
+  },
+  footer: {
+    prototypeNote: 'Prototipo para evaluación: textos y proyectos de muestra.'
+  },
+  sampleCopy: ['hero', 'portfolio', 'services', 'process', 'about', 'contact']
+};

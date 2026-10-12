@@ -2,16 +2,16 @@ import { SiteContent } from './types';
 
 export const siteContent: SiteContent = {
   brand: {
-    short: 'TEA',
-    long: 'Tu Estudio Amigo',
-    full: 'TEA | Tu Estudio Amigo'
+    short: 'estudio amigo',
+    long: 'estudio amigo',
+    full: 'estudio amigo'
   },
   nav: [
     { label: 'Inicio', section: 'hero' },
     { label: 'Trabajos', section: 'portfolio' },
     { label: 'Servicios', section: 'services' },
     { label: 'Cómo trabajamos', section: 'process' },
-    { label: 'Sobre TEA', section: 'about' },
+    { label: 'Sobre nosotros', section: 'about' },
     { label: 'Contacto', section: 'contact' }
   ],
   hero: {
@@ -55,9 +55,9 @@ export const siteContent: SiteContent = {
     ]
   },
   about: {
-    title: 'Sobre TEA',
+    title: 'Sobre nosotros',
     paragraphs: [
-      'TEA (Tu Estudio Amigo) es una agencia de comunicación integral que une pensamiento estratégico, dirección creativa y ejecución técnica. Creemos en el trabajo cercano, donde cada decisión visual responde a una necesidad concreta de tu marca.',
+      'estudio amigo es un estudio de comunicación integral que une pensamiento estratégico, dirección creativa y ejecución técnica. Creemos en el trabajo cercano, donde cada decisión visual responde a una necesidad concreta de tu marca.',
       'Trabajamos con proyectos en distintas etapas: desde la creación de una identidad desde cero hasta el fortalecimiento de canales digitales y la producción de contenidos con impacto real.'
     ]
   },

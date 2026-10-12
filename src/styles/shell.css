@@ -25,12 +25,20 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-family: var(--font-display, sans-serif);
+  font-family: 'Monod', monospace;
   font-weight: 700;
-  font-size: 1.15rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.04em;
+  text-transform: lowercase;
   color: var(--c-fg, #111111);
   text-decoration: none;
   min-height: 44px;
+}
+
+.brand-logo-text {
+  font-family: 'Monod', monospace;
+  font-weight: 700;
+  letter-spacing: -0.04em;
 }
 
 .header-brand:hover {
@@ -288,7 +296,27 @@
     gap: 2rem;
   }
 
+  .header-switcher-row {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.5rem 1rem;
+    scrollbar-width: none;
+  }
+
+  .header-switcher-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .variant-switcher-group {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    min-width: max-content;
+    padding-bottom: 2px;
+  }
+
   .variant-option {
-    padding: 0.25rem 0.6rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
   }
 }

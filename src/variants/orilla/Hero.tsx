@@ -1,8 +1,25 @@
+import { useEffect } from 'react';
 import { useContent } from '../../content/ContentProvider';
 import { SectionShell } from '../../components/SectionShell';
 
 export function OrillaHero(): JSX.Element {
   const { site } = useContent();
+
+  useEffect(() => {
+    const main = document.querySelector<HTMLElement>('.app-main');
+    if (!main) return;
+
+    const onWheel = (e: WheelEvent) => {
+      if (window.innerWidth <= 860) return;
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        main.scrollLeft += e.deltaY * 1.2;
+      }
+    };
+
+    main.addEventListener('wheel', onWheel, { passive: false });
+    return () => main.removeEventListener('wheel', onWheel);
+  }, []);
 
   return (
     <SectionShell section="hero" layout="orilla-editorial">
@@ -18,6 +35,9 @@ export function OrillaHero(): JSX.Element {
               {site.hero.secondaryCta.label}
             </a>
           </div>
+        </div>
+        <div className="orilla-scroll-hint" aria-hidden="true">
+          <span>← Deslizá horizontalmente para explorar →</span>
         </div>
       </div>
     </SectionShell>

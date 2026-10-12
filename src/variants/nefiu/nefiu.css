@@ -318,16 +318,31 @@
 }
 
 @media (max-width: 900px) {
+  [data-variant='nefiu'] section {
+    padding: 3.5rem 1.25rem;
+  }
+
+  [data-variant='nefiu'] .nefiu-hero-headline {
+    font-size: clamp(2rem, 7vw, 2.75rem);
+  }
+
   [data-variant='nefiu'] .nefiu-hero-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   [data-variant='nefiu'] .nefiu-services-layout {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  [data-variant='nefiu'] .nefiu-tabpanel {
+    padding: 1.75rem;
   }
 
   [data-variant='nefiu'] .nefiu-bento-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 
   [data-variant='nefiu'] .nefiu-bento-tile[data-size='large'],
@@ -339,5 +354,10 @@
 
   [data-variant='nefiu'] [data-layout='nefiu-contact'] {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  [data-variant='nefiu'] [data-layout='nefiu-about'] .nefiu-about-card {
+    padding: 2rem 1.5rem;
   }
 }

@@ -10,8 +10,8 @@ export const creativewiseTokens: VariantTokens = {
     accentFg: '#ffffff'
   },
   fonts: {
-    display: "'Syne', -apple-system, BlinkMacSystemFont, sans-serif",
-    body: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif"
+    display: "'Museo Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+    body: "'Museo Sans', -apple-system, BlinkMacSystemFont, sans-serif"
   },
   radius: '16px',
   space: '12px'

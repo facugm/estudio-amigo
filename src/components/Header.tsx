@@ -27,9 +27,7 @@ export function Header(): JSX.Element {
       <div className="header-top">
         <div className="header-brand-container">
           <a href="#inicio" className="header-brand" onClick={closeMenu}>
-            <span className="brand-short">{site.brand.short}</span>
-            <span className="brand-divider"> | </span>
-            <span className="brand-long">{site.brand.long}</span>
+            <span className="brand-logo-text">estudio amigo</span>
           </a>
         </div>
 

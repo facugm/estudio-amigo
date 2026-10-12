@@ -418,7 +418,36 @@
 }
 
 @media (max-width: 900px) {
+  [data-variant='escalamos'] section {
+    padding: 3.5rem 1.25rem;
+  }
+
+  [data-variant='escalamos'] .escalamos-hero-headline {
+    font-size: clamp(2rem, 7vw, 2.9rem);
+  }
+
+  [data-variant='escalamos'] .escalamos-services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  [data-variant='escalamos'] .escalamos-proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  [data-variant='escalamos'] .escalamos-timeline-grid {
+    grid-template-columns: 1fr;
+  }
+
+  [data-variant='escalamos'] [data-layout='escalamos-about'] .escalamos-about-card {
+    padding: 2rem 1.5rem;
+  }
+
   [data-variant='escalamos'] [data-layout='escalamos-contact'] {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  [data-variant='escalamos'] .contact-form {
+    padding: 1.5rem;
   }
 }

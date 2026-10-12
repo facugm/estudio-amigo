@@ -1,0 +1,348 @@
+/* 04 · Creativewise - Portfolio-First Visual Experience */
+
+[data-variant='creativewise'] {
+  --creativewise-border: 1px solid rgba(25, 16, 17, 0.08);
+  --creativewise-border-hover: 1px solid rgba(185, 59, 34, 0.3);
+  --creativewise-shadow: 0 10px 30px rgba(25, 16, 17, 0.06);
+  --creativewise-shadow-hover: 0 16px 40px rgba(25, 16, 17, 0.12);
+  background-color: var(--c-bg);
+  color: var(--c-fg);
+}
+
+[data-variant='creativewise'] .site-header {
+  background-color: rgba(250, 248, 245, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: var(--creativewise-border);
+}
+
+[data-variant='creativewise'] .header-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--c-fg);
+}
+
+[data-variant='creativewise'] .header-cta {
+  background-color: var(--c-accent);
+  color: var(--c-accent-fg);
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+}
+
+[data-variant='creativewise'] .variant-switcher {
+  border-radius: 999px;
+  background-color: var(--c-surface);
+  border: var(--creativewise-border);
+}
+
+[data-variant='creativewise'] .variant-option {
+  border-radius: 999px;
+}
+
+[data-variant='creativewise'] .variant-option.is-active {
+  background-color: var(--c-accent);
+  color: var(--c-accent-fg);
+  border-color: var(--c-accent);
+}
+
+[data-variant='creativewise'] section {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 5.5rem 1.5rem;
+}
+
+[data-variant='creativewise'] .site-footer {
+  border-top: var(--creativewise-border);
+  background-color: #f3efe8;
+}
+
+/* Creativewise Hero: Reel */
+[data-variant='creativewise'] [data-layout='creativewise-reel'] {
+  padding-top: 4.5rem;
+  padding-bottom: 4rem;
+}
+
+[data-variant='creativewise'] .creativewise-hero-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+[data-variant='creativewise'] .creativewise-hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  max-width: 980px;
+  color: var(--c-fg);
+}
+
+[data-variant='creativewise'] .creativewise-hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+[data-variant='creativewise'] .creativewise-hero-support {
+  font-size: 1.25rem;
+  color: var(--c-muted);
+  max-width: 600px;
+  line-height: 1.55;
+}
+
+[data-variant='creativewise'] .creativewise-hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+[data-variant='creativewise'] .creativewise-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0.8rem 2rem;
+  background-color: var(--c-accent);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-variant='creativewise'] .creativewise-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(185, 59, 34, 0.3);
+}
+
+[data-variant='creativewise'] .creativewise-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0.8rem 2rem;
+  background-color: transparent;
+  color: var(--c-fg);
+  border: var(--creativewise-border);
+  font-weight: 600;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+[data-variant='creativewise'] .creativewise-btn-secondary:hover {
+  background-color: var(--c-surface);
+}
+
+/* Creativewise Portfolio Wall & Category Chips */
+[data-variant='creativewise'] .creativewise-wall-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+[data-variant='creativewise'] .creativewise-section-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--c-fg);
+}
+
+[data-variant='creativewise'] .creativewise-filters {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+[data-variant='creativewise'] .creativewise-chip {
+  min-height: 40px;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  border: var(--creativewise-border);
+  background-color: var(--c-surface);
+  color: var(--c-fg);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+[data-variant='creativewise'] .creativewise-chip:hover {
+  border-color: var(--c-accent);
+}
+
+[data-variant='creativewise'] .creativewise-chip[aria-pressed='true'] {
+  background-color: var(--c-accent);
+  color: #ffffff;
+  border-color: var(--c-accent);
+}
+
+[data-variant='creativewise'] .creativewise-wall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 2rem;
+}
+
+[data-variant='creativewise'] .creativewise-card {
+  background-color: #ffffff;
+  border-radius: var(--radius);
+  border: var(--creativewise-border);
+  overflow: hidden;
+  box-shadow: var(--creativewise-shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+[data-variant='creativewise'] .creativewise-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--creativewise-shadow-hover);
+}
+
+[data-variant='creativewise'] .creativewise-card-media {
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background-color: var(--c-surface);
+}
+
+[data-variant='creativewise'] .creativewise-card-body {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+[data-variant='creativewise'] .creativewise-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--c-muted);
+}
+
+[data-variant='creativewise'] .creativewise-card-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--c-fg);
+  margin-bottom: 0.4rem;
+}
+
+[data-variant='creativewise'] .creativewise-card-desc {
+  font-size: 0.95rem;
+  color: var(--c-muted);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+[data-variant='creativewise'] .creativewise-card-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Creativewise Services Index */
+[data-variant='creativewise'] .creativewise-services-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+[data-variant='creativewise'] .creativewise-service-item {
+  background-color: #ffffff;
+  border-radius: var(--radius);
+  border: var(--creativewise-border);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--creativewise-shadow);
+}
+
+[data-variant='creativewise'] .creativewise-service-item h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--c-fg);
+}
+
+[data-variant='creativewise'] .creativewise-service-item p {
+  font-size: 0.95rem;
+  color: var(--c-muted);
+  line-height: 1.55;
+}
+
+/* Creativewise Steps, About, Contact */
+[data-variant='creativewise'] .creativewise-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+[data-variant='creativewise'] .creativewise-step-card {
+  background-color: #ffffff;
+  border-radius: var(--radius);
+  border: var(--creativewise-border);
+  padding: 2.25rem 1.75rem;
+  box-shadow: var(--creativewise-shadow);
+}
+
+[data-variant='creativewise'] .creativewise-step-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--c-accent);
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+
+[data-variant='creativewise'] [data-layout='creativewise-about'] .creativewise-about-box {
+  background-color: #ffffff;
+  border-radius: var(--radius);
+  border: var(--creativewise-border);
+  padding: 3.5rem;
+  box-shadow: var(--creativewise-shadow);
+  max-width: 900px;
+}
+
+[data-variant='creativewise'] [data-layout='creativewise-contact'] {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 3.5rem;
+}
+
+[data-variant='creativewise'] .creativewise-contact-form {
+  background-color: #ffffff;
+  border-radius: var(--radius);
+  border: var(--creativewise-border);
+  padding: 2.5rem;
+  box-shadow: var(--creativewise-shadow);
+}
+
+[data-variant='creativewise'] .creativewise-contact-form button[type='submit'] {
+  background-color: var(--c-accent);
+  color: #ffffff;
+  border-radius: 999px;
+  font-weight: 600;
+  min-height: 50px;
+}
+
+@media (max-width: 900px) {
+  [data-variant='creativewise'] [data-layout='creativewise-contact'] {
+    grid-template-columns: 1fr;
+  }
+}

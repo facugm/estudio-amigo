@@ -2,17 +2,17 @@ import { VariantTokens } from '../types';
 
 export const creativewiseTokens: VariantTokens = {
   colors: {
-    bg: '#ffffff',
-    surface: '#f4f4f4',
-    fg: '#111111',
-    muted: '#555555',
-    accent: '#1a1a1a',
+    bg: '#faf8f5',
+    surface: '#f1ede6',
+    fg: '#191011',
+    muted: '#635755',
+    accent: '#b93b22',
     accentFg: '#ffffff'
   },
   fonts: {
-    display: 'system-ui, sans-serif',
-    body: 'system-ui, sans-serif'
+    display: "'Syne', -apple-system, BlinkMacSystemFont, sans-serif",
+    body: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif"
   },
-  radius: '4px',
-  space: '8px'
+  radius: '16px',
+  space: '12px'
 };

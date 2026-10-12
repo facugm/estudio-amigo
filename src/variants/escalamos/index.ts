@@ -1,32 +1,28 @@
-import { ComponentType, createElement } from 'react';
-import { VariantDefinition, SectionId } from '../types';
+import './escalamos.css';
+import { VariantDefinition } from '../types';
 import { escalamosTokens } from './tokens';
-import { SectionShell } from '../../components/SectionShell';
-
-const createStub = (section: SectionId): ComponentType => {
-  return function StubSection() {
-    return createElement(
-      SectionShell,
-      { section, layout: 'stub' },
-      section === 'hero' ? createElement('h1', null, 'hero') : createElement('h2', null, section)
-    );
-  };
-};
+import { EscalamosHero } from './Hero';
+import { EscalamosServices } from './Services';
+import { EscalamosProcess } from './Process';
+import { EscalamosPortfolio } from './Portfolio';
+import { EscalamosAbout } from './About';
+import { EscalamosContact } from './Contact';
 
 export const escalamosVariant: VariantDefinition = {
   id: 'escalamos',
   number: '03',
   label: 'Escalamos',
-  sectionOrder: ['hero', 'portfolio', 'services', 'process', 'about', 'contact'],
+  sectionOrder: ['hero', 'services', 'process', 'portfolio', 'about', 'contact'],
   sections: {
-    hero: createStub('hero'),
-    portfolio: createStub('portfolio'),
-    services: createStub('services'),
-    process: createStub('process'),
-    about: createStub('about'),
-    contact: createStub('contact')
+    hero: EscalamosHero,
+    services: EscalamosServices,
+    process: EscalamosProcess,
+    portfolio: EscalamosPortfolio,
+    about: EscalamosAbout,
+    contact: EscalamosContact
   },
   tokens: escalamosTokens,
-  fontsHref: null,
-  ready: false
+  fontsHref:
+    'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap',
+  ready: true
 };

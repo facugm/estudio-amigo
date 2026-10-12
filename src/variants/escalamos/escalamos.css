@@ -1,0 +1,424 @@
+/* 03 · Escalamos - Value Clarity + Proof */
+
+[data-variant='escalamos'] {
+  --escalamos-border: 1px solid rgba(255, 255, 255, 0.08);
+  --escalamos-border-hover: 1px solid rgba(43, 92, 246, 0.4);
+  --escalamos-card-bg: #171a24;
+  --escalamos-glow: 0 0 30px rgba(43, 92, 246, 0.15);
+  background-color: var(--c-bg);
+  color: var(--c-fg);
+}
+
+[data-variant='escalamos'] .site-header {
+  background-color: rgba(13, 15, 20, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: var(--escalamos-border);
+}
+
+[data-variant='escalamos'] .header-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+[data-variant='escalamos'] .header-nav a {
+  color: var(--c-muted);
+}
+
+[data-variant='escalamos'] .header-nav a:hover {
+  color: #ffffff;
+}
+
+[data-variant='escalamos'] .header-cta {
+  background-color: var(--c-accent);
+  color: var(--c-accent-fg);
+  border-radius: var(--radius);
+  font-weight: 600;
+  box-shadow: 0 0 16px rgba(43, 92, 246, 0.3);
+}
+
+[data-variant='escalamos'] .variant-switcher {
+  border-color: rgba(255, 255, 255, 0.1);
+  background-color: #12151e;
+}
+
+[data-variant='escalamos'] .variant-option {
+  color: var(--c-muted);
+}
+
+[data-variant='escalamos'] .variant-option.is-active {
+  background-color: var(--c-accent);
+  color: var(--c-accent-fg);
+  border-color: var(--c-accent);
+}
+
+[data-variant='escalamos'] section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 5.5rem 1.5rem;
+}
+
+[data-variant='escalamos'] .site-footer {
+  border-top: var(--escalamos-border);
+  background-color: #090b0e;
+}
+
+/* Escalamos Hero */
+[data-variant='escalamos'] [data-layout='escalamos-value'] {
+  padding-top: 4.5rem;
+  padding-bottom: 5rem;
+}
+
+[data-variant='escalamos'] .escalamos-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background-color: rgba(43, 92, 246, 0.12);
+  border: 1px solid rgba(43, 92, 246, 0.3);
+  border-radius: 999px;
+  color: #7b9cf8;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+[data-variant='escalamos'] .escalamos-hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  max-width: 900px;
+  margin-bottom: 1.5rem;
+}
+
+[data-variant='escalamos'] .escalamos-hero-support {
+  font-size: 1.2rem;
+  color: var(--c-muted);
+  max-width: 720px;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+[data-variant='escalamos'] .escalamos-hero-ctas {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+[data-variant='escalamos'] .escalamos-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0.85rem 2rem;
+  background-color: var(--c-accent);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: var(--radius);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(43, 92, 246, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+[data-variant='escalamos'] .escalamos-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(43, 92, 246, 0.5);
+  background-color: #3b6af9;
+}
+
+[data-variant='escalamos'] .escalamos-btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+[data-variant='escalamos'] .escalamos-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0.85rem 2rem;
+  background-color: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  border: var(--escalamos-border);
+  font-weight: 600;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+[data-variant='escalamos'] .escalamos-btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Escalamos Services: Benefits + Checkboxes */
+[data-variant='escalamos'] .escalamos-section-header {
+  margin-bottom: 2.5rem;
+}
+
+[data-variant='escalamos'] .escalamos-section-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+[data-variant='escalamos'] .escalamos-section-desc {
+  font-size: 1.1rem;
+  color: var(--c-muted);
+}
+
+[data-variant='escalamos'] .escalamos-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+[data-variant='escalamos'] .escalamos-service-card {
+  position: relative;
+  background-color: var(--escalamos-card-bg);
+  border: var(--escalamos-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+
+[data-variant='escalamos'] .escalamos-service-card:hover {
+  border-color: rgba(43, 92, 246, 0.5);
+  transform: translateY(-2px);
+}
+
+[data-variant='escalamos'] .escalamos-service-card.is-selected {
+  border-color: var(--c-accent);
+  background-color: rgba(43, 92, 246, 0.07);
+}
+
+[data-variant='escalamos'] .escalamos-service-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+[data-variant='escalamos'] .escalamos-service-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+[data-variant='escalamos'] .escalamos-service-checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--c-accent);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+[data-variant='escalamos'] .escalamos-service-desc {
+  font-size: 0.95rem;
+  color: var(--c-muted);
+  line-height: 1.5;
+}
+
+[data-variant='escalamos'] .escalamos-services-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.75rem;
+  background-color: var(--escalamos-card-bg);
+  border: var(--escalamos-border);
+  border-radius: var(--radius);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+[data-variant='escalamos'] .escalamos-services-counter {
+  font-size: 0.95rem;
+  color: var(--c-muted);
+}
+
+[data-variant='escalamos'] .escalamos-services-counter strong {
+  color: #ffffff;
+}
+
+/* Escalamos Process Timeline */
+[data-variant='escalamos'] .escalamos-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  position: relative;
+}
+
+[data-variant='escalamos'] .escalamos-timeline-step {
+  background-color: var(--escalamos-card-bg);
+  border: var(--escalamos-border);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+
+[data-variant='escalamos'] .escalamos-step-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: rgba(43, 92, 246, 0.15);
+  border: 1px solid rgba(43, 92, 246, 0.3);
+  color: #7b9cf8;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+[data-variant='escalamos'] .escalamos-step-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+[data-variant='escalamos'] .escalamos-step-desc {
+  font-size: 0.92rem;
+  color: var(--c-muted);
+  line-height: 1.5;
+}
+
+/* Escalamos Portfolio Proof */
+[data-variant='escalamos'] .escalamos-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.75rem;
+}
+
+[data-variant='escalamos'] .escalamos-proof-card {
+  background-color: var(--escalamos-card-bg);
+  border: var(--escalamos-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+[data-variant='escalamos'] .escalamos-proof-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(43, 92, 246, 0.4);
+}
+
+[data-variant='escalamos'] .escalamos-proof-media {
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background-color: #0d0f14;
+}
+
+[data-variant='escalamos'] .escalamos-proof-content {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+[data-variant='escalamos'] .escalamos-proof-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--c-muted);
+}
+
+[data-variant='escalamos'] .escalamos-proof-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+[data-variant='escalamos'] .escalamos-proof-desc {
+  font-size: 0.95rem;
+  color: var(--c-muted);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+
+[data-variant='escalamos'] .escalamos-proof-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Escalamos About & Contact */
+[data-variant='escalamos'] [data-layout='escalamos-about'] .escalamos-about-card {
+  background-color: var(--escalamos-card-bg);
+  border: var(--escalamos-border);
+  border-radius: var(--radius);
+  padding: 3rem;
+  max-width: 900px;
+}
+
+[data-variant='escalamos'] [data-layout='escalamos-contact'] {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 3.5rem;
+}
+
+[data-variant='escalamos'] .contact-form {
+  background-color: var(--escalamos-card-bg);
+  border: var(--escalamos-border);
+  border-radius: var(--radius);
+  padding: 2.25rem;
+}
+
+[data-variant='escalamos'] .contact-form input,
+[data-variant='escalamos'] .contact-form textarea {
+  background-color: #0d0f14;
+  border: var(--escalamos-border);
+  color: #ffffff;
+  border-radius: var(--radius);
+}
+
+[data-variant='escalamos'] .contact-form input:focus,
+[data-variant='escalamos'] .contact-form textarea:focus {
+  border-color: var(--c-accent);
+  box-shadow: 0 0 0 2px rgba(43, 92, 246, 0.25);
+}
+
+[data-variant='escalamos'] .contact-form button[type='submit'] {
+  background-color: var(--c-accent);
+  color: #ffffff;
+  border-radius: var(--radius);
+  font-weight: 600;
+  min-height: 48px;
+  box-shadow: 0 4px 16px rgba(43, 92, 246, 0.3);
+}
+
+@media (max-width: 900px) {
+  [data-variant='escalamos'] [data-layout='escalamos-contact'] {
+    grid-template-columns: 1fr;
+  }
+}

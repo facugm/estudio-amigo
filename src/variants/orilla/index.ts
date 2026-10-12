@@ -1,32 +1,28 @@
-import { ComponentType, createElement } from 'react';
-import { VariantDefinition, SectionId } from '../types';
+import { VariantDefinition } from '../types';
 import { orillaTokens } from './tokens';
-import { SectionShell } from '../../components/SectionShell';
-
-const createStub = (section: SectionId): ComponentType => {
-  return function StubSection() {
-    return createElement(
-      SectionShell,
-      { section, layout: 'stub' },
-      section === 'hero' ? createElement('h1', null, 'hero') : createElement('h2', null, section)
-    );
-  };
-};
+import { OrillaHero } from './Hero';
+import { OrillaAbout } from './About';
+import { OrillaPortfolio } from './Portfolio';
+import { OrillaServices } from './Services';
+import { OrillaProcess } from './Process';
+import { OrillaContact } from './Contact';
+import './orilla.css';
 
 export const orillaVariant: VariantDefinition = {
   id: 'orilla',
   number: '01',
   label: 'Orilla',
-  sectionOrder: ['hero', 'portfolio', 'services', 'process', 'about', 'contact'],
+  sectionOrder: ['hero', 'about', 'portfolio', 'services', 'process', 'contact'],
   sections: {
-    hero: createStub('hero'),
-    portfolio: createStub('portfolio'),
-    services: createStub('services'),
-    process: createStub('process'),
-    about: createStub('about'),
-    contact: createStub('contact')
+    hero: OrillaHero,
+    about: OrillaAbout,
+    portfolio: OrillaPortfolio,
+    services: OrillaServices,
+    process: OrillaProcess,
+    contact: OrillaContact
   },
   tokens: orillaTokens,
-  fontsHref: null,
-  ready: false
+  fontsHref:
+    'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap',
+  ready: true
 };

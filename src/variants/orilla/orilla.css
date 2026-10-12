@@ -1,0 +1,308 @@
+/* 01 · Orilla - Editorial and Brand System */
+
+[data-variant='orilla'] {
+  --orilla-border: 1px solid rgba(18, 18, 18, 0.15);
+  background-color: var(--c-bg);
+  color: var(--c-fg);
+}
+
+[data-variant='orilla'] .site-header {
+  background-color: var(--c-bg);
+  border-bottom: var(--orilla-border);
+}
+
+[data-variant='orilla'] .header-brand {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  font-size: 1.25rem;
+}
+
+[data-variant='orilla'] .header-cta {
+  background-color: transparent;
+  color: var(--c-fg);
+  border: 1px solid var(--c-fg);
+  border-radius: var(--radius);
+}
+
+[data-variant='orilla'] .header-cta:hover {
+  background-color: var(--c-fg);
+  color: var(--c-bg);
+}
+
+[data-variant='orilla'] .variant-option.is-active {
+  background-color: var(--c-fg);
+  color: var(--c-bg);
+}
+
+/* Sections */
+[data-variant='orilla'] section {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+  border-bottom: var(--orilla-border);
+}
+
+/* Hero layout */
+[data-variant='orilla'] [data-layout='orilla-editorial'] {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+[data-variant='orilla'] .orilla-hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5.2rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  max-width: 1100px;
+  margin-bottom: 2.5rem;
+  text-wrap: balance;
+}
+
+[data-variant='orilla'] .orilla-hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+[data-variant='orilla'] .orilla-hero-support {
+  font-size: 1.2rem;
+  color: var(--c-muted);
+  max-width: 580px;
+  line-height: 1.55;
+}
+
+[data-variant='orilla'] .orilla-hero-ctas {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+[data-variant='orilla'] .orilla-btn-main {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.75rem 1.75rem;
+  background-color: var(--c-fg);
+  color: var(--c-bg);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: opacity 0.2s ease;
+}
+
+[data-variant='orilla'] .orilla-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.75rem 1.75rem;
+  background-color: transparent;
+  color: var(--c-fg);
+  border: 1px solid var(--c-fg);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease;
+}
+
+[data-variant='orilla'] .orilla-btn-main:hover {
+  opacity: 0.85;
+}
+
+[data-variant='orilla'] .orilla-btn-secondary:hover {
+  background-color: var(--c-surface);
+}
+
+/* About Section */
+[data-variant='orilla'] [data-layout='orilla-editorial'].orilla-about {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+}
+
+[data-variant='orilla'] .orilla-section-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+[data-variant='orilla'] .orilla-about-text {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: var(--c-fg);
+}
+
+/* Portfolio Index Layout */
+[data-variant='orilla'] [data-layout='orilla-index'] .orilla-portfolio-header {
+  margin-bottom: 3.5rem;
+}
+
+[data-variant='orilla'] .orilla-portfolio-table {
+  display: flex;
+  flex-direction: column;
+}
+
+[data-variant='orilla'] .orilla-project-row {
+  display: grid;
+  grid-template-columns: 60px 1.5fr 1fr 2fr 180px;
+  gap: 2rem;
+  align-items: center;
+  padding: 2.25rem 0;
+  border-top: var(--orilla-border);
+}
+
+[data-variant='orilla'] .orilla-project-row:last-child {
+  border-bottom: var(--orilla-border);
+}
+
+[data-variant='orilla'] .orilla-project-num {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--c-muted);
+}
+
+[data-variant='orilla'] .orilla-project-title-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+[data-variant='orilla'] .orilla-project-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+[data-variant='orilla'] .orilla-project-client {
+  font-size: 0.85rem;
+  color: var(--c-muted);
+}
+
+[data-variant='orilla'] .orilla-project-category {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--c-muted);
+}
+
+[data-variant='orilla'] .orilla-project-desc {
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--c-fg);
+}
+
+[data-variant='orilla'] .orilla-project-media-wrap {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Services Typographic List */
+[data-variant='orilla'] [data-layout='orilla-typographic'] .orilla-services-list {
+  list-style: none;
+  counter-reset: orilla-counter;
+  margin-top: 2.5rem;
+  border-top: var(--orilla-border);
+}
+
+[data-variant='orilla'] .orilla-service-item {
+  counter-increment: orilla-counter;
+  display: grid;
+  grid-template-columns: 80px 1.5fr 2fr;
+  gap: 2.5rem;
+  padding: 2rem 0;
+  border-bottom: var(--orilla-border);
+  align-items: baseline;
+}
+
+[data-variant='orilla'] .orilla-service-item::before {
+  content: counter(orilla-counter, decimal-leading-zero);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--c-muted);
+}
+
+[data-variant='orilla'] .orilla-service-title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+[data-variant='orilla'] .orilla-service-summary {
+  font-size: 1rem;
+  color: var(--c-muted);
+  line-height: 1.55;
+}
+
+/* Process Section */
+[data-variant='orilla'] [data-layout='orilla-steps'] .orilla-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+[data-variant='orilla'] .orilla-step-card {
+  padding: 1.5rem 0;
+  border-top: var(--orilla-border);
+}
+
+[data-variant='orilla'] .orilla-step-num {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--c-muted);
+}
+
+[data-variant='orilla'] .orilla-step-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+[data-variant='orilla'] .orilla-step-desc {
+  font-size: 0.95rem;
+  color: var(--c-muted);
+  line-height: 1.5;
+}
+
+/* Contact Section */
+[data-variant='orilla'] [data-layout='orilla-contact'] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+@media (max-width: 900px) {
+  [data-variant='orilla'] [data-layout='orilla-editorial'].orilla-about {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  [data-variant='orilla'] .orilla-project-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  [data-variant='orilla'] .orilla-service-item {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  [data-variant='orilla'] [data-layout='orilla-contact'] {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}

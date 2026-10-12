@@ -2,17 +2,17 @@ import { VariantTokens } from '../types';
 
 export const orillaTokens: VariantTokens = {
   colors: {
-    bg: '#ffffff',
-    surface: '#f4f4f4',
-    fg: '#111111',
-    muted: '#555555',
-    accent: '#1a1a1a',
+    bg: '#fcfbf9',
+    surface: '#f3f0e8',
+    fg: '#121212',
+    muted: '#5a5852',
+    accent: '#121212',
     accentFg: '#ffffff'
   },
   fonts: {
-    display: 'system-ui, sans-serif',
-    body: 'system-ui, sans-serif'
+    display: "'Bricolage Grotesque', Georgia, serif",
+    body: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
   },
-  radius: '4px',
-  space: '8px'
+  radius: '2px',
+  space: '10px'
 };

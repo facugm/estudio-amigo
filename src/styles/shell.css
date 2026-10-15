@@ -92,6 +92,12 @@
   opacity: 0.75;
 }
 
+.nav-link[aria-current='true'] {
+  color: var(--c-accent, #234060);
+  font-weight: 700;
+  opacity: 1;
+}
+
 .header-actions {
   display: flex;
   align-items: center;

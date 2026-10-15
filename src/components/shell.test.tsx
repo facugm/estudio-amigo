@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../App';
 import { defaultContent } from '../content/ContentProvider';
+import { SECTION_ANCHORS } from '../variants/types';
 
 it('the switcher exposes the three proposals as radios and marks the active one', () => {
   render(<App storage={null} initialVariantId="nefiu" />);
@@ -81,4 +82,14 @@ it('footer shows the wordmark, the nav and the prototype note, without repeating
   expect(within(footer).getByRole('img', { name: 'estudio amigo' })).toBeInTheDocument();
   expect(footer).not.toHaveTextContent(defaultContent.site.hero.support);
 });
+
+it('each section anchor referenced in nav exists in the document', () => {
+  render(<App storage={null} />);
+  for (const item of defaultContent.site.nav) {
+    const anchor = SECTION_ANCHORS[item.section];
+    const el = document.getElementById(anchor);
+    expect(el).not.toBeNull();
+  }
+});
+
 

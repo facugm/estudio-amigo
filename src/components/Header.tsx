@@ -3,11 +3,16 @@ import { useContent } from '../content/ContentProvider';
 import { SECTION_ANCHORS } from '../variants/types';
 import { VariantSwitcher } from './VariantSwitcher';
 import { Wordmark } from '../brand/Wordmark';
+import { useHeaderOffset } from '../lib/useHeaderOffset';
 
 export function Header(): JSX.Element {
   const { site } = useContent();
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+
+  useHeaderOffset(headerRef);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -21,10 +26,37 @@ export function Header(): JSX.Element {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
+  useEffect(() => {
+    if (typeof IntersectionObserver === 'undefined') return;
+
+    const sections = site.nav
+      .map(item => document.getElementById(SECTION_ANCHORS[item.section]))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0
+      }
+    );
+
+    sections.forEach(s => observer.observe(s));
+    return () => observer.disconnect();
+  }, [site.nav]);
+
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="site-header">
+    <header ref={headerRef} className="site-header">
       <div className="header-top">
         <div className="header-brand-container">
           <a href="#inicio" className="header-brand" aria-label="estudio amigo" onClick={closeMenu}>
@@ -53,17 +85,22 @@ export function Header(): JSX.Element {
           className={`main-nav ${isOpen ? 'is-open' : ''}`}
         >
           <ul className="nav-list">
-            {site.nav.map(item => (
-              <li key={item.section} className="nav-item">
-                <a
-                  href={`#${SECTION_ANCHORS[item.section]}`}
-                  className="nav-link"
-                  onClick={closeMenu}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            {site.nav.map(item => {
+              const anchor = SECTION_ANCHORS[item.section];
+              const isCurrent = activeSection === anchor;
+              return (
+                <li key={item.section} className="nav-item">
+                  <a
+                    href={`#${anchor}`}
+                    className="nav-link"
+                    aria-current={isCurrent ? 'true' : undefined}
+                    onClick={closeMenu}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
           <div className="header-actions">

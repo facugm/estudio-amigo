@@ -1,15 +1,15 @@
 /* 02 · Nefiu - Identity + Commercial Presentation */
 
 [data-variant='nefiu'] {
-  --nefiu-border: 1px solid rgba(14, 18, 26, 0.1);
-  --nefiu-card-bg: #f8fafc;
-  --nefiu-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --nefiu-border: 1px solid var(--c-gray, #dcdcdc);
+  --nefiu-card-bg: var(--c-surface, #ffffff);
+  --nefiu-shadow: 0 4px 20px rgba(35, 64, 96, 0.08);
   background-color: var(--c-bg);
   color: var(--c-fg);
 }
 
 [data-variant='nefiu'] .site-header {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: var(--c-surface, #ffffff);
   border-bottom: var(--nefiu-border);
 }
 
@@ -88,7 +88,7 @@
 
 [data-variant='nefiu'] .nefiu-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(11, 87, 208, 0.25);
+  box-shadow: 0 4px 12px rgba(35, 64, 96, 0.25);
 }
 
 [data-variant='nefiu'] .nefiu-btn-outline {
@@ -106,11 +106,11 @@
 }
 
 [data-variant='nefiu'] .nefiu-btn-outline:hover {
-  background-color: #e8ecf4;
+  background-color: var(--c-gray, #dcdcdc);
 }
 
 [data-variant='nefiu'] .nefiu-hero-graphic {
-  background: linear-gradient(135deg, #0b57d0 0%, #1e293b 100%);
+  background-color: #234060;
   color: #ffffff;
   border-radius: var(--radius);
   padding: 2.5rem;
@@ -119,16 +119,18 @@
   justify-content: space-between;
   min-height: 340px;
   box-shadow: var(--nefiu-shadow);
+  border: 2px solid #c8f264;
 }
 
 [data-variant='nefiu'] .nefiu-graphic-tag {
   display: inline-block;
   align-self: flex-start;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  background: rgba(255, 255, 255, 0.2);
+  background-color: #c8f264;
+  color: #234060;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
 }
@@ -200,7 +202,7 @@
 [data-variant='nefiu'] .nefiu-tab[aria-selected='true'] {
   background-color: var(--c-accent);
   color: var(--c-accent-fg);
-  box-shadow: 0 4px 12px rgba(11, 87, 208, 0.2);
+  box-shadow: 0 4px 12px rgba(35, 64, 96, 0.2);
 }
 
 [data-variant='nefiu'] .nefiu-tabpanel {
@@ -256,7 +258,7 @@
 [data-variant='nefiu'] .nefiu-bento-tile[data-size='large'] {
   grid-column: span 2;
   grid-row: span 2;
-  background-color: #f1f4fa;
+  background-color: var(--c-surface, #ffffff);
 }
 
 [data-variant='nefiu'] .nefiu-bento-tile[data-size='wide'] {

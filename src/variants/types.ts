@@ -3,7 +3,7 @@ import { SectionId } from '../content/types';
 
 export type { SectionId };
 
-export type VariantId = 'orilla' | 'nefiu' | 'escalamos' | 'creativewise';
+export type VariantId = 'nefiu' | 'escalamos' | 'creativewise';
 
 export const SECTION_ANCHORS: Record<SectionId, string> = {
   hero: 'inicio',
@@ -29,7 +29,7 @@ export interface VariantTokens {
 
 export interface VariantDefinition {
   id: VariantId;
-  number: '01' | '02' | '03' | '04';
+  number: '02' | '03' | '04';
   label: string;
   sectionOrder: readonly SectionId[];
   sections: Record<SectionId, ComponentType>;

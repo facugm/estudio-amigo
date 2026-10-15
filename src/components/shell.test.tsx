@@ -2,28 +2,31 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../App';
 
-it('the switcher exposes the four proposals as radios and marks the active one', () => {
-  render(<App storage={null} initialVariantId="orilla" />);
+it('the switcher exposes the three proposals as radios and marks the active one', () => {
+  render(<App storage={null} initialVariantId="nefiu" />);
   expect(
     screen
       .getAllByRole('radio')
       .map(r => r.getAttribute('aria-label') ?? r.closest('label')?.textContent?.trim())
-  ).toEqual(['01 Orilla', '02 Nefiu', '03 Escalamos', '04 Creativewise']);
-  expect(screen.getByRole('radio', { name: '01 Orilla' })).toBeChecked();
+  ).toEqual(['02 Nefiu', '03 Escalamos', '04 Creativewise']);
+  expect(screen.getByRole('radio', { name: '02 Nefiu' })).toBeChecked();
 });
 
 it('selecting a proposal switches variant without reloading and updates the active radio', async () => {
-  render(<App storage={null} initialVariantId="orilla" />);
+  render(<App storage={null} initialVariantId="nefiu" />);
   await userEvent.click(screen.getByRole('radio', { name: '03 Escalamos' }));
   expect(document.documentElement.dataset.variant).toBe('escalamos');
   expect(screen.getByRole('radio', { name: '03 Escalamos' })).toBeChecked();
 });
 
 it('arrow keys move between proposals', async () => {
-  render(<App storage={null} initialVariantId="orilla" />);
-  screen.getByRole('radio', { name: '01 Orilla' }).focus();
+  render(<App storage={null} initialVariantId="nefiu" />);
+  screen.getByRole('radio', { name: '02 Nefiu' }).focus();
   await userEvent.keyboard('{ArrowRight}');
-  expect(document.documentElement.dataset.variant).toBe('nefiu');
+  expect(document.documentElement.dataset.variant).toBe('escalamos');
+  screen.getByRole('radio', { name: '02 Nefiu' }).focus();
+  await userEvent.keyboard('{ArrowLeft}');
+  expect(document.documentElement.dataset.variant).toBe('creativewise');
 });
 
 it('skip link is the first tab stop and targets #main', async () => {
@@ -60,6 +63,6 @@ it('footer shows the prototype note', () => {
 });
 
 it('the form draft survives switching variants', async () => {
-  render(<App storage={null} initialVariantId="orilla" />);
+  render(<App storage={null} initialVariantId="nefiu" />);
   expect(document.getElementById('contacto')).toBeInTheDocument();
 });

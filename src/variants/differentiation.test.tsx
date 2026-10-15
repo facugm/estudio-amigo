@@ -3,15 +3,15 @@ import { App } from '../App';
 import { VARIANTS } from './registry';
 
 describe('Variant differentiation', () => {
-  it('all four variants are registered and marked ready', () => {
-    expect(VARIANTS).toHaveLength(4);
+  it('all three variants are registered and marked ready', () => {
+    expect(VARIANTS).toHaveLength(3);
     expect(VARIANTS.every(v => v.ready)).toBe(true);
   });
 
   it('each variant has a pairwise distinct section order', () => {
     const orders = VARIANTS.map(v => v.sectionOrder.join('>'));
     const uniqueOrders = new Set(orders);
-    expect(uniqueOrders.size).toBe(4);
+    expect(uniqueOrders.size).toBe(3);
   });
 
   it('each variant renders distinct layouts for hero, portfolio, and services', () => {
@@ -37,9 +37,9 @@ describe('Variant differentiation', () => {
       unmount();
     }
 
-    expect(heroLayouts.size).toBe(4);
-    expect(portfolioLayouts.size).toBe(4);
-    expect(servicesLayouts.size).toBe(4);
+    expect(heroLayouts.size).toBe(3);
+    expect(portfolioLayouts.size).toBe(3);
+    expect(servicesLayouts.size).toBe(3);
   });
 
   it('each variant defines distinct radius and color tokens', () => {

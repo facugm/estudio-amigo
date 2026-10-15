@@ -18,14 +18,14 @@ const Probe = () => {
   return <button onClick={() => setVariantId('escalamos')}>{variant.id}</button>;
 };
 
-it('registers the four variants in brief order with numbers and labels', () => {
+it('registers the three remaining variants keeping their numbers', () => {
   expect(VARIANTS.map(v => `${v.number} ${v.label}`)).toEqual([
-    '01 Orilla',
     '02 Nefiu',
     '03 Escalamos',
     '04 Creativewise'
   ]);
-  expect(DEFAULT_VARIANT_ID).toBe('orilla');
+  expect(DEFAULT_VARIANT_ID).toBe('nefiu');
+  expect(isVariantId('orilla')).toBe(false);
   expect(isVariantId('nefiu')).toBe(true);
   expect(isVariantId('x')).toBe(false);
 });
@@ -53,15 +53,21 @@ it('every variant keeps AA contrast for fg, muted and accent text', () =>
 it('resolveInitialVariantId: URL > storage > default, tolerating bad values and a throwing storage', () => {
   expect(resolveInitialVariantId('?v=nefiu', memoryStorage('escalamos'))).toBe('nefiu');
   expect(resolveInitialVariantId('?v=bogus', memoryStorage('escalamos'))).toBe('escalamos');
-  expect(resolveInitialVariantId('', memoryStorage('bogus'))).toBe('orilla');
-  expect(resolveInitialVariantId('', null)).toBe('orilla');
+  expect(resolveInitialVariantId('', memoryStorage('bogus'))).toBe('nefiu');
+  expect(resolveInitialVariantId('', null)).toBe('nefiu');
   expect(
     resolveInitialVariantId('', {
       getItem: () => {
         throw new Error('blocked');
       }
     })
-  ).toBe('orilla');
+  ).toBe('nefiu');
+});
+
+it('legacy Orilla values in the URL or in storage fall back to the default without throwing', () => {
+  expect(resolveInitialVariantId('?v=orilla', memoryStorage('orilla'))).toBe('nefiu');
+  expect(resolveInitialVariantId('?v=orilla', memoryStorage('escalamos'))).toBe('escalamos');
+  expect(resolveInitialVariantId('', memoryStorage('orilla'))).toBe('nefiu');
 });
 
 it('switching sets data-variant, tokens, storage and URL (keeping the hash), without reloading', () => {
@@ -75,7 +81,7 @@ it('switching sets data-variant, tokens, storage and URL (keeping the hash), wit
   act(() => screen.getByRole('button').click());
   expect(document.documentElement.dataset.variant).toBe('escalamos');
   expect(document.documentElement.style.getPropertyValue('--c-bg')).toBe(
-    VARIANTS[2]!.tokens.colors.bg
+    VARIANTS.find(v => v.id === 'escalamos')!.tokens.colors.bg
   );
   expect(storage.getItem()).toBe('escalamos');
   expect(window.location.search).toContain('v=escalamos');

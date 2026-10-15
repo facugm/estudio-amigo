@@ -22,7 +22,7 @@ export function NefiuHero(): JSX.Element {
         <div className="nefiu-hero-graphic" aria-hidden="true">
           <span className="nefiu-graphic-tag">Estudio Creativo & Comunicación</span>
           <div className="nefiu-graphic-title">Branding real que conecta y transforma marcas.</div>
-          <div className="nefiu-graphic-meta">Soluciones de punta a punta · San Juan, Argentina</div>
+          <div className="nefiu-graphic-meta">Identidad, estrategia y comunicación</div>
         </div>
       </div>
     </SectionShell>

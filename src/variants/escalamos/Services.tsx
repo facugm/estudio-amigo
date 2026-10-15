@@ -6,7 +6,7 @@ import { buildInterestMessage } from './interestMessage';
 
 export function EscalamosServices(): JSX.Element {
   const { services, site } = useContent();
-  const { setField } = useContactForm();
+  const { draft, setField } = useContactForm();
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
   const servicesTitle = site.nav.find(n => n.section === 'services')?.label ?? 'Servicios';
@@ -21,8 +21,13 @@ export function EscalamosServices(): JSX.Element {
     const selectedTitles = services
       .filter(s => selectedIds.includes(s.id))
       .map(s => s.title);
-    const message = buildInterestMessage(selectedTitles);
-    setField('message', message);
+    const template = buildInterestMessage(selectedTitles);
+    const existing = draft.message.trim();
+    if (!existing || existing.startsWith('Hola estudio amigo, me interesan los siguientes servicios:')) {
+      setField('message', template);
+    } else {
+      setField('message', `${template}\n\n${existing}`);
+    }
     const contactEl = document.getElementById('contacto');
     if (contactEl) {
       contactEl.scrollIntoView({ behavior: 'smooth' });

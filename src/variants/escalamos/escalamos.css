@@ -1,17 +1,18 @@
 /* 03 · Escalamos - Value Clarity + Proof */
 
 [data-variant='escalamos'] {
-  --escalamos-border: 1px solid rgba(255, 255, 255, 0.08);
-  --escalamos-border-hover: 1px solid rgba(43, 92, 246, 0.4);
-  --escalamos-card-bg: #171a24;
-  --escalamos-glow: 0 0 30px rgba(43, 92, 246, 0.15);
-  background-color: var(--c-bg);
-  color: var(--c-fg);
+  --escalamos-border: 1px solid rgba(255, 255, 255, 0.12);
+  --escalamos-border-hover: 1px solid #c8f264;
+  --escalamos-card-bg: var(--c-surface, #234060);
+  --escalamos-glow: 0 0 30px rgba(200, 242, 100, 0.15);
+  background-color: var(--c-bg, #234060);
+  color: var(--c-fg, #ffffff);
 }
 
 [data-variant='escalamos'] .site-header {
-  background-color: rgba(13, 15, 20, 0.9);
+  background-color: rgba(35, 64, 96, 0.95);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: var(--escalamos-border);
 }
 
@@ -23,7 +24,7 @@
 }
 
 [data-variant='escalamos'] .header-nav a {
-  color: var(--c-muted);
+  color: var(--c-muted, #dcdcdc);
 }
 
 [data-variant='escalamos'] .header-nav a:hover {
@@ -31,26 +32,26 @@
 }
 
 [data-variant='escalamos'] .header-cta {
-  background-color: var(--c-accent);
-  color: var(--c-accent-fg);
+  background-color: var(--c-accent, #c8f264);
+  color: var(--c-accent-fg, #234060);
   border-radius: var(--radius);
   font-weight: 600;
-  box-shadow: 0 0 16px rgba(43, 92, 246, 0.3);
+  box-shadow: 0 0 16px rgba(200, 242, 100, 0.3);
 }
 
 [data-variant='escalamos'] .variant-switcher {
-  border-color: rgba(255, 255, 255, 0.1);
-  background-color: #12151e;
+  border-color: rgba(255, 255, 255, 0.12);
+  background-color: var(--c-bg, #234060);
 }
 
 [data-variant='escalamos'] .variant-option {
-  color: var(--c-muted);
+  color: var(--c-muted, #dcdcdc);
 }
 
 [data-variant='escalamos'] .variant-option.is-active {
-  background-color: var(--c-accent);
-  color: var(--c-accent-fg);
-  border-color: var(--c-accent);
+  background-color: var(--c-accent, #c8f264);
+  color: var(--c-accent-fg, #234060);
+  border-color: var(--c-accent, #c8f264);
 }
 
 [data-variant='escalamos'] section {
@@ -61,7 +62,7 @@
 
 [data-variant='escalamos'] .site-footer {
   border-top: var(--escalamos-border);
-  background-color: #090b0e;
+  background-color: var(--c-surface, #234060);
 }
 
 /* Escalamos Hero */
@@ -75,12 +76,12 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.35rem 0.85rem;
-  background-color: rgba(43, 92, 246, 0.12);
-  border: 1px solid rgba(43, 92, 246, 0.3);
+  background-color: rgba(200, 242, 100, 0.12);
+  border: 1px solid #c8f264;
   border-radius: 999px;
-  color: #7b9cf8;
+  color: #c8f264;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
@@ -99,7 +100,7 @@
 
 [data-variant='escalamos'] .escalamos-hero-support {
   font-size: 1.2rem;
-  color: var(--c-muted);
+  color: var(--c-muted, #dcdcdc);
   max-width: 720px;
   line-height: 1.6;
   margin-bottom: 2.5rem;
@@ -117,21 +118,21 @@
   justify-content: center;
   min-height: 50px;
   padding: 0.85rem 2rem;
-  background-color: var(--c-accent);
-  color: #ffffff;
-  font-weight: 600;
+  background-color: var(--c-accent, #c8f264);
+  color: var(--c-accent-fg, #234060);
+  font-weight: 700;
   border-radius: var(--radius);
   text-decoration: none;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(43, 92, 246, 0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  box-shadow: 0 4px 20px rgba(200, 242, 100, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
 }
 
 [data-variant='escalamos'] .escalamos-btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(43, 92, 246, 0.5);
-  background-color: #3b6af9;
+  box-shadow: 0 6px 24px rgba(200, 242, 100, 0.5);
+  opacity: 0.95;
 }
 
 [data-variant='escalamos'] .escalamos-btn-primary:disabled {
@@ -176,7 +177,7 @@
 
 [data-variant='escalamos'] .escalamos-section-desc {
   font-size: 1.1rem;
-  color: var(--c-muted);
+  color: var(--c-muted, #dcdcdc);
 }
 
 [data-variant='escalamos'] .escalamos-services-grid {
@@ -195,17 +196,17 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 [data-variant='escalamos'] .escalamos-service-card:hover {
-  border-color: rgba(43, 92, 246, 0.5);
+  border-color: #c8f264;
   transform: translateY(-2px);
 }
 
 [data-variant='escalamos'] .escalamos-service-card.is-selected {
-  border-color: var(--c-accent);
-  background-color: rgba(43, 92, 246, 0.07);
+  border-color: var(--c-accent, #c8f264);
+  background-color: rgba(200, 242, 100, 0.08);
 }
 
 [data-variant='escalamos'] .escalamos-service-header {
@@ -226,7 +227,7 @@
 [data-variant='escalamos'] .escalamos-service-checkbox {
   width: 20px;
   height: 20px;
-  accent-color: var(--c-accent);
+  accent-color: var(--c-accent, #c8f264);
   cursor: pointer;
   flex-shrink: 0;
   margin-top: 2px;
@@ -234,7 +235,7 @@
 
 [data-variant='escalamos'] .escalamos-service-desc {
   font-size: 0.95rem;
-  color: var(--c-muted);
+  color: var(--c-muted, #dcdcdc);
   line-height: 1.5;
 }
 
@@ -252,7 +253,7 @@
 
 [data-variant='escalamos'] .escalamos-services-counter {
   font-size: 0.95rem;
-  color: var(--c-muted);
+  color: var(--c-muted, #dcdcdc);
 }
 
 [data-variant='escalamos'] .escalamos-services-counter strong {
@@ -282,9 +283,9 @@
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background-color: rgba(43, 92, 246, 0.15);
-  border: 1px solid rgba(43, 92, 246, 0.3);
-  color: #7b9cf8;
+  background-color: rgba(200, 242, 100, 0.15);
+  border: 1px solid #c8f264;
+  color: #c8f264;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.9rem;
@@ -301,7 +302,7 @@
 
 [data-variant='escalamos'] .escalamos-step-desc {
   font-size: 0.92rem;
-  color: var(--c-muted);
+  color: var(--c-muted, #dcdcdc);
   line-height: 1.5;
 }
 
@@ -324,14 +325,14 @@
 
 [data-variant='escalamos'] .escalamos-proof-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(43, 92, 246, 0.4);
+  border-color: #c8f264;
 }
 
 [data-variant='escalamos'] .escalamos-proof-media {
   width: 100%;
   aspect-ratio: 16/10;
   overflow: hidden;
-  background-color: #0d0f14;
+  background-color: var(--c-surface, #234060);
 }
 
 [data-variant='escalamos'] .escalamos-proof-content {
@@ -347,7 +348,7 @@
   justify-content: space-between;
   margin-bottom: 0.5rem;
   font-size: 0.85rem;
-  color: var(--c-muted);
+  color: var(--c-muted, #dcdcdc);
 }
 
 [data-variant='escalamos'] .escalamos-proof-title {
@@ -360,7 +361,7 @@
 
 [data-variant='escalamos'] .escalamos-proof-desc {
   font-size: 0.95rem;
-  color: var(--c-muted);
+  color: var(--c-muted, #dcdcdc);
   line-height: 1.55;
   margin-bottom: 1.25rem;
 }
@@ -396,7 +397,7 @@
 
 [data-variant='escalamos'] .contact-form input,
 [data-variant='escalamos'] .contact-form textarea {
-  background-color: #0d0f14;
+  background-color: var(--c-surface, #234060);
   border: var(--escalamos-border);
   color: #ffffff;
   border-radius: var(--radius);
@@ -404,17 +405,17 @@
 
 [data-variant='escalamos'] .contact-form input:focus,
 [data-variant='escalamos'] .contact-form textarea:focus {
-  border-color: var(--c-accent);
-  box-shadow: 0 0 0 2px rgba(43, 92, 246, 0.25);
+  border-color: var(--c-accent, #c8f264);
+  box-shadow: 0 0 0 2px rgba(200, 242, 100, 0.25);
 }
 
 [data-variant='escalamos'] .contact-form button[type='submit'] {
-  background-color: var(--c-accent);
-  color: #ffffff;
+  background-color: var(--c-accent, #c8f264);
+  color: var(--c-accent-fg, #234060);
   border-radius: var(--radius);
-  font-weight: 600;
+  font-weight: 700;
   min-height: 48px;
-  box-shadow: 0 4px 16px rgba(43, 92, 246, 0.3);
+  box-shadow: 0 4px 16px rgba(200, 242, 100, 0.3);
 }
 
 @media (max-width: 900px) {
@@ -456,15 +457,21 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  color: var(--c-muted);
+  color: var(--c-muted, #dcdcdc);
   font-size: 1.1rem;
   line-height: 1.65;
 }
 
 [data-variant='escalamos'] .escalamos-contact-invitation {
-  color: var(--c-muted);
+  color: var(--c-muted, #dcdcdc);
   font-size: 1.1rem;
   margin-bottom: 2.5rem;
   line-height: 1.6;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  [data-variant='escalamos'] * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

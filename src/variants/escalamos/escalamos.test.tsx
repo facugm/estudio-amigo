@@ -3,8 +3,17 @@ import userEvent from '@testing-library/user-event';
 import { App } from '../../App';
 import { defaultContent } from '../../content/ContentProvider';
 import { buildInterestMessage } from './interestMessage';
+import { escalamosTokens } from './tokens';
+import { BRAND } from '../../brand/palette';
 
 describe('Escalamos variant', () => {
+  it('escalamos tokens use only brand palette colors', () => {
+    const brandHexValues = new Set(Object.values(BRAND).map(c => c.toLowerCase()));
+    Object.values(escalamosTokens.colors).forEach(color => {
+      expect(brandHexValues.has(color.toLowerCase())).toBe(true);
+    });
+  });
+
   it('buildInterestMessage formats an empty string when empty and lists services when provided', () => {
     expect(buildInterestMessage([])).toBe('');
     const msg = buildInterestMessage(['Branding y rebranding', 'Pauta digital']);
@@ -54,6 +63,24 @@ describe('Escalamos variant', () => {
         defaultContent.services[0]!.title,
         defaultContent.services[1]!.title
       ])
+    );
+  });
+
+  it('clicking CTA preserves already typed message in contact form', async () => {
+    mount();
+    const contact = within(document.querySelector('[data-section="contact"]') as HTMLElement);
+    const messageInput = contact.getByLabelText(/mensaje/i);
+    await userEvent.type(messageInput, 'Mi proyecto es una tienda de ropa.');
+
+    const services = within(document.querySelector('[data-section="services"]') as HTMLElement);
+    const checkboxes = services.getAllByRole('checkbox');
+    await userEvent.click(checkboxes[0]!);
+
+    const cta = services.getByRole('button', { name: /solicitar diagnóstico/i });
+    await userEvent.click(cta);
+
+    expect(messageInput).toHaveValue(
+      `${buildInterestMessage([defaultContent.services[0]!.title])}\n\nMi proyecto es una tienda de ropa.`
     );
   });
 

@@ -35,6 +35,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+section[id],
+article[id],
+div[id] {
+  scroll-margin-top: calc(var(--header-h, 96px) + 8px);
+}
+
 img, video {
   max-width: 100%;
   display: block;

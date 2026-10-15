@@ -10,7 +10,7 @@ export function EscalamosContact(): JSX.Element {
     <SectionShell section="contact" layout="escalamos-contact">
       <div className="escalamos-contact-info">
         <h2 className="escalamos-section-title">{site.contact.title}</h2>
-        <p style={{ color: 'var(--c-muted)', fontSize: '1.1rem', marginBottom: '2.5rem', lineHeight: 1.6 }}>
+        <p className="escalamos-contact-invitation">
           {site.contact.invitation}
         </p>
         <ContactChannels />

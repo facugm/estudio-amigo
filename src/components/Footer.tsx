@@ -1,6 +1,7 @@
 import { useContent } from '../content/ContentProvider';
 import { SECTION_ANCHORS } from '../variants/types';
 import { ContactChannels } from './ContactChannels';
+import { Wordmark } from '../brand/Wordmark';
 
 export function Footer(): JSX.Element {
   const { site } = useContent();
@@ -10,8 +11,7 @@ export function Footer(): JSX.Element {
       <div className="footer-container">
         <div className="footer-top">
           <div className="footer-brand">
-            <h2 className="footer-brand-title">{site.brand.full}</h2>
-            <p className="footer-brand-desc">{site.hero.support}</p>
+            <Wordmark className="footer-wordmark" />
           </div>
 
           <nav aria-label="Navegación pie de página" className="footer-nav">

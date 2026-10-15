@@ -4,6 +4,14 @@
   --font-brand: 'Museo Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-display: var(--font-brand);
   --font-body: var(--font-brand);
+
+  --c-navy: #234060;
+  --c-lime: #c8f264;
+  --c-magenta: #c61e97;
+  --c-gray: #dcdcdc;
+  --c-white: #ffffff;
+
+  --c-focus: var(--c-magenta);
 }
 
 *, *::before, *::after {
@@ -15,7 +23,7 @@
 html {
   scroll-behavior: smooth;
   font-family: var(--font-body);
-  color: var(--c-fg, #111111);
+  color: var(--c-fg, #234060);
   background-color: var(--c-bg, #ffffff);
   -webkit-text-size-adjust: 100%;
 }
@@ -40,8 +48,20 @@ img, video {
   transition: transform 0.3s ease;
 }
 
+.project-media--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--c-gray, #dcdcdc);
+  color: var(--c-navy, #234060);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
 :focus-visible {
-  outline: 3px solid var(--c-accent, #1a1a1a);
+  outline: 3px solid var(--c-focus, #c61e97);
   outline-offset: 3px;
 }
 
@@ -63,9 +83,9 @@ img, video {
   left: 1rem;
   z-index: 9999;
   padding: 0.75rem 1.25rem;
-  background-color: var(--c-surface, #f4f4f4);
-  color: var(--c-fg, #111111);
-  border: 2px solid var(--c-accent, #111111);
+  background-color: var(--c-surface, #ffffff);
+  color: var(--c-fg, #234060);
+  border: 2px solid var(--c-navy, #234060);
   border-radius: var(--radius, 4px);
   text-decoration: none;
   font-weight: 600;
@@ -74,7 +94,7 @@ img, video {
 
 .skip-link:focus {
   top: 1rem;
-  outline: 3px solid var(--c-accent, #111111);
+  outline: 3px solid var(--c-focus, #c61e97);
   outline-offset: 3px;
 }
 

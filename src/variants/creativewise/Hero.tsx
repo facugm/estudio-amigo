@@ -21,31 +21,18 @@ export function CreativewiseHero(): JSX.Element {
         </div>
 
         {projects.length > 0 && (
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '1rem',
-              marginTop: '1.5rem',
-              opacity: 0.9
-            }}
-          >
+          <div className="creativewise-hero-projects">
             {projects.slice(0, 3).map(p => (
-              <div
+              <a
                 key={p.id}
-                style={{
-                  padding: '1rem',
-                  borderRadius: 'var(--radius)',
-                  backgroundColor: 'var(--c-surface)',
-                  fontSize: '0.9rem',
-                  fontWeight: 600
-                }}
+                href="#trabajos"
+                className="creativewise-hero-project-card"
               >
                 <span>{p.name}</span>
-                <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--c-muted)', fontWeight: 400 }}>
+                <span className="creativewise-hero-project-client">
                   {p.client}
                 </span>
-              </div>
+              </a>
             ))}
           </div>
         )}

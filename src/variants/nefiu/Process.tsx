@@ -10,22 +10,13 @@ export function NefiuProcess(): JSX.Element {
       <div className="nefiu-process-grid">
         {site.process.steps.map((step, idx) => (
           <div key={step.id} className="nefiu-process-card">
-            <span
-              style={{
-                display: 'inline-block',
-                fontFamily: 'var(--font-display)',
-                fontWeight: 700,
-                fontSize: '1.5rem',
-                color: 'var(--c-accent)',
-                marginBottom: '0.75rem'
-              }}
-            >
+            <span className="nefiu-process-step-num">
               0{idx + 1}
             </span>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', marginBottom: '0.5rem' }}>
+            <h3 className="nefiu-process-step-title">
               {step.title}
             </h3>
-            <p style={{ color: 'var(--c-muted)', lineHeight: 1.5, fontSize: '0.95rem' }}>
+            <p className="nefiu-process-step-desc">
               {step.description}
             </p>
           </div>

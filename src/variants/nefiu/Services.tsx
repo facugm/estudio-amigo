@@ -65,7 +65,7 @@ export function NefiuServices(): JSX.Element {
               <h3 className="nefiu-tabpanel-title">{activeService.title}</h3>
               <p className="nefiu-tabpanel-desc">{activeService.summary}</p>
             </div>
-            <a href="#contacto" className="nefiu-btn-primary" style={{ alignSelf: 'flex-start' }}>
+            <a href="#contacto" className="nefiu-btn-primary nefiu-tabpanel-btn">
               Consultar por este servicio
             </a>
           </div>

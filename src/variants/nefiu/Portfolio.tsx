@@ -31,16 +31,16 @@ export function NefiuPortfolio(): JSX.Element {
                 <ProjectMedia project={project} />
               </div>
               <div className="nefiu-bento-content">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                  <span style={{ fontSize: '0.85rem', color: 'var(--c-muted)' }}>
+                <div className="nefiu-bento-header">
+                  <span className="nefiu-bento-client">
                     {project.client}
                   </span>
                   <ProvisionalTag />
                 </div>
                 <h3 className="nefiu-bento-title">{project.name}</h3>
                 <p className="nefiu-bento-desc">{project.description}</p>
-                <div style={{ marginTop: 'auto', paddingTop: '1rem' }}>
-                  <div style={{ marginBottom: '0.75rem' }}>
+                <div className="nefiu-bento-footer">
+                  <div className="nefiu-bento-tags">
                     <ServiceTags serviceIds={project.services} />
                   </div>
                   <ProjectCaseLink project={project} className="nefiu-btn-outline" />

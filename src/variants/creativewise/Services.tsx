@@ -12,7 +12,7 @@ export function CreativewiseServices(): JSX.Element {
       <div className="creativewise-services-list">
         {services.map((service, idx) => (
           <div key={service.id} className="creativewise-service-item">
-            <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--c-accent)', marginBottom: '0.5rem' }}>
+            <span className="creativewise-service-num">
               0{idx + 1}
             </span>
             <h3>{service.title}</h3>

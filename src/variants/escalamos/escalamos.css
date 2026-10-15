@@ -451,3 +451,20 @@
     padding: 1.5rem;
   }
 }
+
+[data-variant='escalamos'] .escalamos-about-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  color: var(--c-muted);
+  font-size: 1.1rem;
+  line-height: 1.65;
+}
+
+[data-variant='escalamos'] .escalamos-contact-invitation {
+  color: var(--c-muted);
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+

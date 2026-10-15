@@ -23,7 +23,7 @@ export function CreativewisePortfolio(): JSX.Element {
       <div className="creativewise-wall-header">
         <div>
           <h2 className="creativewise-section-title">{portfolioTitle}</h2>
-          <p style={{ color: 'var(--c-muted)', fontSize: '1.05rem', marginTop: '0.5rem' }}>
+          <p className="creativewise-wall-subtitle">
             Selección curada de identidades, lanzamientos y producciones creativas.
           </p>
         </div>
@@ -56,7 +56,7 @@ export function CreativewisePortfolio(): JSX.Element {
       {projects.length === 0 ? (
         <PortfolioEmptyState />
       ) : visibleProjects.length === 0 ? (
-        <p style={{ padding: '2rem 0', color: 'var(--c-muted)' }}>
+        <p className="creativewise-wall-empty">
           No se encontraron proyectos para la categoría seleccionada.
         </p>
       ) : (

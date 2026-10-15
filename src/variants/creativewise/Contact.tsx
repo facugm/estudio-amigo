@@ -10,7 +10,7 @@ export function CreativewiseContact(): JSX.Element {
     <SectionShell section="contact" layout="creativewise-contact">
       <div className="creativewise-contact-info">
         <h2 className="creativewise-section-title">{site.contact.title}</h2>
-        <p style={{ color: 'var(--c-muted)', fontSize: '1.15rem', marginBottom: '2.5rem', lineHeight: 1.6, marginTop: '0.75rem' }}>
+        <p className="creativewise-contact-invitation">
           {site.contact.invitation}
         </p>
         <ContactChannels />

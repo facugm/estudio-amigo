@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, within, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../App';
 import { defaultContent } from '../content/ContentProvider';
@@ -16,7 +16,9 @@ it('the switcher exposes the three proposals as radios and marks the active one'
 
 it('selecting a proposal switches variant without reloading and updates the active radio', async () => {
   render(<App storage={null} initialVariantId="nefiu" />);
-  await userEvent.click(screen.getByRole('radio', { name: '03 Escalamos' }));
+  await act(async () => {
+    await userEvent.click(screen.getByRole('radio', { name: '03 Escalamos' }));
+  });
   expect(document.documentElement.dataset.variant).toBe('escalamos');
   expect(screen.getByRole('radio', { name: '03 Escalamos' })).toBeChecked();
 });
@@ -24,16 +26,22 @@ it('selecting a proposal switches variant without reloading and updates the acti
 it('arrow keys move between proposals', async () => {
   render(<App storage={null} initialVariantId="nefiu" />);
   screen.getByRole('radio', { name: '02 Nefiu' }).focus();
-  await userEvent.keyboard('{ArrowRight}');
+  await act(async () => {
+    await userEvent.keyboard('{ArrowRight}');
+  });
   expect(document.documentElement.dataset.variant).toBe('escalamos');
   screen.getByRole('radio', { name: '02 Nefiu' }).focus();
-  await userEvent.keyboard('{ArrowLeft}');
+  await act(async () => {
+    await userEvent.keyboard('{ArrowLeft}');
+  });
   expect(document.documentElement.dataset.variant).toBe('creativewise');
 });
 
 it('skip link is the first tab stop and targets #main', async () => {
   render(<App storage={null} />);
-  await userEvent.tab();
+  await act(async () => {
+    await userEvent.tab();
+  });
   expect(screen.getByRole('link', { name: /saltar al contenido/i })).toHaveFocus();
   expect(screen.getByRole('link', { name: /saltar al contenido/i })).toHaveAttribute('href', '#main');
 });
@@ -41,13 +49,21 @@ it('skip link is the first tab stop and targets #main', async () => {
 it('mobile menu toggles aria-expanded, closes on Escape returning focus, and closes after choosing a link', async () => {
   render(<App storage={null} />);
   const toggle = screen.getByRole('button', { name: /menú/i });
-  await userEvent.click(toggle);
+  await act(async () => {
+    await userEvent.click(toggle);
+  });
   expect(toggle).toHaveAttribute('aria-expanded', 'true');
-  await userEvent.keyboard('{Escape}');
+  await act(async () => {
+    await userEvent.keyboard('{Escape}');
+  });
   expect(toggle).toHaveAttribute('aria-expanded', 'false');
   expect(toggle).toHaveFocus();
-  await userEvent.click(toggle);
-  await userEvent.click(screen.getAllByRole('link', { name: /servicios/i })[0]!);
+  await act(async () => {
+    await userEvent.click(toggle);
+  });
+  await act(async () => {
+    await userEvent.click(screen.getAllByRole('link', { name: /servicios/i })[0]!);
+  });
   expect(toggle).toHaveAttribute('aria-expanded', 'false');
 });
 

@@ -1,4 +1,4 @@
-import { render, within } from '@testing-library/react';
+import { render, within, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../../App';
 import { defaultContent } from '../../content/ContentProvider';
@@ -48,13 +48,17 @@ describe('Escalamos variant', () => {
     const services = within(document.querySelector('[data-section="services"]') as HTMLElement);
     const checkboxes = services.getAllByRole('checkbox');
 
-    await userEvent.click(checkboxes[0]!);
-    await userEvent.click(checkboxes[1]!);
+    await act(async () => {
+      await userEvent.click(checkboxes[0]!);
+      await userEvent.click(checkboxes[1]!);
+    });
 
     const cta = services.getByRole('button', { name: /solicitar diagnóstico|consultar por servicios/i });
     expect(cta).not.toBeDisabled();
 
-    await userEvent.click(cta);
+    await act(async () => {
+      await userEvent.click(cta);
+    });
 
     const contact = within(document.querySelector('[data-section="contact"]') as HTMLElement);
     const messageInput = contact.getByLabelText(/mensaje/i);
@@ -70,14 +74,20 @@ describe('Escalamos variant', () => {
     mount();
     const contact = within(document.querySelector('[data-section="contact"]') as HTMLElement);
     const messageInput = contact.getByLabelText(/mensaje/i);
-    await userEvent.type(messageInput, 'Mi proyecto es una tienda de ropa.');
+    await act(async () => {
+      await userEvent.type(messageInput, 'Mi proyecto es una tienda de ropa.');
+    });
 
     const services = within(document.querySelector('[data-section="services"]') as HTMLElement);
     const checkboxes = services.getAllByRole('checkbox');
-    await userEvent.click(checkboxes[0]!);
+    await act(async () => {
+      await userEvent.click(checkboxes[0]!);
+    });
 
     const cta = services.getByRole('button', { name: /solicitar diagnóstico/i });
-    await userEvent.click(cta);
+    await act(async () => {
+      await userEvent.click(cta);
+    });
 
     expect(messageInput).toHaveValue(
       `${buildInterestMessage([defaultContent.services[0]!.title])}\n\nMi proyecto es una tienda de ropa.`

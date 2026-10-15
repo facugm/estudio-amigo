@@ -1,4 +1,4 @@
-import { render, within } from '@testing-library/react';
+import { render, within, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../../App';
 import { bentoSize } from './bento';
@@ -39,7 +39,9 @@ it('services are a tablist: first selected, click selects another and shows its 
   const tabs = services.getAllByRole('tab');
   expect(tabs).toHaveLength(7);
   expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
-  await userEvent.click(tabs[2]!);
+  await act(async () => {
+    await userEvent.click(tabs[2]!);
+  });
   expect(tabs[2]).toHaveAttribute('aria-selected', 'true');
   expect(services.getByRole('tabpanel')).toHaveTextContent(defaultContent.services[2]!.summary);
 });
@@ -50,7 +52,9 @@ it('tabs support ArrowRight/ArrowLeft with wraparound', async () => {
     document.querySelector('[data-section="services"]') as HTMLElement
   ).getAllByRole('tab');
   tabs[0]!.focus();
-  await userEvent.keyboard('{ArrowLeft}');
+  await act(async () => {
+    await userEvent.keyboard('{ArrowLeft}');
+  });
   expect(tabs[6]).toHaveFocus();
   expect(tabs[6]).toHaveAttribute('aria-selected', 'true');
 });

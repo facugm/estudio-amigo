@@ -23,10 +23,6 @@ export interface VariantTokens {
     accent: string;
     accentFg: string;
   };
-  fonts: {
-    display: string;
-    body: string;
-  };
   radius: string;
   space: string;
 }
@@ -38,6 +34,5 @@ export interface VariantDefinition {
   sectionOrder: readonly SectionId[];
   sections: Record<SectionId, ComponentType>;
   tokens: VariantTokens;
-  fontsHref: string | null;
   ready: boolean;
 }

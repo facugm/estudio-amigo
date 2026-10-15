@@ -9,10 +9,6 @@ export const nefiuTokens: VariantTokens = {
     accent: '#0b57d0',
     accentFg: '#ffffff'
   },
-  fonts: {
-    display: "'Museo Sans', -apple-system, BlinkMacSystemFont, sans-serif",
-    body: "'Museo Sans', -apple-system, BlinkMacSystemFont, sans-serif"
-  },
   radius: '12px',
   space: '12px'
 };

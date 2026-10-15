@@ -146,3 +146,19 @@ it('keeps the section in view after switching', () => {
   act(() => screen.getByRole('button').click());
   expect(window.scrollTo).toHaveBeenCalled();
 });
+
+it('variants no longer carry per-variant font loading', () =>
+  VARIANTS.forEach(v => {
+    expect('fontsHref' in v).toBe(false);
+    expect('fonts' in v.tokens).toBe(false);
+  }));
+
+it('switching variants never injects Google Fonts links', () => {
+  render(
+    <VariantProvider storage={null}>
+      <Probe />
+    </VariantProvider>
+  );
+  act(() => screen.getByRole('button').click());
+  expect(document.head.querySelector('link[href*="fonts.googleapis"]')).toBeNull();
+});

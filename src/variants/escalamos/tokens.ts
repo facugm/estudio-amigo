@@ -9,10 +9,6 @@ export const escalamosTokens: VariantTokens = {
     accent: '#2b5cf6',
     accentFg: '#ffffff'
   },
-  fonts: {
-    display: "'Museo Sans', -apple-system, BlinkMacSystemFont, sans-serif",
-    body: "'Museo Sans', -apple-system, BlinkMacSystemFont, sans-serif"
-  },
   radius: '8px',
   space: '8px'
 };

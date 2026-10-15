@@ -22,7 +22,5 @@ export const creativewiseVariant: VariantDefinition = {
     contact: CreativewiseContact
   },
   tokens: creativewiseTokens,
-  fontsHref:
-    'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..700;1,400..700&family=Syne:wght@600;700;800&display=swap',
   ready: true
 };

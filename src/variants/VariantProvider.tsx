@@ -11,7 +11,6 @@ import { VariantId, VariantTokens, VariantDefinition, SECTION_ANCHORS } from './
 import { VARIANTS, DEFAULT_VARIANT_ID, isVariantId } from './registry';
 import { usePrefersReducedMotion } from '../lib/usePrefersReducedMotion';
 import { findCurrentSectionAnchor, restoreSectionAnchor } from '../lib/scrollContext';
-import { ensureStylesheet } from '../lib/ensureStylesheet';
 
 export function resolveInitialVariantId(
   search: string,
@@ -46,8 +45,6 @@ export function applyTokens(root: HTMLElement, tokens: VariantTokens): void {
   root.style.setProperty('--c-muted', tokens.colors.muted);
   root.style.setProperty('--c-accent', tokens.colors.accent);
   root.style.setProperty('--c-accent-fg', tokens.colors.accentFg);
-  root.style.setProperty('--font-display', tokens.fonts.display);
-  root.style.setProperty('--font-body', tokens.fonts.body);
   root.style.setProperty('--radius', tokens.radius);
   root.style.setProperty('--space', tokens.space);
 }
@@ -92,14 +89,11 @@ export function VariantProvider({
   const savedAnchor = useRef<string | null>(null);
   const variant = VARIANTS.find(v => v.id === currentId) ?? VARIANTS[0]!;
 
-  // Apply tokens, dataset, and fonts whenever variant changes
+  // Apply tokens and dataset whenever variant changes
   useLayoutEffect(() => {
     if (typeof document !== 'undefined') {
       document.documentElement.dataset.variant = variant.id;
       applyTokens(document.documentElement, variant.tokens);
-      if (variant.fontsHref) {
-        ensureStylesheet(variant.fontsHref);
-      }
     }
   }, [variant]);
 

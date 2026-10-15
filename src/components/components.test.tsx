@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ProjectMedia } from './ProjectMedia';
 import { ProjectCaseLink } from './ProjectCaseLink';
@@ -16,18 +16,36 @@ const placeholderProject = {
   media: { kind: 'placeholder' as const, hue: 28, label: 'Identidad y packaging Foster Café' }
 };
 
-it('placeholder media has an accessible name flagged as provisional', () => {
+it('placeholder media has an accessible name flagged as provisional and renders isotype', () => {
   render(<ProjectMedia project={placeholderProject} />);
-  expect(screen.getByRole('img', { name: /imagen provisional/i })).toBeInTheDocument();
+  const placeholder = screen.getByRole('img', { name: /imagen provisional/i });
+  expect(placeholder).toBeInTheDocument();
+  expect(placeholder.querySelector('svg')).not.toBeNull();
 });
 
-it('image media requires and renders its alt text', () => {
+it('image media requires and renders its alt text with intrinsic dimensions', () => {
   render(
     <ProjectMedia
       project={{ ...p, media: { kind: 'image', src: '/x.jpg', alt: 'Cartel en vidriera' } }}
     />
   );
-  expect(screen.getByAltText('Cartel en vidriera')).toHaveAttribute('loading', 'lazy');
+  const img = screen.getByAltText('Cartel en vidriera');
+  expect(img).toHaveAttribute('loading', 'lazy');
+  expect(img).toHaveAttribute('width', '1200');
+  expect(img).toHaveAttribute('height', '900');
+});
+
+it('image media falls back gracefully to branded placeholder on error', () => {
+  render(
+    <ProjectMedia
+      project={{ ...p, media: { kind: 'image', src: '/broken.jpg', alt: 'Broken image' } }}
+    />
+  );
+  const img = screen.getByAltText('Broken image');
+  fireEvent.error(img);
+  const placeholder = screen.getByRole('img', { name: /imagen provisional/i });
+  expect(placeholder).toBeInTheDocument();
+  expect(placeholder.querySelector('svg')).not.toBeNull();
 });
 
 it('ProjectCaseLink renders nothing without caseUrl and a real link with it', () => {

@@ -60,3 +60,18 @@ it('useContent returns the provided bundle and falls back to defaults', () => {
   ).toEqual([]);
   expect(renderHook(() => useContent()).result.current).toBe(defaultContent);
 });
+
+it('avoids unverified claims and marketing buzzwords in site content and projects', () => {
+  const allText = JSON.stringify(defaultContent);
+  expect(allText).not.toMatch(/san juan/i);
+  expect(allText).not.toMatch(/80 proyectos|5 pa[ií]ses|resultados garantizados/i);
+});
+
+it('all sample projects declare realistic non-empty descriptions', () => {
+  for (const project of defaultContent.projects) {
+    expect(project.description.length).toBeGreaterThan(20);
+    expect(project.name.length).toBeGreaterThan(0);
+    expect(project.client.length).toBeGreaterThan(0);
+  }
+});
+

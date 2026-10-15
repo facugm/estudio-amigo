@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { Project } from '../content/types';
+import { Isotype } from '../brand/Isotype';
 
 export function ProjectMedia({
   project,
@@ -8,15 +10,18 @@ export function ProjectMedia({
   className?: string;
 }): JSX.Element {
   const { media } = project;
+  const [hasError, setHasError] = useState(false);
 
-  if (media.kind === 'placeholder') {
+  if (hasError || media.kind === 'placeholder') {
+    const label = media.kind === 'placeholder' ? media.label : (media.alt || project.name);
     return (
       <div
         role="img"
-        aria-label={`Imagen provisional: ${media.label}`}
+        aria-label={`Imagen provisional: ${label}`}
         className={`project-media project-media--placeholder ${className ?? ''}`.trim()}
       >
-        <span>{media.label}</span>
+        <Isotype className="project-media-isotype" />
+        <span className="project-media-placeholder-label">{label}</span>
       </div>
     );
   }
@@ -26,8 +31,11 @@ export function ProjectMedia({
       <img
         src={media.src}
         alt={media.alt}
+        width={1200}
+        height={900}
         loading="lazy"
-        className={`project-media project-media--image ${className ?? ''}`}
+        onError={() => setHasError(true)}
+        className={`project-media project-media--image ${className ?? ''}`.trim()}
       />
     );
   }
@@ -38,7 +46,7 @@ export function ProjectMedia({
       preload="none"
       poster={media.poster}
       aria-label={media.alt}
-      className={`project-media project-media--video ${className ?? ''}`}
+      className={`project-media project-media--video ${className ?? ''}`.trim()}
     >
       <source src={media.src} />
     </video>

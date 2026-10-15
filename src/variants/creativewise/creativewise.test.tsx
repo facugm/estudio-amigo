@@ -3,8 +3,17 @@ import userEvent from '@testing-library/user-event';
 import { App } from '../../App';
 import { defaultContent } from '../../content/ContentProvider';
 import { projectCategories, filterProjects } from './filter';
+import { creativewiseTokens } from './tokens';
+import { BRAND } from '../../brand/palette';
 
 describe('Creativewise variant', () => {
+  it('creativewise tokens use only brand palette colors', () => {
+    const brandHexValues = new Set(Object.values(BRAND).map(c => c.toLowerCase()));
+    Object.values(creativewiseTokens.colors).forEach(color => {
+      expect(brandHexValues.has(color.toLowerCase())).toBe(true);
+    });
+  });
+
   it('projectCategories extracts unique categories from projects', () => {
     const cats = projectCategories(defaultContent.projects);
     expect(cats.length).toBeGreaterThan(0);
@@ -61,5 +70,15 @@ describe('Creativewise variant', () => {
     expect(within(document.querySelector('[data-section="portfolio"]') as HTMLElement).getByText(
       'Todavía no hay proyectos cargados.'
     )).toBeInTheDocument();
+  });
+
+  it('hero project cards are links to #trabajos', () => {
+    mount();
+    const hero = document.querySelector('[data-section="hero"]') as HTMLElement;
+    const projectCards = hero.querySelectorAll('.creativewise-hero-project-card');
+    expect(projectCards.length).toBeGreaterThan(0);
+    projectCards.forEach(card => {
+      expect(card).toHaveAttribute('href', '#trabajos');
+    });
   });
 });

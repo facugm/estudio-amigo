@@ -1,17 +1,18 @@
 /* 04 · Creativewise - Portfolio-First Visual Experience */
 
 [data-variant='creativewise'] {
-  --creativewise-border: 1px solid rgba(25, 16, 17, 0.08);
-  --creativewise-border-hover: 1px solid rgba(185, 59, 34, 0.3);
-  --creativewise-shadow: 0 10px 30px rgba(25, 16, 17, 0.06);
-  --creativewise-shadow-hover: 0 16px 40px rgba(25, 16, 17, 0.12);
+  --creativewise-border: 1px solid var(--c-gray, #dcdcdc);
+  --creativewise-border-hover: 1px solid var(--c-accent, #c61e97);
+  --creativewise-shadow: 0 10px 30px rgba(35, 64, 96, 0.06);
+  --creativewise-shadow-hover: 0 16px 40px rgba(35, 64, 96, 0.12);
   background-color: var(--c-bg);
   color: var(--c-fg);
 }
 
 [data-variant='creativewise'] .site-header {
-  background-color: rgba(250, 248, 245, 0.92);
+  background-color: var(--c-surface, #ffffff);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: var(--creativewise-border);
 }
 
@@ -54,7 +55,7 @@
 
 [data-variant='creativewise'] .site-footer {
   border-top: var(--creativewise-border);
-  background-color: #f3efe8;
+  background-color: var(--c-surface, #ffffff);
 }
 
 /* Creativewise Hero: Reel */
@@ -116,7 +117,7 @@
 
 [data-variant='creativewise'] .creativewise-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(185, 59, 34, 0.3);
+  box-shadow: 0 6px 20px rgba(198, 30, 151, 0.3);
 }
 
 [data-variant='creativewise'] .creativewise-btn-secondary {

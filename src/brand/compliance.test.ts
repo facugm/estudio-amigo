@@ -10,7 +10,8 @@ export const CHECKED_CSS = [
   '/src/styles/base.css',
   '/src/styles/shell.css',
   '/src/variants/nefiu/nefiu.css',
-  '/src/variants/escalamos/escalamos.css'
+  '/src/variants/escalamos/escalamos.css',
+  '/src/variants/creativewise/creativewise.css'
 ];
 
 it.each(CHECKED_CSS)('%s only uses brand colors and no gradients', path => {

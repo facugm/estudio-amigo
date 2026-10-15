@@ -1,13 +1,14 @@
 import { VariantTokens } from '../types';
+import { BRAND } from '../../brand/palette';
 
 export const creativewiseTokens: VariantTokens = {
   colors: {
-    bg: '#faf8f5',
-    surface: '#f1ede6',
-    fg: '#191011',
-    muted: '#635755',
-    accent: '#b93b22',
-    accentFg: '#ffffff'
+    bg: BRAND.white,
+    surface: BRAND.gray,
+    fg: BRAND.navy,
+    muted: BRAND.navy,
+    accent: BRAND.magenta,
+    accentFg: BRAND.white
   },
   radius: '16px',
   space: '12px'

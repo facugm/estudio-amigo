@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ProjectMedia } from './ProjectMedia';
 import { ProjectCaseLink } from './ProjectCaseLink';
@@ -103,7 +103,9 @@ const setup = () =>
 
 it('invalid submit shows errors and focuses the first invalid field', async () => {
   setup();
-  await userEvent.click(screen.getByRole('button', { name: /enviar/i }));
+  await act(async () => {
+    await userEvent.click(screen.getByRole('button', { name: /enviar/i }));
+  });
   expect(screen.getByLabelText(/nombre/i)).toHaveFocus();
   expect(screen.getByLabelText(/nombre/i)).toHaveAttribute('aria-invalid', 'true');
 });
@@ -112,13 +114,17 @@ it('valid submit confirms as a demo, never calls fetch, and lets the user go bac
   const fetchSpy = vi.spyOn(globalThis, 'fetch' as never).mockImplementation((() =>
     Promise.reject()) as never);
   setup();
-  await userEvent.type(screen.getByLabelText(/nombre/i), 'Ana');
-  await userEvent.type(screen.getByLabelText(/email/i), 'ana@mail.com');
-  await userEvent.type(screen.getByLabelText(/mensaje/i), 'Quiero hablar de mi marca');
-  await userEvent.click(screen.getByRole('button', { name: /enviar/i }));
+  await act(async () => {
+    await userEvent.type(screen.getByLabelText(/nombre/i), 'Ana');
+    await userEvent.type(screen.getByLabelText(/email/i), 'ana@mail.com');
+    await userEvent.type(screen.getByLabelText(/mensaje/i), 'Quiero hablar de mi marca');
+    await userEvent.click(screen.getByRole('button', { name: /enviar/i }));
+  });
   expect(screen.getByRole('status')).toHaveTextContent(/demo/i);
   expect(fetchSpy).not.toHaveBeenCalled();
-  await userEvent.click(screen.getByRole('button', { name: /editar mensaje/i }));
+  await act(async () => {
+    await userEvent.click(screen.getByRole('button', { name: /editar mensaje/i }));
+  });
   expect(screen.getByLabelText(/nombre/i)).toHaveValue('Ana');
 });
 
@@ -127,7 +133,9 @@ it('the draft survives unmounting and remounting the form under the same provide
     <ContactFormProvider>{show ? <ContactForm /> : <p>otra variante</p>}</ContactFormProvider>
   );
   const { rerender } = render(<Host show />);
-  await userEvent.type(screen.getByLabelText(/nombre/i), 'Ana');
+  await act(async () => {
+    await userEvent.type(screen.getByLabelText(/nombre/i), 'Ana');
+  });
   rerender(<Host show={false} />);
   rerender(<Host show />);
   expect(screen.getByLabelText(/nombre/i)).toHaveValue('Ana');

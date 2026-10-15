@@ -3,8 +3,8 @@ import { BRAND } from '../../brand/palette';
 
 export const creativewiseTokens: VariantTokens = {
   colors: {
-    bg: BRAND.white,
-    surface: BRAND.gray,
+    bg: BRAND.gray,
+    surface: BRAND.white,
     fg: BRAND.navy,
     muted: BRAND.navy,
     accent: BRAND.magenta,

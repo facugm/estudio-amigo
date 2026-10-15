@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, within, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../App';
 import { VARIANTS } from './registry';
@@ -107,12 +107,18 @@ if (ready.length === 0) {
 
     it('the contact form draft survives switching to another variant and back', async () => {
       mount();
-      await userEvent.type(within(sec('contact')).getByLabelText(/nombre/i), 'Ana');
+      await act(async () => {
+        await userEvent.type(within(sec('contact')).getByLabelText(/nombre/i), 'Ana');
+      });
       const other = VARIANTS.find(x => x.id !== id)!;
-      await userEvent.click(
-        screen.getByRole('radio', { name: `${other.number} ${other.label}` })
-      );
-      await userEvent.click(screen.getByRole('radio', { name: `${v.number} ${v.label}` }));
+      await act(async () => {
+        await userEvent.click(
+          screen.getByRole('radio', { name: `${other.number} ${other.label}` })
+        );
+      });
+      await act(async () => {
+        await userEvent.click(screen.getByRole('radio', { name: `${v.number} ${v.label}` }));
+      });
       expect(within(sec('contact')).getByLabelText(/nombre/i)).toHaveValue('Ana');
     });
   });

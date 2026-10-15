@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, within, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../../App';
 import { defaultContent } from '../../content/ContentProvider';
@@ -53,12 +53,16 @@ describe('Creativewise variant', () => {
 
     // Click second category chip
     const secondChip = chips[1]!;
-    await userEvent.click(secondChip);
+    await act(async () => {
+      await userEvent.click(secondChip);
+    });
     expect(secondChip).toHaveAttribute('aria-pressed', 'true');
     expect(allChip).toHaveAttribute('aria-pressed', 'false');
 
     // Re-click allChip
-    await userEvent.click(allChip);
+    await act(async () => {
+      await userEvent.click(allChip);
+    });
     expect(allChip).toHaveAttribute('aria-pressed', 'true');
   });
 

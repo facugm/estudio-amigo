@@ -2,7 +2,6 @@ import { renderHook, act } from '@testing-library/react';
 import { usePrefersReducedMotion } from './usePrefersReducedMotion';
 import { findCurrentSectionAnchor, restoreSectionAnchor } from './scrollContext';
 import { contrastRatio } from './contrast';
-import { ensureStylesheet } from './ensureStylesheet';
 
 const stubMatchMedia = (matches: boolean) => {
   let cb: ((e: { matches: boolean }) => void) | undefined;
@@ -69,11 +68,4 @@ it('contrastRatio: black/white is 21, identical is 1, #767676 on white passes AA
   expect(contrastRatio('#336699', '#336699')).toBeCloseTo(1, 5);
   expect(contrastRatio('#767676', '#ffffff')).toBeGreaterThanOrEqual(4.5);
   expect(() => contrastRatio('red', '#fff')).toThrow();
-});
-
-it('ensureStylesheet injects each href once', () => {
-  ensureStylesheet('https://x.test/a.css');
-  ensureStylesheet('https://x.test/a.css');
-  ensureStylesheet('https://x.test/b.css');
-  expect(document.head.querySelectorAll('link[rel="stylesheet"]')).toHaveLength(2);
 });

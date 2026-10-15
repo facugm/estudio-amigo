@@ -22,7 +22,5 @@ export const orillaVariant: VariantDefinition = {
     contact: OrillaContact
   },
   tokens: orillaTokens,
-  fontsHref:
-    'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap',
   ready: true
 };

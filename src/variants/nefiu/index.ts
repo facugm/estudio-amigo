@@ -22,7 +22,5 @@ export const nefiuVariant: VariantDefinition = {
     contact: NefiuContact
   },
   tokens: nefiuTokens,
-  fontsHref:
-    'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Space+Grotesk:wght@500;600;700&display=swap',
   ready: true
 };

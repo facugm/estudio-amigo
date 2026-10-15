@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../App';
+import { defaultContent } from '../content/ContentProvider';
 
 it('the switcher exposes the three proposals as radios and marks the active one', () => {
   render(<App storage={null} initialVariantId="nefiu" />);
@@ -66,3 +67,18 @@ it('the form draft survives switching variants', async () => {
   render(<App storage={null} initialVariantId="nefiu" />);
   expect(document.getElementById('contacto')).toBeInTheDocument();
 });
+
+it('header brand is the wordmark linking to the top, with an accessible name', () => {
+  render(<App storage={null} />);
+  const brand = screen.getByRole('link', { name: /estudio amigo/i });
+  expect(brand).toHaveAttribute('href', '#inicio');
+  expect(brand.querySelector('svg')).not.toBeNull();
+});
+
+it('footer shows the wordmark, the nav and the prototype note, without repeating the hero paragraph', () => {
+  render(<App storage={null} />);
+  const footer = screen.getByRole('contentinfo');
+  expect(within(footer).getByRole('img', { name: 'estudio amigo' })).toBeInTheDocument();
+  expect(footer).not.toHaveTextContent(defaultContent.site.hero.support);
+});
+

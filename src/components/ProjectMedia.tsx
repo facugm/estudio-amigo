@@ -14,18 +14,7 @@ export function ProjectMedia({
       <div
         role="img"
         aria-label={`Imagen provisional: ${media.label}`}
-        className={`project-media project-media--placeholder ${className ?? ''}`}
-        style={{
-          backgroundColor: `hsl(${media.hue} 35% 72%)`,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#111111',
-          padding: '1.5rem',
-          textAlign: 'center',
-          fontSize: '0.9rem',
-          fontWeight: 500
-        }}
+        className={`project-media project-media--placeholder ${className ?? ''}`.trim()}
       >
         <span>{media.label}</span>
       </div>

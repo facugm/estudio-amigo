@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useContent } from '../content/ContentProvider';
 import { SECTION_ANCHORS } from '../variants/types';
 import { VariantSwitcher } from './VariantSwitcher';
+import { Wordmark } from '../brand/Wordmark';
 
 export function Header(): JSX.Element {
   const { site } = useContent();
@@ -26,8 +27,8 @@ export function Header(): JSX.Element {
     <header className="site-header">
       <div className="header-top">
         <div className="header-brand-container">
-          <a href="#inicio" className="header-brand" onClick={closeMenu}>
-            <span className="brand-logo-text">estudio amigo</span>
+          <a href="#inicio" className="header-brand" aria-label="estudio amigo" onClick={closeMenu}>
+            <Wordmark className="brand-logo" />
           </a>
         </div>
 

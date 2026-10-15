@@ -10,7 +10,7 @@ export function NefiuContact(): JSX.Element {
     <SectionShell section="contact" layout="nefiu-contact">
       <div className="nefiu-contact-info">
         <h2 className="nefiu-section-title">{site.contact.title}</h2>
-        <p style={{ color: 'var(--c-muted)', fontSize: '1.1rem', marginBottom: '2rem', lineHeight: 1.5 }}>
+        <p className="nefiu-contact-invitation">
           {site.contact.invitation}
         </p>
         <ContactChannels />

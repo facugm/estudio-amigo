@@ -396,3 +396,85 @@
     padding: 1.75rem 1.25rem;
   }
 }
+
+[data-variant='creativewise'] .creativewise-hero-projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  opacity: 0.9;
+}
+
+[data-variant='creativewise'] .creativewise-hero-project-card {
+  padding: 1rem;
+  border-radius: var(--radius);
+  background-color: var(--c-surface);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--c-fg);
+  display: block;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-variant='creativewise'] .creativewise-hero-project-card:hover {
+  transform: translateY(-2px);
+}
+
+[data-variant='creativewise'] .creativewise-hero-project-client {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--c-muted);
+  font-weight: 400;
+}
+
+[data-variant='creativewise'] .creativewise-about-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  color: var(--c-muted);
+  font-size: 1.15rem;
+  line-height: 1.65;
+  margin-top: 1.5rem;
+}
+
+[data-variant='creativewise'] .creativewise-contact-invitation {
+  color: var(--c-muted);
+  font-size: 1.15rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  margin-top: 0.75rem;
+}
+
+[data-variant='creativewise'] .creativewise-wall-subtitle {
+  color: var(--c-muted);
+  font-size: 1.05rem;
+  margin-top: 0.5rem;
+}
+
+[data-variant='creativewise'] .creativewise-wall-empty {
+  padding: 2rem 0;
+  color: var(--c-muted);
+}
+
+[data-variant='creativewise'] .creativewise-step-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--c-fg);
+}
+
+[data-variant='creativewise'] .creativewise-step-desc {
+  color: var(--c-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+[data-variant='creativewise'] .creativewise-service-num {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--c-accent);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+

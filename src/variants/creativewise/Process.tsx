@@ -11,10 +11,10 @@ export function CreativewiseProcess(): JSX.Element {
         {site.process.steps.map((step, idx) => (
           <div key={step.id} className="creativewise-step-card">
             <span className="creativewise-step-num">0{idx + 1}</span>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', marginBottom: '0.5rem', color: 'var(--c-fg)' }}>
+            <h3 className="creativewise-step-title">
               {step.title}
             </h3>
-            <p style={{ color: 'var(--c-muted)', fontSize: '0.95rem', lineHeight: 1.55 }}>
+            <p className="creativewise-step-desc">
               {step.description}
             </p>
           </div>

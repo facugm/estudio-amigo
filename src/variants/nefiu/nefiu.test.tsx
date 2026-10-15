@@ -3,6 +3,15 @@ import userEvent from '@testing-library/user-event';
 import { App } from '../../App';
 import { bentoSize } from './bento';
 import { defaultContent } from '../../content/ContentProvider';
+import { nefiuTokens } from './tokens';
+import { BRAND } from '../../brand/palette';
+
+it('nefiu tokens use only brand palette colors', () => {
+  const brandHexValues = new Set(Object.values(BRAND).map(c => c.toLowerCase()));
+  Object.values(nefiuTokens.colors).forEach(color => {
+    expect(brandHexValues.has(color.toLowerCase())).toBe(true);
+  });
+});
 
 it('bentoSize cycles with period 4 starting large, for any index', () => {
   expect([0, 1, 2, 3].map(bentoSize)).toEqual(['large', 'small', 'small', 'wide']);

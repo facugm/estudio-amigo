@@ -6,7 +6,11 @@ const css = import.meta.glob('/src/**/*.css', {
   eager: true
 }) as Record<string, string>;
 
-export const CHECKED_CSS = ['/src/styles/base.css', '/src/styles/shell.css'];
+export const CHECKED_CSS = [
+  '/src/styles/base.css',
+  '/src/styles/shell.css',
+  '/src/variants/nefiu/nefiu.css'
+];
 
 it.each(CHECKED_CSS)('%s only uses brand colors and no gradients', path => {
   expect(css[path]).toBeDefined();

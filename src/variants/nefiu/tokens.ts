@@ -1,13 +1,14 @@
 import { VariantTokens } from '../types';
+import { BRAND } from '../../brand/palette';
 
 export const nefiuTokens: VariantTokens = {
   colors: {
-    bg: '#ffffff',
-    surface: '#f4f6f9',
-    fg: '#0e121a',
-    muted: '#545c6b',
-    accent: '#0b57d0',
-    accentFg: '#ffffff'
+    bg: BRAND.white,
+    surface: BRAND.white,
+    fg: BRAND.navy,
+    muted: BRAND.navy,
+    accent: BRAND.navy,
+    accentFg: BRAND.lime
   },
   radius: '12px',
   space: '12px'

@@ -10,6 +10,7 @@ export type ServiceId =
 export interface Service {
   id: ServiceId;
   title: string;
+  shortTitle: string;
   summary: string;
 }
 

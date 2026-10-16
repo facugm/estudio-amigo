@@ -6,17 +6,18 @@ import { ProjectMedia } from '../../components/ProjectMedia';
 import { ProvisionalTag } from '../../components/ProvisionalTag';
 import { ProjectCaseLink } from '../../components/ProjectCaseLink';
 import { ServiceTags } from '../../components/ServiceTags';
-import { projectCategories, filterProjects } from './filter';
+import { ServiceId } from '../../content/types';
+import { serviceFilters, filterByService } from './filter';
 
 export function CreativewisePortfolio(): JSX.Element {
-  const { site, projects } = useContent();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const { site, projects, services } = useContent();
+  const [selectedService, setSelectedService] = useState<ServiceId | null>(null);
 
   const portfolioTitle =
     site.nav.find(n => n.section === 'portfolio')?.label ?? 'Portfolio';
 
-  const categories = projectCategories(projects);
-  const visibleProjects = filterProjects(projects, selectedCategory);
+  const availableServices = serviceFilters(projects, services);
+  const visibleProjects = filterByService(projects, selectedService);
 
   return (
     <SectionShell section="portfolio" layout="creativewise-wall">
@@ -28,25 +29,25 @@ export function CreativewisePortfolio(): JSX.Element {
           </p>
         </div>
 
-        {projects.length > 0 && categories.length > 0 && (
-          <div className="creativewise-filters" role="toolbar" aria-label="Filtro de proyectos por categoría">
+        {projects.length > 1 && (
+          <div className="creativewise-filters" role="toolbar" aria-label="Filtro de proyectos por servicio">
             <button
               type="button"
               className="creativewise-chip"
-              aria-pressed={selectedCategory === null}
-              onClick={() => setSelectedCategory(null)}
+              aria-pressed={selectedService === null}
+              onClick={() => setSelectedService(null)}
             >
-              Todas
+              Todos
             </button>
-            {categories.map(cat => (
+            {availableServices.map(service => (
               <button
-                key={cat}
+                key={service.id}
                 type="button"
                 className="creativewise-chip"
-                aria-pressed={selectedCategory === cat}
-                onClick={() => setSelectedCategory(cat)}
+                aria-pressed={selectedService === service.id}
+                onClick={() => setSelectedService(service.id)}
               >
-                {cat}
+                {service.shortTitle}
               </button>
             ))}
           </div>
@@ -57,7 +58,7 @@ export function CreativewisePortfolio(): JSX.Element {
         <PortfolioEmptyState />
       ) : visibleProjects.length === 0 ? (
         <p className="creativewise-wall-empty">
-          No se encontraron proyectos para la categoría seleccionada.
+          No se encontraron proyectos para el servicio seleccionado.
         </p>
       ) : (
         <div className="creativewise-wall-grid">

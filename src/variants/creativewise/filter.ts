@@ -1,21 +1,19 @@
-import { Project } from '../../content/types';
+import { Project, Service, ServiceId } from '../../content/types';
 
-export function projectCategories(projects: readonly Project[]): string[] {
-  const cats: string[] = [];
-  for (const p of projects) {
-    if (p.category && !cats.includes(p.category)) {
-      cats.push(p.category);
-    }
-  }
-  return cats;
+export function serviceFilters(
+  projects: readonly Project[],
+  services: readonly Service[]
+): Service[] {
+  const used = new Set(projects.flatMap(p => p.services));
+  return services.filter(s => used.has(s.id));
 }
 
-export function filterProjects(
+export function filterByService(
   projects: readonly Project[],
-  category: string | null
+  serviceId: ServiceId | null
 ): Project[] {
-  if (!category || category === 'all' || category === 'Todas' || category === 'Todos') {
+  if (!serviceId) {
     return [...projects];
   }
-  return projects.filter(p => p.category === category);
+  return projects.filter(p => p.services.includes(serviceId));
 }

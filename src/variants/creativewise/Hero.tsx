@@ -1,6 +1,7 @@
 import { useContent } from '../../content/ContentProvider';
 import { SectionShell } from '../../components/SectionShell';
 import { Isotype } from '../../brand/Isotype';
+import { ProjectMedia } from '../../components/ProjectMedia';
 
 export function CreativewiseHero(): JSX.Element {
   const { site, projects } = useContent();
@@ -34,10 +35,15 @@ export function CreativewiseHero(): JSX.Element {
                 href="#trabajos"
                 className="creativewise-hero-project-card"
               >
-                <span>{p.name}</span>
-                <span className="creativewise-hero-project-client">
-                  {p.client}
-                </span>
+                <div className="creativewise-hero-project-media">
+                  <ProjectMedia project={p} />
+                </div>
+                <div className="creativewise-hero-project-info">
+                  <span className="creativewise-hero-project-name">{p.name}</span>
+                  <span className="creativewise-hero-project-client">
+                    {p.client}
+                  </span>
+                </div>
               </a>
             ))}
           </div>

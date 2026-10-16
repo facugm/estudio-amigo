@@ -12,6 +12,8 @@
   --c-white: #ffffff;
 
   --c-focus: var(--c-magenta);
+
+  --section-y: clamp(3rem, 6vw, 5rem);
 }
 
 *, *::before, *::after {

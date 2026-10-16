@@ -88,3 +88,11 @@ it('hero panel shows the eyebrow as real text', () => {
   expect(within(document.querySelector('[data-section="hero"]') as HTMLElement).getByText(defaultContent.site.hero.eyebrow)).toBeVisible();
 });
 
+it('process is a numbered ordered list without cards', () => {
+  render(<App storage={null} initialVariantId="nefiu" />);
+  const process = document.querySelector('[data-section="process"]') as HTMLElement;
+  expect(process.querySelector('ol')).not.toBeNull();
+  expect(within(process).getAllByRole('listitem')).toHaveLength(defaultContent.site.process.steps.length);
+  expect(process.querySelector('article')).toBeNull();
+});
+

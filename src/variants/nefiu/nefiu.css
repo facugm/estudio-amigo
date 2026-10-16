@@ -35,7 +35,7 @@
 [data-variant='nefiu'] section {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 5rem 1.5rem;
+  padding: var(--section-y) 1.5rem;
 }
 
 /* Hero: Graphical composition */
@@ -340,25 +340,51 @@
 }
 
 /* Process, About, Contact */
-[data-variant='nefiu'] [data-layout='nefiu-steps'] .nefiu-process-grid {
+[data-variant='nefiu'] .nefiu-process-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--c-muted);
+  margin-top: 2rem;
+}
+
+[data-variant='nefiu'] .nefiu-process-item {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: 80px 1fr;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 2.25rem 0;
+  border-bottom: 1px solid var(--c-muted);
 }
 
-[data-variant='nefiu'] .nefiu-process-card {
-  background-color: var(--c-surface);
-  border-radius: var(--radius);
-  padding: 2rem;
-  border: var(--nefiu-border);
+[data-variant='nefiu'] .nefiu-process-step-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: var(--c-accent);
+  line-height: 1;
 }
 
-[data-variant='nefiu'] [data-layout='nefiu-about'] .nefiu-about-card {
-  background: #ffffff;
-  border: var(--nefiu-border);
-  border-radius: var(--radius);
-  padding: 3rem;
-  box-shadow: var(--nefiu-shadow);
+[data-variant='nefiu'] .nefiu-process-step-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--c-fg);
+}
+
+[data-variant='nefiu'] .nefiu-process-step-desc {
+  color: var(--c-muted);
+  line-height: 1.6;
+  font-size: 1rem;
+  max-width: 720px;
+}
+
+[data-variant='nefiu'] [data-layout='nefiu-about'] .nefiu-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 3.5rem;
+  align-items: flex-start;
 }
 
 [data-variant='nefiu'] [data-layout='nefiu-contact'] {
@@ -369,7 +395,7 @@
 
 @media (max-width: 900px) {
   [data-variant='nefiu'] section {
-    padding: 3.5rem 1.25rem;
+    padding: var(--section-y) 1.25rem;
   }
 
   [data-variant='nefiu'] .nefiu-hero-headline {
@@ -407,34 +433,20 @@
     gap: 2rem;
   }
 
-  [data-variant='nefiu'] [data-layout='nefiu-about'] .nefiu-about-card {
-    padding: 2rem 1.5rem;
+  [data-variant='nefiu'] .nefiu-process-item {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1.5rem 0;
+  }
+
+  [data-variant='nefiu'] [data-layout='nefiu-about'] .nefiu-about-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
 [data-variant='nefiu'] .nefiu-tabpanel-btn {
   align-self: flex-start;
-}
-
-[data-variant='nefiu'] .nefiu-process-step-num {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: var(--c-accent);
-  margin-bottom: 0.75rem;
-}
-
-[data-variant='nefiu'] .nefiu-process-step-title {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-[data-variant='nefiu'] .nefiu-process-step-desc {
-  color: var(--c-muted);
-  line-height: 1.5;
-  font-size: 0.95rem;
 }
 
 [data-variant='nefiu'] .nefiu-bento-header {

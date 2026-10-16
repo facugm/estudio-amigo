@@ -288,7 +288,7 @@ body:has(.contact-form input:focus, .contact-form textarea:focus) .variant-dock 
 /* Provisional tag */
 .provisional-tag {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;

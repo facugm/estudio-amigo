@@ -1,0 +1,152 @@
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--c-fg);
+  font-size: 0.95rem;
+}
+
+.field input {
+  min-height: 44px;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--c-fg);
+  border-radius: var(--radius);
+  background-color: var(--c-surface);
+  color: var(--c-fg);
+  font-family: inherit;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.field textarea {
+  min-height: 120px;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--c-fg);
+  border-radius: var(--radius);
+  background-color: var(--c-surface);
+  color: var(--c-fg);
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: 3px solid var(--c-focus);
+  outline-offset: 2px;
+}
+
+.field-error {
+  display: block;
+  color: var(--c-fg);
+  border-left: 4px solid var(--c-accent);
+  padding-left: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.btn-primary {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  background-color: var(--c-accent);
+  color: var(--c-accent-fg);
+  border: 2px solid var(--c-accent);
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:focus-visible {
+  outline: 3px solid var(--c-focus);
+  outline-offset: 3px;
+}
+
+.btn-secondary {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  background-color: transparent;
+  color: var(--c-fg);
+  border: 2px solid var(--c-fg);
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--c-surface);
+  opacity: 0.9;
+}
+
+.btn-secondary:focus-visible {
+  outline: 3px solid var(--c-focus);
+  outline-offset: 3px;
+}
+
+.contact-confirmed {
+  border: 2px solid var(--c-fg);
+  border-radius: var(--radius);
+  padding: 2rem;
+  background-color: var(--c-surface);
+  color: var(--c-fg);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tag-item {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid currentColor;
+  border-radius: var(--radius);
+  padding: 0.25rem 0.65rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}

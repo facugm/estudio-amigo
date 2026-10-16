@@ -6,7 +6,7 @@ export function NefiuAbout(): JSX.Element {
 
   return (
     <SectionShell section="about" layout="nefiu-about">
-      <div className="nefiu-about-card">
+      <div className="nefiu-about-grid">
         <h2 className="nefiu-section-title">{site.about.title}</h2>
         <div className="nefiu-about-paragraphs">
           {site.about.paragraphs.map((p, idx) => (

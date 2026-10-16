@@ -50,7 +50,7 @@
 [data-variant='creativewise'] section {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 5.5rem 1.5rem;
+  padding: var(--section-y) 1.5rem;
 }
 
 [data-variant='creativewise'] .site-footer {
@@ -434,7 +434,7 @@
 
 @media (max-width: 900px) {
   [data-variant='creativewise'] section {
-    padding: 3.5rem 1.25rem;
+    padding: var(--section-y) 1.25rem;
   }
 
   [data-variant='creativewise'] .creativewise-hero-headline {
@@ -514,7 +514,7 @@
 
 [data-variant='creativewise'] .creativewise-hero-project-client {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   color: var(--c-muted);
   font-weight: 400;
 }

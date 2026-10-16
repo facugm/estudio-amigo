@@ -57,7 +57,7 @@
 [data-variant='escalamos'] section {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 5.5rem 1.5rem;
+  padding: var(--section-y) 1.5rem;
 }
 
 [data-variant='escalamos'] .site-footer {
@@ -80,7 +80,7 @@
   border: 1px solid #c8f264;
   border-radius: 999px;
   color: #c8f264;
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -452,7 +452,7 @@
 
 @media (max-width: 900px) {
   [data-variant='escalamos'] section {
-    padding: 3.5rem 1.25rem;
+    padding: var(--section-y) 1.25rem;
   }
 
   [data-variant='escalamos'] .escalamos-hero-headline {

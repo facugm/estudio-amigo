@@ -5,8 +5,27 @@ import { defaultContent } from '../../content/ContentProvider';
 import { buildInterestMessage } from './interestMessage';
 import { escalamosTokens } from './tokens';
 import { BRAND } from '../../brand/palette';
+import css from './escalamos.css?raw';
 
 describe('Escalamos variant', () => {
+  it('disabled CTA keeps readable text: outlined with the muted token and no opacity', () => {
+    const r = /\.escalamos-btn-primary:disabled\s*{[^}]*}/.exec(css)?.[0] ?? '';
+    expect(r).toMatch(/color:\s*var\(--c-muted\)/);
+    expect(r).toMatch(/border:\s*2px solid var\(--c-muted\)/);
+    expect(r).not.toMatch(/opacity/);
+  });
+
+  it('outline buttons use white text and border on navy', () => {
+    const r = /\.escalamos-btn-outline\s*{[^}]*}/.exec(css)?.[0] ?? '';
+    expect(r).toMatch(/color:\s*var\(--c-fg\)/);
+    expect(r).toMatch(/border:\s*2px solid var\(--c-fg\)/);
+  });
+
+  it('services grid lays out 3 + 4 cards on a 12-column grid', () => {
+    expect(css).toMatch(/\.escalamos-services-grid\s*{[^}]*grid-template-columns:\s*repeat\(12/);
+    expect(css).toMatch(/\.escalamos-service-card:nth-child\(-n\s*\+\s*3\)\s*{[^}]*grid-column:\s*span 4/);
+    expect(css).toMatch(/\.escalamos-service-card:nth-child\(n\s*\+\s*4\)\s*{[^}]*grid-column:\s*span 3/);
+  });
   it('escalamos tokens use only brand palette colors', () => {
     const brandHexValues = new Set(Object.values(BRAND).map(c => c.toLowerCase()));
     Object.values(escalamosTokens.colors).forEach(color => {

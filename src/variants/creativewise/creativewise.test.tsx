@@ -2,9 +2,11 @@ import { render, screen, within, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../../App';
 import { defaultContent } from '../../content/ContentProvider';
-import { projectCategories, filterProjects } from './filter';
+import { serviceFilters, filterByService } from './filter';
 import { creativewiseTokens } from './tokens';
 import { BRAND } from '../../brand/palette';
+
+const { projects: P, services: S } = defaultContent;
 
 describe('Creativewise variant', () => {
   it('creativewise tokens use only brand palette colors', () => {
@@ -14,20 +16,16 @@ describe('Creativewise variant', () => {
     });
   });
 
-  it('projectCategories extracts unique categories from projects', () => {
-    const cats = projectCategories(defaultContent.projects);
-    expect(cats.length).toBeGreaterThan(0);
-    expect(new Set(cats).size).toBe(cats.length);
+  it('serviceFilters lists only services used by some project, in service order', () => {
+    const used = new Set(P.flatMap(p => p.services));
+    expect(serviceFilters(P, S).map(s => s.id)).toEqual(S.filter(s => used.has(s.id)).map(s => s.id));
+    expect(serviceFilters([], S)).toEqual([]);
   });
 
-  it('filterProjects returns all when category is null or all, and filters by category', () => {
-    expect(filterProjects(defaultContent.projects, null)).toEqual(defaultContent.projects);
-    expect(filterProjects(defaultContent.projects, 'all')).toEqual(defaultContent.projects);
-
-    const targetCat = defaultContent.projects[0]!.category;
-    const filtered = filterProjects(defaultContent.projects, targetCat);
-    expect(filtered.length).toBeGreaterThan(0);
-    expect(filtered.every(p => p.category === targetCat)).toBe(true);
+  it('filterByService: null returns all; an id returns only projects that involve it', () => {
+    expect(filterByService(P, null)).toHaveLength(P.length);
+    expect(filterByService(P, 'branding').every(p => p.services.includes('branding'))).toBe(true);
+    expect(filterByService(P, 'branding').length).toBeGreaterThan(1);
   });
 
   const mount = (content = defaultContent) =>
@@ -42,48 +40,40 @@ describe('Creativewise variant', () => {
     ).toEqual(['hero', 'portfolio', 'services']);
   });
 
-  it('renders category filter chips with aria-pressed, and filtering changes visible cards', async () => {
-    mount();
-    const portfolio = within(document.querySelector('[data-section="portfolio"]') as HTMLElement);
-    const chips = portfolio.getAllByRole('button');
-    expect(chips.length).toBeGreaterThan(1); // "Todas" + categories
-
-    const allChip = chips[0]!;
-    expect(allChip).toHaveAttribute('aria-pressed', 'true');
-
-    // Click second category chip
-    const secondChip = chips[1]!;
+  it('chips are service short titles, toggle aria-pressed and narrow the wall', async () => {
+    render(<App storage={null} initialVariantId="creativewise" />);
+    const wall = within(document.querySelector('[data-section="portfolio"]') as HTMLElement);
+    const chip = wall.getByRole('button', { name: S.find(s => s.id === 'branding')!.shortTitle });
     await act(async () => {
-      await userEvent.click(secondChip);
+      await userEvent.click(chip);
     });
-    expect(secondChip).toHaveAttribute('aria-pressed', 'true');
-    expect(allChip).toHaveAttribute('aria-pressed', 'false');
-
-    // Re-click allChip
+    expect(chip).toHaveAttribute('aria-pressed', 'true');
+    expect(wall.getAllByRole('article')).toHaveLength(filterByService(P, 'branding').length);
     await act(async () => {
-      await userEvent.click(allChip);
+      await userEvent.click(wall.getByRole('button', { name: 'Todos' }));
     });
-    expect(allChip).toHaveAttribute('aria-pressed', 'true');
+    expect(wall.getAllByRole('article')).toHaveLength(P.length);
   });
 
-  it('hero renders fallback cleanly when there are zero projects', () => {
-    mount({ ...defaultContent, projects: [] });
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-      defaultContent.site.hero.headline
-    );
-    expect(within(document.querySelector('[data-section="portfolio"]') as HTMLElement).getByText(
-      'Todavía no hay proyectos cargados.'
-    )).toBeInTheDocument();
+  it('shows no filter bar with zero or one project', () => {
+    [[], [P[0]!]].forEach(projects => {
+      const { unmount } = render(<App storage={null} initialVariantId="creativewise" content={{ ...defaultContent, projects }} />);
+      expect(within(document.querySelector('[data-section="portfolio"]') as HTMLElement).queryByRole('button', { name: 'Todos' })).toBeNull();
+      unmount();
+    });
   });
 
-  it('hero project cards are links to #trabajos', () => {
-    mount();
-    const hero = document.querySelector('[data-section="hero"]') as HTMLElement;
-    const projectCards = hero.querySelectorAll('.creativewise-hero-project-card');
-    expect(projectCards.length).toBeGreaterThan(0);
-    projectCards.forEach(card => {
-      expect(card).toHaveAttribute('href', '#trabajos');
-    });
+  it('hero featured projects are links to the portfolio that include their media', () => {
+    render(<App storage={null} initialVariantId="creativewise" />);
+    const links = within(document.querySelector('[data-section="hero"]') as HTMLElement).getAllByRole('link', { name: new RegExp(P[0]!.name) });
+    expect(links[0]).toHaveAttribute('href', '#trabajos');
+    expect(within(links[0]!).getByRole('img')).toBeInTheDocument();
+  });
+
+  it('hero shows no project cards with zero projects', () => {
+    render(<App storage={null} initialVariantId="creativewise" content={{ ...defaultContent, projects: [] }} />);
+    expect(document.querySelector('[data-section="hero"] .creativewise-hero-project-card')).toBeNull();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(defaultContent.site.hero.headline);
   });
 
   it('hero carries exactly one decorative isotype, outside the heading', () => {

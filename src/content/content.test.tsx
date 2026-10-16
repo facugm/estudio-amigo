@@ -14,6 +14,12 @@ const TITLES = [
 it('has the seven services with the brief titles, in order', () =>
   expect(defaultContent.services.map(s => s.title)).toEqual(TITLES));
 
+it('every service has a short title of at most 24 characters', () =>
+  defaultContent.services.forEach(s => {
+    expect(s.shortTitle.length).toBeGreaterThan(0);
+    expect(s.shortTitle.length).toBeLessThanOrEqual(24);
+  }));
+
 it('has unique service ids and unique project ids', () => {
   const ids = (xs: { id: string }[]) => new Set(xs.map(x => x.id)).size === xs.length;
   expect(ids([...defaultContent.services])).toBe(true);

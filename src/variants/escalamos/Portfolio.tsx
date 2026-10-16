@@ -17,7 +17,7 @@ export function EscalamosPortfolio(): JSX.Element {
       <div className="escalamos-section-header">
         <h2 className="escalamos-section-title">{portfolioTitle}</h2>
         <p className="escalamos-section-desc">
-          Evidencia concreta de marcas acompañadas con soluciones integrales de diseño y comunicación.
+          {site.intros.portfolio}
         </p>
       </div>
 

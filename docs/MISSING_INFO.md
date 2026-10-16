@@ -4,25 +4,25 @@ Este documento detalla las definiciones comerciales, de contenido y de infraestr
 
 ---
 
-## 1. Canales Oficiales de Contacto
+## 1. Canales Oficiales de Contacto (Prioridad 1)
 
-En el prototipo actual, los canales de contacto están configurados como marcadores de posición (*placeholders*) accesibles para evitar enlaces rotos durante la navegación. Se requiere:
+En el prototipo actual, los canales de contacto están configurados con honestidad como marcadores de posición (*placeholders*) con el texto `"{label}: a definir"` para evitar enlaces ficticios o información que genere desconfianza. Esta es la información crítica número uno a completar antes de salir a producción:
 
 - **WhatsApp Comercial**:
-  - Número de teléfono con código de país y de área (ej: `+54 9 264 ...`).
+  - Número de teléfono real con código de país y de área (ej: `+54 9 264 ...`).
   - Mensaje predeterminado de bienvenida para el link `https://wa.me/...`.
 - **Correo Electrónico Oficial**:
-  - Dirección de correo de recepción de consultas (ej: `contacto@tuestudioamigo.com` o similar).
+  - Dirección de correo de recepción de consultas (ej: `contacto@...` o similar).
   - Configuración del proveedor de correo o webhook de destino para el formulario web.
 - **Redes Sociales**:
-  - Handle oficial de Instagram (ej: `@tuestudioamigo` o el correspondiente).
-  - Página de empresa en LinkedIn (URL pública).
+  - Handle oficial de Instagram real.
+  - Página de empresa en LinkedIn real.
 
 ---
 
-## 2. Material Audiovisual y Casos de Estudio
+## 2. Material Audiovisual y Casos de Estudio Reales
 
-Los proyectos actuales en el catálogo cuentan con fotografía stock curada de alta resolución para validar las composiciones visuales:
+Los proyectos actuales en el catálogo son casos de muestra provisionales. Al cargar los proyectos reales, se debe actualizar la descripción de introducción en `site.ts` (`intros.portfolio`), que actualmente aclara: *"Casos de muestra para evaluar el diseño; se reemplazan por trabajos reales."*
 
 - **Fotografía de Proyectos Propios de estudio amigo**:
   - Fotografías de alta resolución (mínimo 1600px de ancho) en formatos modernos (WebP o JPG optimizado) de trabajos de:

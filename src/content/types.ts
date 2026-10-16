@@ -47,10 +47,20 @@ export interface SiteContent {
   };
   nav: readonly { label: string; section: SectionId }[];
   hero: {
+    eyebrow: string;
     headline: string;
     support: string;
     cta: { label: string };
     secondaryCta: { label: string };
+  };
+  intros: {
+    services: string;
+    servicesSelect: string;
+    portfolio: string;
+  };
+  servicesCta: {
+    label: string;
+    empty: string;
   };
   process: {
     title: string;

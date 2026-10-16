@@ -7,7 +7,7 @@ export function EscalamosHero(): JSX.Element {
   return (
     <SectionShell section="hero" layout="escalamos-value">
       <div className="escalamos-hero-badge">
-        <span>Diagnóstico & Crecimiento</span>
+        <span>{site.hero.eyebrow}</span>
       </div>
       <h1 className="escalamos-hero-headline">{site.hero.headline}</h1>
       <p className="escalamos-hero-support">{site.hero.support}</p>

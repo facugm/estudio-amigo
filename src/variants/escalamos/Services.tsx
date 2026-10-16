@@ -39,7 +39,7 @@ export function EscalamosServices(): JSX.Element {
       <div className="escalamos-section-header">
         <h2 className="escalamos-section-title">{servicesTitle}</h2>
         <p className="escalamos-section-desc">
-          Seleccioná las áreas donde tu marca necesita apoyo y coordinamos un diagnóstico directo.
+          {site.intros.servicesSelect}
         </p>
       </div>
 
@@ -80,8 +80,11 @@ export function EscalamosServices(): JSX.Element {
           disabled={selectedIds.length === 0}
           className="escalamos-btn-primary"
         >
-          Solicitar diagnóstico con servicios seleccionados
+          {site.servicesCta.label}
         </button>
+        {selectedIds.length === 0 && (
+          <p className="escalamos-services-empty-note">{site.servicesCta.empty}</p>
+        )}
       </div>
     </SectionShell>
   );

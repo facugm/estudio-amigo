@@ -15,6 +15,7 @@ export const siteContent: SiteContent = {
     { label: 'Contacto', section: 'contact' }
   ],
   hero: {
+    eyebrow: 'Estudio de comunicación integral',
     headline: 'Estrategia, creatividad y comunicación para marcas que buscan conectar de verdad.',
     support:
       'Acompañamos a marcas, proyectos y organizaciones en el diseño de su identidad y en la articulación de sus mensajes en canales digitales y físicos.',
@@ -24,6 +25,15 @@ export const siteContent: SiteContent = {
     secondaryCta: {
       label: 'Ver trabajos'
     }
+  },
+  intros: {
+    services: 'Siete servicios que se pueden combinar según lo que necesite cada marca.',
+    servicesSelect: 'Elegí los servicios que te interesan y armamos el mensaje por vos.',
+    portfolio: 'Casos de muestra para evaluar el diseño; se reemplazan por trabajos reales.'
+  },
+  servicesCta: {
+    label: 'Conversemos sobre estos servicios',
+    empty: 'Elegí al menos un servicio para continuar.'
   },
   process: {
     title: 'Cómo trabajamos',
@@ -69,25 +79,25 @@ export const siteContent: SiteContent = {
     channels: [
       {
         id: 'email',
-        label: 'contacto@tuestudioamigo.com',
+        label: 'Email',
         href: null,
         isPlaceholder: true
       },
       {
         id: 'whatsapp',
-        label: '+54 9 11 0000-0000',
+        label: 'WhatsApp',
         href: null,
         isPlaceholder: true
       },
       {
         id: 'instagram',
-        label: '@tuestudioamigo',
+        label: 'Instagram',
         href: null,
         isPlaceholder: true
       },
       {
         id: 'linkedin',
-        label: 'linkedin.com/company/tuestudioamigo',
+        label: 'LinkedIn',
         href: null,
         isPlaceholder: true
       }

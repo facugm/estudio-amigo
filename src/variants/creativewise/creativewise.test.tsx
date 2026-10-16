@@ -85,4 +85,11 @@ describe('Creativewise variant', () => {
       expect(card).toHaveAttribute('href', '#trabajos');
     });
   });
+
+  it('hero carries exactly one decorative isotype, outside the heading', () => {
+    render(<App storage={null} initialVariantId="creativewise" />);
+    const hero = document.querySelector('[data-section="hero"]') as HTMLElement;
+    expect(hero.querySelectorAll('svg[aria-hidden="true"]')).toHaveLength(1);
+    expect(hero.querySelector('h1 svg')).toBeNull();
+  });
 });

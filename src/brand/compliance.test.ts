@@ -9,6 +9,7 @@ const css = import.meta.glob('/src/**/*.css', {
 export const CHECKED_CSS = [
   '/src/styles/base.css',
   '/src/styles/shell.css',
+  '/src/styles/ui.css',
   '/src/variants/nefiu/nefiu.css',
   '/src/variants/escalamos/escalamos.css',
   '/src/variants/creativewise/creativewise.css'

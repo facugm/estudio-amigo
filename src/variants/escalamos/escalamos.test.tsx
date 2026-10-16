@@ -39,7 +39,7 @@ describe('Escalamos variant', () => {
     expect(checkboxes).toHaveLength(7);
     checkboxes.forEach(cb => expect(cb).not.toBeChecked());
 
-    const cta = services.getByRole('button', { name: /solicitar diagnóstico|consultar por servicios/i });
+    const cta = services.getByRole('button', { name: /conversemos sobre estos servicios|solicitar diagnóstico|consultar por servicios/i });
     expect(cta).toBeDisabled();
   });
 
@@ -53,7 +53,7 @@ describe('Escalamos variant', () => {
       await userEvent.click(checkboxes[1]!);
     });
 
-    const cta = services.getByRole('button', { name: /solicitar diagnóstico|consultar por servicios/i });
+    const cta = services.getByRole('button', { name: /conversemos sobre estos servicios|solicitar diagnóstico|consultar por servicios/i });
     expect(cta).not.toBeDisabled();
 
     await act(async () => {
@@ -84,7 +84,7 @@ describe('Escalamos variant', () => {
       await userEvent.click(checkboxes[0]!);
     });
 
-    const cta = services.getByRole('button', { name: /solicitar diagnóstico/i });
+    const cta = services.getByRole('button', { name: /conversemos sobre estos servicios|solicitar diagnóstico/i });
     await act(async () => {
       await userEvent.click(cta);
     });
@@ -92,6 +92,17 @@ describe('Escalamos variant', () => {
     expect(messageInput).toHaveValue(
       `${buildInterestMessage([defaultContent.services[0]!.title])}\n\nMi proyecto es una tienda de ropa.`
     );
+  });
+
+  it('the CTA reads from content, and its disabled state is explained until a service is chosen', async () => {
+    mount();
+    const section = within(document.querySelector('[data-section="services"]') as HTMLElement);
+    expect(section.getByRole('button', { name: defaultContent.site.servicesCta.label })).toBeDisabled();
+    expect(section.getByText(defaultContent.site.servicesCta.empty)).toBeInTheDocument();
+    await act(async () => {
+      await userEvent.click(section.getByRole('checkbox', { name: defaultContent.services[0]!.title }));
+    });
+    expect(section.queryByText(defaultContent.site.servicesCta.empty)).toBeNull();
   });
 
   it('portfolio displays service tags as proof of deliverables', () => {

@@ -35,6 +35,15 @@ it('keeps contact channels as non-clickable placeholders', () =>
     expect(c.href).toBeNull();
   }));
 
+it('contact channels have only the channel names', () => {
+  expect(defaultContent.site.contact.channels.map(c => c.label)).toEqual([
+    'Email',
+    'WhatsApp',
+    'Instagram',
+    'LinkedIn'
+  ]);
+});
+
 it('has the four process steps from the brief', () =>
   expect(defaultContent.site.process.steps.map(s => s.title)).toEqual([
     'Comprender el desafío',

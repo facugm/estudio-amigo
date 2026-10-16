@@ -73,12 +73,10 @@ it('empty state is a status message', () => {
   expect(screen.getByRole('status')).toHaveTextContent('Todavía no hay proyectos cargados.');
 });
 
-it('placeholder channels are not links', () => {
+it('placeholder channels show only the channel name and "a definir", never fake values', () => {
   render(<ContactChannels />);
-  expect(screen.queryAllByRole('link')).toHaveLength(0);
-  expect(screen.getAllByText(/a definir/i).length).toBe(
-    defaultContent.site.contact.channels.length
-  );
+  ['Email', 'WhatsApp', 'Instagram', 'LinkedIn'].forEach(n => expect(screen.getByText(`${n}: a definir`)).toBeInTheDocument());
+  expect(document.body.textContent).not.toMatch(/@|\d{4}-\d{4}|tuestudioamigo/);
 });
 
 it('validateContact flags empty name, malformed email and short message; accepts padded valid data', () => {

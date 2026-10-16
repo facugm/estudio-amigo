@@ -24,7 +24,7 @@ export function CreativewisePortfolio(): JSX.Element {
         <div>
           <h2 className="creativewise-section-title">{portfolioTitle}</h2>
           <p className="creativewise-wall-subtitle">
-            Selección curada de identidades, lanzamientos y producciones creativas.
+            {site.intros.portfolio}
           </p>
         </div>
 

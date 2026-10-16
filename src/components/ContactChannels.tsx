@@ -13,7 +13,7 @@ export function ContactChannels({ className }: { className?: string }): JSX.Elem
             </a>
           ) : (
             <span className="contact-channel-placeholder">
-              {channel.label} (a definir)
+              {channel.label}: a definir
             </span>
           )}
         </li>

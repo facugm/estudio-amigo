@@ -111,4 +111,11 @@ describe('Escalamos variant', () => {
     const tags = portfolio.getAllByRole('list');
     expect(tags.length).toBeGreaterThan(0);
   });
+
+  it('hero carries exactly one decorative isotype, outside the heading', () => {
+    render(<App storage={null} initialVariantId="escalamos" />);
+    const hero = document.querySelector('[data-section="hero"]') as HTMLElement;
+    expect(hero.querySelectorAll('svg[aria-hidden="true"]')).toHaveLength(1);
+    expect(hero.querySelector('h1 svg')).toBeNull();
+  });
 });

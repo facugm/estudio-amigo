@@ -87,6 +87,14 @@
   margin-bottom: 1.5rem;
 }
 
+[data-variant='escalamos'] .escalamos-hero-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
 [data-variant='escalamos'] .escalamos-hero-headline {
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 5.5vw, 4.2rem);
@@ -95,7 +103,21 @@
   letter-spacing: -0.03em;
   color: #ffffff;
   max-width: 900px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
+}
+
+[data-variant='escalamos'] .escalamos-hero-isotype-wrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-variant='escalamos'] .escalamos-hero-isotype {
+  width: 140px;
+  height: 140px;
+  color: #c61e97;
+  display: block;
 }
 
 [data-variant='escalamos'] .escalamos-hero-support {

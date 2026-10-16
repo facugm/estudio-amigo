@@ -1,5 +1,6 @@
 import { useContent } from '../../content/ContentProvider';
 import { SectionShell } from '../../components/SectionShell';
+import { Isotype } from '../../brand/Isotype';
 
 export function NefiuHero(): JSX.Element {
   const { site } = useContent();
@@ -19,9 +20,11 @@ export function NefiuHero(): JSX.Element {
             </a>
           </div>
         </div>
-        <div className="nefiu-hero-graphic" aria-hidden="true">
+        <div className="nefiu-hero-graphic">
           <span className="nefiu-graphic-tag">{site.hero.eyebrow}</span>
-          <div className="nefiu-graphic-title">{site.hero.eyebrow}</div>
+          <div className="nefiu-hero-isotype-wrap" aria-hidden="true">
+            <Isotype className="nefiu-hero-isotype" />
+          </div>
         </div>
       </div>
     </SectionShell>

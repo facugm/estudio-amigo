@@ -1,5 +1,6 @@
 import { useContent } from '../../content/ContentProvider';
 import { SectionShell } from '../../components/SectionShell';
+import { Isotype } from '../../brand/Isotype';
 
 export function EscalamosHero(): JSX.Element {
   const { site } = useContent();
@@ -9,7 +10,12 @@ export function EscalamosHero(): JSX.Element {
       <div className="escalamos-hero-badge">
         <span>{site.hero.eyebrow}</span>
       </div>
-      <h1 className="escalamos-hero-headline">{site.hero.headline}</h1>
+      <div className="escalamos-hero-header-row">
+        <h1 className="escalamos-hero-headline">{site.hero.headline}</h1>
+        <div className="escalamos-hero-isotype-wrap" aria-hidden="true">
+          <Isotype className="escalamos-hero-isotype" />
+        </div>
+      </div>
       <p className="escalamos-hero-support">{site.hero.support}</p>
       <div className="escalamos-hero-ctas">
         <a href="#contacto" className="escalamos-btn-primary">

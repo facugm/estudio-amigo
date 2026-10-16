@@ -70,6 +70,14 @@
   gap: 2.5rem;
 }
 
+[data-variant='creativewise'] .creativewise-hero-headline-wrap {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  position: relative;
+}
+
 [data-variant='creativewise'] .creativewise-hero-headline {
   font-family: var(--font-display);
   font-size: clamp(2.4rem, 6vw, 4.5rem);
@@ -78,6 +86,20 @@
   letter-spacing: -0.03em;
   max-width: 980px;
   color: var(--c-fg);
+}
+
+[data-variant='creativewise'] .creativewise-hero-isotype-wrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-variant='creativewise'] .creativewise-hero-isotype {
+  width: 140px;
+  height: 140px;
+  color: #c61e97;
+  display: block;
 }
 
 [data-variant='creativewise'] .creativewise-hero-bottom {

@@ -242,8 +242,10 @@
 /* Portfolio Bento Grid */
 [data-variant='nefiu'] .nefiu-bento-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-flow: row;
   gap: 1.5rem;
+  align-items: stretch;
 }
 
 [data-variant='nefiu'] .nefiu-bento-tile {
@@ -253,7 +255,6 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -263,25 +264,72 @@
 }
 
 [data-variant='nefiu'] .nefiu-bento-tile[data-size='large'] {
-  grid-column: span 2;
-  grid-row: span 2;
-  background-color: var(--c-surface, #ffffff);
-}
-
-[data-variant='nefiu'] .nefiu-bento-tile[data-size='wide'] {
-  grid-column: span 2;
+  grid-column: span 7;
 }
 
 [data-variant='nefiu'] .nefiu-bento-tile[data-size='small'] {
-  grid-column: span 1;
+  grid-column: span 5;
+}
+
+[data-variant='nefiu'] .nefiu-bento-tile[data-size='wide'] {
+  grid-column: span 12;
 }
 
 [data-variant='nefiu'] .nefiu-bento-media {
   width: 100%;
-  aspect-ratio: 16/10;
-  border-radius: calc(var(--radius) - 4px);
+  aspect-ratio: 4 / 3;
   overflow: hidden;
+}
+
+[data-variant='nefiu'] .nefiu-bento-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+[data-variant='nefiu'] .nefiu-bento-content[data-tone='navy'] {
+  background-color: #234060;
+  color: #ffffff;
+}
+
+[data-variant='nefiu'] .nefiu-bento-content[data-tone='lime'] {
+  background-color: #c8f264;
+  color: #234060;
+}
+
+[data-variant='nefiu'] .nefiu-bento-content[data-tone='magenta'] {
+  background-color: #c61e97;
+  color: #ffffff;
+}
+
+[data-variant='nefiu'] .nefiu-bento-content[data-tone='gray'] {
+  background-color: #dcdcdc;
+  color: #234060;
+}
+
+[data-variant='nefiu'] .nefiu-bento-content .nefiu-bento-client {
+  color: currentColor;
+  opacity: 0.9;
+}
+
+[data-variant='nefiu'] .nefiu-bento-content .nefiu-bento-desc {
+  color: currentColor;
+  opacity: 0.95;
+  font-size: 0.95rem;
+  line-height: 1.45;
   margin-bottom: 1rem;
+}
+
+[data-variant='nefiu'] .nefiu-bento-content .tag-item {
+  color: currentColor;
+  border-color: currentColor;
+}
+
+[data-variant='nefiu'] .nefiu-bento-content .nefiu-btn-outline {
+  color: currentColor;
+  border-color: currentColor;
+  background-color: transparent;
 }
 
 [data-variant='nefiu'] .nefiu-bento-title {
@@ -289,13 +337,6 @@
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.35rem;
-}
-
-[data-variant='nefiu'] .nefiu-bento-desc {
-  font-size: 0.95rem;
-  color: var(--c-muted);
-  line-height: 1.45;
-  margin-bottom: 1rem;
 }
 
 /* Process, About, Contact */

@@ -1,7 +1,7 @@
 import { render, within, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { App } from '../../App';
-import { bentoSize } from './bento';
+import { bentoSize, bentoTone, BENTO_SPAN } from './bento';
 import { defaultContent } from '../../content/ContentProvider';
 import { nefiuTokens } from './tokens';
 import { BRAND } from '../../brand/palette';
@@ -13,12 +13,21 @@ it('nefiu tokens use only brand palette colors', () => {
   });
 });
 
-it('bentoSize cycles with period 4 starting large, for any index', () => {
-  expect([0, 1, 2, 3].map(bentoSize)).toEqual(['large', 'small', 'small', 'wide']);
-  for (let i = 0; i < 40; i++) {
-    expect(bentoSize(i)).toBe(bentoSize(i % 4));
+it('rows always fill exactly 12 columns for any number of projects, with no leftovers', () => {
+  for (let total = 1; total <= 12; total++) {
+    let acc = 0;
+    for (let i = 0; i < total; i++) {
+      acc += BENTO_SPAN[bentoSize(i, total)];
+      expect(acc).toBeLessThanOrEqual(12);
+      if (acc === 12) acc = 0;
+    }
+    expect(acc).toBe(0);
   }
 });
+it('bentoSize cycles large, small, small, large without a total', () =>
+  expect([0, 1, 2, 3, 4, 5].map(i => bentoSize(i))).toEqual(['large', 'small', 'small', 'large', 'large', 'small']));
+it('bentoTone cycles navy, lime, magenta, gray', () =>
+  expect([0, 1, 2, 3, 4].map(bentoTone)).toEqual(['navy', 'lime', 'magenta', 'gray', 'navy']));
 
 const mount = () => render(<App storage={null} initialVariantId="nefiu" />);
 
@@ -59,15 +68,12 @@ it('tabs support ArrowRight/ArrowLeft with wraparound', async () => {
   expect(tabs[6]).toHaveAttribute('aria-selected', 'true');
 });
 
-it('portfolio tiles carry the bento size derived from their index', () => {
-  mount();
-  const tiles = document.querySelectorAll('[data-section="portfolio"] [data-size]');
-  expect([...tiles].slice(0, 4).map(t => t.getAttribute('data-size'))).toEqual([
-    'large',
-    'small',
-    'small',
-    'wide'
-  ]);
+it('tiles carry the size and tone of their index', () => {
+  render(<App storage={null} initialVariantId="nefiu" />);
+  const tiles = [...document.querySelectorAll('[data-section="portfolio"] .nefiu-bento-tile')];
+  expect(tiles).toHaveLength(defaultContent.projects.length);
+  expect(tiles.map(t => t.getAttribute('data-size'))).toEqual(tiles.map((_, i) => bentoSize(i, tiles.length)));
+  expect(tiles[1]!.querySelector('[data-tone="lime"]')).not.toBeNull();
 });
 
 it('hero carries exactly one decorative isotype, outside the heading', () => {

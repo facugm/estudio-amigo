@@ -5,7 +5,7 @@ import { ProjectMedia } from '../../components/ProjectMedia';
 import { ProvisionalTag } from '../../components/ProvisionalTag';
 import { ProjectCaseLink } from '../../components/ProjectCaseLink';
 import { ServiceTags } from '../../components/ServiceTags';
-import { bentoSize } from './bento';
+import { bentoSize, bentoTone } from './bento';
 
 export function NefiuPortfolio(): JSX.Element {
   const { site, projects } = useContent();
@@ -25,12 +25,15 @@ export function NefiuPortfolio(): JSX.Element {
             <article
               key={project.id}
               className="nefiu-bento-tile"
-              data-size={bentoSize(index)}
+              data-size={bentoSize(index, projects.length)}
             >
               <div className="nefiu-bento-media">
                 <ProjectMedia project={project} />
               </div>
-              <div className="nefiu-bento-content">
+              <div
+                className="nefiu-bento-content"
+                data-tone={bentoTone(index)}
+              >
                 <div className="nefiu-bento-header">
                   <span className="nefiu-bento-client">
                     {project.client}

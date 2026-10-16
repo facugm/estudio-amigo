@@ -1,4 +1,4 @@
-/* Shell styles: Header, Switcher, Footer, General layout */
+/* Shell styles: Header, Floating Dock, Footer, General layout */
 
 .site-header {
   position: sticky;
@@ -17,7 +17,7 @@
   justify-content: space-between;
   max-width: 1360px;
   margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   gap: 1rem;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .brand-logo {
-  height: 26px;
+  height: 28px;
   width: auto;
   max-width: 220px;
   display: block;
@@ -123,25 +123,36 @@
   transform: translateY(-1px);
 }
 
-.header-switcher-row {
-  border-top: 1px solid var(--c-muted, #dcdcdc);
+/* Floating Variant Dock */
+.variant-dock {
+  position: fixed;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
   background-color: var(--c-bg, #ffffff);
-  padding: 0.4rem 1.5rem;
+  border: 2px solid var(--c-fg, #234060);
+  border-radius: 9999px;
+  padding: 0.35rem 0.6rem;
+  box-shadow: 0 4px 16px rgba(35, 64, 96, 0.15);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+body:has(.contact-form input:focus, .contact-form textarea:focus) .variant-dock {
+  transform: translate(-50%, 200%);
 }
 
 .variant-switcher {
   border: none;
   padding: 0;
-  margin: 0 auto;
-  max-width: 1360px;
+  margin: 0;
 }
 
 .variant-switcher-group {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  gap: 0.35rem;
 }
 
 .variant-option {
@@ -149,9 +160,9 @@
   align-items: center;
   gap: 0.35rem;
   min-height: 44px;
-  padding: 0.35rem 0.85rem;
+  padding: 0.35rem 0.75rem;
   border: 1px solid var(--c-muted, #dcdcdc);
-  border-radius: var(--radius, 4px);
+  border-radius: 9999px;
   cursor: pointer;
   background-color: var(--c-surface, #ffffff);
   color: var(--c-fg, #234060);
@@ -189,6 +200,12 @@
   opacity: 0.85;
 }
 
+@media (max-width: 600px) {
+  .variant-option:not(.is-active) .variant-label {
+    display: none;
+  }
+}
+
 /* Footer styles */
 .site-footer {
   margin-top: 4rem;
@@ -196,6 +213,7 @@
   color: var(--c-fg, #234060);
   border-top: 1px solid var(--c-muted, #dcdcdc);
   padding: 3rem 1.5rem 2rem;
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom));
 }
 
 .footer-container {
@@ -314,29 +332,5 @@
   .footer-top {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-
-  .header-switcher-row {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 0.5rem 1rem;
-    scrollbar-width: none;
-  }
-
-  .header-switcher-row::-webkit-scrollbar {
-    display: none;
-  }
-
-  .variant-switcher-group {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    min-width: max-content;
-    padding-bottom: 2px;
-  }
-
-  .variant-option {
-    padding: 0.35rem 0.65rem;
-    font-size: 0.8rem;
-    white-space: nowrap;
   }
 }

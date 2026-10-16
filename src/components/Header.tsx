@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useContent } from '../content/ContentProvider';
 import { SECTION_ANCHORS } from '../variants/types';
-import { VariantSwitcher } from './VariantSwitcher';
 import { Wordmark } from '../brand/Wordmark';
 import { useHeaderOffset } from '../lib/useHeaderOffset';
 
@@ -113,10 +112,6 @@ export function Header(): JSX.Element {
             </a>
           </div>
         </nav>
-      </div>
-
-      <div className="header-switcher-row">
-        <VariantSwitcher />
       </div>
     </header>
   );

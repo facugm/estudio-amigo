@@ -4,6 +4,7 @@ import { VariantProvider, useVariant } from './variants/VariantProvider';
 import { ContactFormProvider } from './components/ContactFormProvider';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { VariantDock } from './components/VariantDock';
 
 export interface AppProps {
   content?: ContentBundle;
@@ -27,6 +28,7 @@ function AppInner(): JSX.Element {
         })}
       </main>
       <Footer />
+      <VariantDock />
     </div>
   );
 }

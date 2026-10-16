@@ -108,4 +108,16 @@ it('each section anchor referenced in nav exists in the document', () => {
   }
 });
 
+it('the header is a single row: it no longer contains the variant radios', () => {
+  render(<App storage={null} />);
+  expect(within(screen.getByRole('banner')).queryAllByRole('radio')).toHaveLength(0);
+});
+
+it('the switcher lives in a labelled dock outside the header with the three proposals', () => {
+  render(<App storage={null} />);
+  const dock = screen.getByRole('complementary', { name: /propuesta de diseño/i });
+  expect(within(dock).getAllByRole('radio').map(r => r.getAttribute('aria-label'))).toEqual(['02 Nefiu', '03 Escalamos', '04 Creativewise']);
+});
+
+
 

@@ -1,0 +1,239 @@
+/* Portada de alto impacto. Primero celu, después desktop. Solo colores de marca. */
+
+.portada {
+  --portada-lado: 1.25rem;
+  --portada-arriba: 1.25rem;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  column-gap: 1rem;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: var(--portada-arriba) var(--portada-lado);
+  overflow: hidden;
+  background-color: var(--c-navy);
+  color: var(--c-white);
+}
+
+/* ---------- Mosaico de fondo ---------- */
+
+.portada__mosaico {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.portada__baldosa {
+  aspect-ratio: 1 / 1;
+}
+
+.portada__baldosa--t1 {
+  background-color: rgba(255, 255, 255, 0.015);
+}
+
+.portada__baldosa--t2 {
+  background-color: rgba(255, 255, 255, 0.028);
+}
+
+.portada__baldosa--t3 {
+  background-color: rgba(255, 255, 255, 0.045);
+}
+
+/* ---------- Datos de las esquinas ---------- */
+
+.portada__dato {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.portada__dato--lugar {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.portada__dato--rubro {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  max-width: 10rem;
+  text-align: right;
+}
+
+.portada__dato--servicios {
+  grid-column: 1;
+  grid-row: 3;
+  align-self: end;
+  max-width: 10rem;
+}
+
+.portada__dato--amigo {
+  grid-column: 2;
+  grid-row: 3;
+  align-self: end;
+  justify-self: end;
+  max-width: 11rem;
+  text-align: right;
+}
+
+/* ---------- Centro ---------- */
+
+.portada__centro {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-block: 2rem;
+  text-align: center;
+}
+
+.portada__amigo {
+  width: clamp(5.5rem, 13vw, 11rem);
+  height: auto;
+  color: var(--c-lime);
+  margin-bottom: clamp(0.75rem, 2.5vw, 2.25rem);
+  animation: portada-amigo 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.portada__titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.portada__linea {
+  animation: portada-subir 0.7s ease-out both;
+}
+
+.portada__linea--somos {
+  font-size: clamp(2.25rem, 6vw, 5.75rem);
+  letter-spacing: -0.01em;
+  animation-delay: 0.15s;
+}
+
+/* El SVG del logo tiene aire arriba y abajo: lo compensamos para que las líneas queden juntas. */
+.portada__marca {
+  display: block;
+  width: 100%;
+  max-width: 62rem;
+  height: auto;
+  margin-block: -1.5%;
+  color: var(--c-white);
+  animation-delay: 0.3s;
+}
+
+.portada__linea--marca {
+  font-size: clamp(2.6rem, 7.4vw, 7.25rem);
+  font-style: italic;
+  letter-spacing: -0.015em;
+  animation-delay: 0.45s;
+}
+
+.portada__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin-top: clamp(1.75rem, 3vw, 2.25rem);
+  padding: 0.875rem 1.75rem;
+  border-radius: 999px;
+  background-color: var(--c-lime);
+  color: var(--c-navy);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  animation: portada-subir 0.7s ease-out 0.6s both;
+  transition: transform 0.2s ease;
+}
+
+.portada__cta:hover {
+  transform: translateY(-2px);
+}
+
+.portada__cta:focus-visible {
+  outline: 3px solid var(--c-white);
+  outline-offset: 3px;
+}
+
+/* ---------- Tablet y desktop ---------- */
+
+@media (min-width: 768px) {
+  .portada {
+    --portada-lado: 3rem;
+    --portada-arriba: 2.5rem;
+  }
+  .portada__mosaico {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .portada__dato {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .portada {
+    --portada-lado: 6rem;
+    --portada-arriba: 3.5rem;
+  }
+  .portada__mosaico {
+    grid-template-columns: repeat(8, 1fr);
+  }
+  .portada__dato {
+    font-size: 1.0625rem;
+  }
+  .portada__dato--rubro {
+    max-width: 9.5rem;
+  }
+  .portada__dato--servicios {
+    max-width: 11.5rem;
+  }
+  .portada__dato--amigo {
+    max-width: 15rem;
+  }
+  .portada__marca {
+    width: 69vw;
+  }
+  /* Como en Figma: los datos quedan en las esquinas y el centro usa todo el alto. */
+  .portada__centro {
+    grid-row: 1 / -1;
+    padding-block: 0;
+  }
+  .portada__cta {
+    padding: 1rem 2rem;
+  }
+}
+
+/* ---------- Animaciones de entrada (se anulan con "reducir movimiento") ---------- */
+
+@keyframes portada-subir {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes portada-amigo {
+  from {
+    opacity: 0;
+    transform: scale(0.6) rotate(-25deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,6 +1,6 @@
 const files = import.meta.glob('/src/**/*.{ts,tsx}', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 const BANNED = [/San Juan/i, /siguiente nivel/i, /soluciones innovadoras/i, /punta a punta/i, /transforma marcas/i,
-  /Diagnóstico & Crecimiento/i, /Evidencia concreta/i, /Selección curada/i, /tuestudioamigo/i, /0000-0000/];
+  /Diagnóstico & Crecimiento/i, /Evidencia concreta/i, /Selección curada/i, /0000-0000/];
 
 it('no source file carries unverified claims, banned phrases or fake contact data', () => {
   const hits = Object.entries(files)

@@ -1,50 +1,24 @@
-import { ContentBundle, ContentProvider } from './content/ContentProvider';
-import { VariantId } from './variants/types';
-import { VariantProvider, useVariant } from './variants/VariantProvider';
-import { ContactFormProvider } from './components/ContactFormProvider';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
-import { VariantDock } from './components/VariantDock';
+import { Portada } from './sections/portada/Portada';
+import { CasosReales } from './sections/casos-reales/CasosReales';
+import { trabajosDemo } from './sections/casos-reales/trabajos.demo';
+import { linkWhatsApp } from './content/contacto';
 
-export interface AppProps {
-  content?: ContentBundle;
-  initialVariantId?: VariantId;
-  storage?: Pick<Storage, 'getItem' | 'setItem'> | null;
-}
-
-function AppInner(): JSX.Element {
-  const { variant } = useVariant();
-
+/**
+ * Sitio de estudio amigo: one page, celu primero.
+ * Orden según el diseño de Figma ("Jose — One page"). Las secciones que faltan se van sumando acá.
+ */
+export function App(): JSX.Element {
   return (
-    <div className="app-shell">
+    <>
       <a href="#main" className="skip-link">
         Saltar al contenido
       </a>
-      <Header />
-      <main id="main" className="app-main">
-        {variant.sectionOrder.map(section => {
-          const SectionComponent = variant.sections[section];
-          return <SectionComponent key={section} />;
-        })}
+      <main id="main">
+        <Portada />
+        {/* Próximas: logos de clientes, Qué hacemos */}
+        <CasosReales grupos={trabajosDemo} ctaHref={linkWhatsApp()} />
+        {/* Próximas: Quiénes somos, Cierre y contacto */}
       </main>
-      <Footer />
-      <VariantDock />
-    </div>
-  );
-}
-
-export function App({
-  content,
-  initialVariantId,
-  storage
-}: AppProps = {}): JSX.Element {
-  return (
-    <ContentProvider content={content}>
-      <VariantProvider initialId={initialVariantId} storage={storage}>
-        <ContactFormProvider>
-          <AppInner />
-        </ContactFormProvider>
-      </VariantProvider>
-    </ContentProvider>
+    </>
   );
 }

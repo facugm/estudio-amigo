@@ -8,13 +8,12 @@ const css = import.meta.glob('/src/**/*.css', {
 
 export const CHECKED_CSS = [
   '/src/styles/base.css',
-  '/src/styles/shell.css',
-  '/src/styles/ui.css',
-  '/src/variants/nefiu/nefiu.css',
-  '/src/variants/escalamos/escalamos.css',
-  '/src/variants/creativewise/creativewise.css',
+  '/src/styles/fonts.css',
+  '/src/sections/portada/portada.css',
   '/src/sections/casos-reales/casos-reales.css'
 ];
+
+it('checks every CSS file in src', () => expect(Object.keys(css).sort()).toEqual([...CHECKED_CSS].sort()));
 
 it.each(CHECKED_CSS)('%s only uses brand colors and no gradients', path => {
   expect(css[path]).toBeDefined();

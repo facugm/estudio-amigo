@@ -11,9 +11,10 @@ Es una **one page pensada primero para celu**, con scroll corto y un solo objeti
 | Qué | Estado |
 |---|---|
 | Diseño | En Figma: [Web Estudio Amigo — One page](https://www.figma.com/design/9mLd3D5WGZvN581I2hK1SD). La base es el frame **"Jose — One page"** (desktop); la versión celu se arma a partir de esa. |
-| Sección **Casos reales** | ✅ Hecha en `src/sections/casos-reales/` (carrusel de servicios + galería a pantalla completa). Usa piezas provisorias hasta cargar las reales. |
-| Resto de las secciones | Por hacer, siguiendo el diseño de Figma. |
-| Prototipo anterior (`src/variants/`, `VariantDock`) | Prueba de concepto con tres direcciones creativas. Se va a reemplazar por el sitio definitivo y se puede borrar cuando esté lista la nueva home. |
+| **Portada** | ✅ Hecha en `src/sections/portada/`. |
+| **Casos reales** | ✅ Hecha en `src/sections/casos-reales/` (carrusel de servicios + galería a pantalla completa). Usa piezas provisorias hasta cargar las reales. |
+| Logos de clientes, Qué hacemos, Quiénes somos, Cierre | Por hacer, siguiendo el diseño de Figma. |
+| WhatsApp | Falta cargar el número en `src/content/contacto.ts`. Mientras tanto, los botones llevan a `#contacto`. |
 
 ---
 
@@ -60,7 +61,7 @@ Una tarjeta por servicio. En celu se ve una y asoma la siguiente; en tablet se v
 
 Cómo cargar las piezas reales: [`src/sections/casos-reales/README.md`](src/sections/casos-reales/README.md).
 
-Para verla sola: `npm run dev` y abrir `/casos-reales.html`.
+Para verla: `npm run dev`; está debajo de la portada.
 
 ---
 
@@ -101,17 +102,15 @@ npm run build      # build de producción
 
 ```
 src/
-  sections/      secciones del sitio nuevo (por ahora, casos-reales)
-  content/       textos y datos: servicios, contacto, proyectos
+  sections/      una carpeta por sección de la página (portada, casos-reales…)
+  content/       servicios y datos de contacto (WhatsApp)
   brand/         paleta, logo, isotipo y tests de marca
   styles/        estilos base y tipografía
-  components/    piezas compartidas del prototipo anterior
-  variants/      prototipo anterior con tres direcciones (a reemplazar)
 docs/
   brand/         logo, "amigo" y paleta en SVG
 ```
 
 ## Cómo trabajamos
 
-- Cada cambio va en una rama y entra a `main` con un pull request.
-- Antes de pedir revisión: tests, tipos y build en verde.
+- Los cambios van directo a `main`. Cada push publica el sitio en GitHub Pages (`.github/workflows/deploy.yml`).
+- Antes de subir: tests, tipos y build en verde.

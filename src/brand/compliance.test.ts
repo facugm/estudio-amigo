@@ -12,7 +12,8 @@ export const CHECKED_CSS = [
   '/src/styles/ui.css',
   '/src/variants/nefiu/nefiu.css',
   '/src/variants/escalamos/escalamos.css',
-  '/src/variants/creativewise/creativewise.css'
+  '/src/variants/creativewise/creativewise.css',
+  '/src/sections/casos-reales/casos-reales.css'
 ];
 
 it.each(CHECKED_CSS)('%s only uses brand colors and no gradients', path => {

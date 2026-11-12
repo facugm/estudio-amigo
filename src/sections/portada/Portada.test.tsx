@@ -12,7 +12,10 @@ it('el título se lee completo: "somos el estudio amigo de tu marca"', () => {
 it('muestra los cuatro datos de las esquinas', () => {
   render(<Portada />);
   ['Rosario · Argentina', 'Estudio de comunicación digital.', 'Estrategia, contenido y diseño', 'Te acompañamos como lo haría un amigo'].forEach(
-    texto => expect(screen.getByText(texto)).toBeInTheDocument()
+    texto =>
+      expect(
+        screen.getByText((_, el) => el?.tagName === 'P' && el.textContent?.replace(/\s+/g, ' ').trim() === texto)
+      ).toBeInTheDocument()
   );
 });
 

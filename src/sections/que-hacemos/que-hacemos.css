@@ -1,0 +1,277 @@
+/* "Qué hacemos": título + tarjetas de trabajos por servicio.
+   Medidas de desktop del SVG de "Jose — One page" (tarjetas de 400 × 442, separadas 24 px). */
+
+.que-hacemos {
+  --qh-gap: 0.875rem;
+  padding: var(--section-y) 0;
+  background-color: var(--c-white);
+  color: var(--c-navy);
+}
+
+.que-hacemos__encabezado {
+  margin-bottom: clamp(2rem, 6.9vw, 6.25rem);
+  padding: 0 var(--lado);
+}
+
+.que-hacemos__etiqueta {
+  color: var(--c-magenta);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.que-hacemos__titulo {
+  margin-top: 0.5rem;
+  font-size: clamp(2.25rem, 4.45vw, 4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Carrusel (celu y tablet) ---------- */
+
+.que-hacemos__viewport {
+  overflow: hidden;
+  padding: 0 var(--lado);
+}
+
+.que-hacemos__pista {
+  display: flex;
+  gap: var(--qh-gap);
+  list-style: none;
+  touch-action: pan-y pinch-zoom;
+}
+
+.que-hacemos__slide {
+  flex: 0 0 82%;
+  min-width: 0;
+  display: flex;
+}
+
+@media (min-width: 640px) {
+  .que-hacemos__slide {
+    flex-basis: calc((100% - var(--qh-gap)) / 2);
+  }
+}
+
+/* ---------- Grilla 3 × 2 (desktop) ---------- */
+
+@media (min-width: 1024px) {
+  .que-hacemos {
+    --qh-gap: 1.5rem;
+  }
+  .que-hacemos__pista {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 78rem;
+    margin: 0 auto;
+    transform: none !important;
+  }
+  .que-hacemos__puntos {
+    display: none;
+  }
+}
+
+/* ---------- Tarjeta ---------- */
+
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+  background-color: var(--c-white);
+  transition: background-color 0.2s ease;
+}
+
+/* Hover de Figma: la tarjeta toma el fondo suave. */
+.tarjeta:hover,
+.tarjeta:focus-within {
+  background-color: var(--c-fondo-suave);
+}
+
+.tarjeta__imagen {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 400 / 260;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background-color: var(--c-gray);
+  cursor: zoom-in;
+}
+
+.tarjeta__imagen--vacia {
+  cursor: default;
+}
+
+.tarjeta__foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.tarjeta:hover .tarjeta__foto {
+  transform: scale(1.03);
+}
+
+.tarjeta__cantidad {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  background-color: var(--c-navy);
+  color: var(--c-white);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.tarjeta__imagen:focus-visible {
+  outline: 3px solid var(--c-magenta);
+  outline-offset: -3px;
+}
+
+.tarjeta__cuerpo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5rem 1.5rem 1.25rem;
+}
+
+.tarjeta__servicio {
+  color: var(--c-magenta);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tarjeta__titulo {
+  margin-top: 0.125rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.tarjeta__descripcion {
+  margin-top: 0.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+.tarjeta__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 0.25rem;
+  color: var(--c-navy);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* En Figma el link se pinta en hover; usamos magenta porque lima sobre fondo claro no se lee. */
+.tarjeta__link:hover {
+  color: var(--c-magenta);
+}
+
+/* ---------- Puntos del carrusel ---------- */
+
+.que-hacemos__puntos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+  padding: 0 var(--lado);
+}
+
+.que-hacemos__punto {
+  display: grid;
+  place-items: center;
+  min-width: 28px;
+  min-height: 44px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.que-hacemos__punto-marca {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background-color: var(--c-navy);
+  opacity: 0.3;
+  transition: width 0.2s ease, opacity 0.2s ease;
+}
+
+.que-hacemos__punto[aria-current='true'] .que-hacemos__punto-marca {
+  width: 22px;
+  opacity: 1;
+}
+
+.que-hacemos__punto:focus-visible {
+  outline: 3px solid var(--c-magenta);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
+/* ---------- Galería (Yet Another React Lightbox) ---------- */
+
+.galeria-piezas {
+  --yarl__color_backdrop: var(--c-navy);
+  --yarl__container_background_color: var(--c-navy);
+  --yarl__color_button: var(--c-white);
+  --yarl__color_button_active: var(--c-lime);
+  --yarl__counter_color: var(--c-white);
+  --yarl__slide_title_color: var(--c-white);
+  --yarl__slide_title_font_size: 1rem;
+  --yarl__slide_title_font_weight: 700;
+  --yarl__slide_description_color: var(--c-white);
+  --yarl__slide_captions_container_background: var(--c-navy);
+  /* El título baja debajo de la barra (contador, botón y cerrar) para no encimarse. */
+  --yarl__slide_title_container_top: 3.75rem;
+  font-family: var(--font-body);
+}
+
+.galeria-piezas .yarl__counter {
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.galeria-piezas .yarl__slide_description {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.galeria-piezas .yarl__button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.galeria-piezas__cta {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  min-height: 44px;
+  margin-right: 0.5rem;
+  padding: 0 1rem;
+  border-radius: 999px;
+  background-color: var(--c-lime);
+  color: var(--c-navy);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.galeria-piezas__cta:focus-visible {
+  outline: 3px solid var(--c-white);
+  outline-offset: 2px;
+}

@@ -6,6 +6,7 @@ import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/captions.css';
 import 'yet-another-react-lightbox/plugins/counter.css';
 import type { Pieza } from './types';
+import { atributosLink } from '../../lib/IconoChat';
 
 const ETIQUETAS = {
   Previous: 'Anterior',
@@ -72,8 +73,7 @@ export function GaleriaPiezas({
           key="cta"
           className="galeria-piezas__cta"
           href={ctaHref}
-          target="_blank"
-          rel="noreferrer"
+          {...atributosLink(ctaHref)}
         >
           Quiero algo así
         </a>,

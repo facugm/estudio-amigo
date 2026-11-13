@@ -11,9 +11,8 @@ Es una **one page pensada primero para celu**, con scroll corto y un solo objeti
 | Qué | Estado |
 |---|---|
 | Diseño | En Figma: [Web Estudio Amigo — One page](https://www.figma.com/design/9mLd3D5WGZvN581I2hK1SD). La base es el frame **"Jose — One page"** (desktop); la versión celu se arma a partir de esa. |
-| **Portada** | ✅ Hecha en `src/sections/portada/`. |
-| **Casos reales** | ✅ Hecha en `src/sections/casos-reales/` (carrusel de servicios + galería a pantalla completa). Usa piezas provisorias hasta cargar las reales. |
-| Logos de clientes, Qué hacemos, Quiénes somos, Cierre | Por hacer, siguiendo el diseño de Figma. |
+| Página completa | ✅ Aplicada la versión "Jose — One page": portada, barra, clientes, Qué hacemos, Quiénes somos y cierre (`src/sections/`). |
+| Contenido provisorio | Piezas de los trabajos (`public/casos-demo/`), logos de clientes (se muestran los nombres) y fotos del equipo (se muestra el amigo). |
 | WhatsApp | Falta cargar el número en `src/content/contacto.ts`. Mientras tanto, los botones llevan a `#contacto`. |
 
 ---
@@ -29,14 +28,12 @@ Es una **one page pensada primero para celu**, con scroll corto y un solo objeti
 
 ## Orden de la página
 
-1. **Hero:** "somos el estudio amigo de tu marca" y botón para escribir.
-2. **Logos de clientes** en carrusel.
-3. **Qué hacemos:** los 7 servicios, más una tarjeta para quien no sabe por dónde arrancar.
-4. **Casos reales:** trabajos agrupados por servicio, no por cliente.
+1. **Portada:** "somos el estudio amigo de tu marca" y botón Escribinos.
+2. **Barra** fija con Qué hacemos, Clientes, Nosotros y Escribinos (hamburguesa en celu).
+3. **Clientes:** logos en fila (carrusel automático en celu).
+4. **Qué hacemos:** "Comunicación integral para tu marca", una tarjeta por servicio con sus trabajos; tocar la imagen abre la galería.
 5. **Quiénes somos:** el estudio y el equipo.
-6. **Cierre:** botón a WhatsApp.
-
-Además hay un menú hamburguesa que aparece después del hero y un botón flotante de WhatsApp.
+6. **Cierre:** botón a WhatsApp y pie con Instagram.
 
 ## Los 7 servicios
 
@@ -52,16 +49,14 @@ Están en `src/content/services.ts`:
 
 ---
 
-## Casos reales
+## Qué hacemos
 
-Una tarjeta por servicio. En celu se ve una y asoma la siguiente; en tablet se ven 2 y en desktop, 3. Al tocar una tarjeta se abren todas las piezas de ese servicio a pantalla completa, cada una con su descripción. También acepta videos.
+Celu: carrusel de tarjetas. Desktop: grilla de 3 × 2. Al tocar la imagen se abren todas las piezas del servicio a pantalla completa, cada una con su descripción (también acepta videos).
 
 - Carrusel: [Embla Carousel](https://www.embla-carousel.com/)
 - Galería: [Yet Another React Lightbox](https://yet-another-react-lightbox.com/)
 
-Cómo cargar las piezas reales: [`src/sections/casos-reales/README.md`](src/sections/casos-reales/README.md).
-
-Para verla: `npm run dev`; está debajo de la portada.
+Cómo cargar las piezas reales: [`src/sections/que-hacemos/README.md`](src/sections/que-hacemos/README.md).
 
 ---
 
@@ -102,8 +97,8 @@ npm run build      # build de producción
 
 ```
 src/
-  sections/      una carpeta por sección de la página (portada, casos-reales…)
-  content/       servicios y datos de contacto (WhatsApp)
+  sections/      una carpeta por sección: portada, barra, clientes, que-hacemos, nosotros, cierre
+  content/       contacto (WhatsApp), clientes, equipo, Instagram y servicios
   brand/         paleta, logo, isotipo y tests de marca
   styles/        estilos base y tipografía
 docs/

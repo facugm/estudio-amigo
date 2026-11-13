@@ -1,0 +1,106 @@
+/* "Quiénes somos" (Figma: fondo lima, texto de 592 px + equipo 2 × 2 de 560 px). */
+
+.nosotros {
+  display: grid;
+  gap: 2.5rem;
+  padding: var(--section-y) var(--lado);
+  background-color: var(--c-lime);
+  color: var(--c-navy);
+}
+
+.nosotros__etiqueta {
+  color: var(--c-magenta);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nosotros__titulo {
+  margin-top: 0.5rem;
+  font-size: clamp(2.25rem, 4.45vw, 4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.nosotros__bajada {
+  margin-top: 1.25rem;
+  font-size: clamp(1.0625rem, 1.53vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.nosotros__equipo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem 1rem;
+  list-style: none;
+}
+
+.nosotros__persona {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nosotros__avatar {
+  display: grid;
+  place-items: center;
+  width: clamp(4.75rem, 6.46vw, 5.8125rem);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 3px solid var(--c-navy);
+  border-radius: 50%;
+  background-color: var(--c-white);
+}
+
+.nosotros__amigo {
+  width: 100%;
+  height: auto;
+}
+
+.nosotros__amigo--navy {
+  color: var(--c-navy);
+}
+
+.nosotros__amigo--magenta {
+  color: var(--c-magenta);
+}
+
+.nosotros__foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nosotros__nombre {
+  margin-top: 0.75rem;
+  font-size: clamp(1.125rem, 1.53vw, 1.375rem);
+  font-weight: 700;
+}
+
+.nosotros__rol {
+  margin-top: 0.125rem;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  opacity: 0.85;
+}
+
+@media (min-width: 1024px) {
+  .nosotros {
+    grid-template-columns: minmax(0, 37rem) minmax(0, 35rem);
+    justify-content: space-between;
+    align-items: start;
+    gap: 4rem;
+  }
+  .nosotros__bajada {
+    margin-top: 1.75rem;
+  }
+  .nosotros__equipo {
+    gap: 2rem 2rem;
+  }
+  .nosotros__rol {
+    font-size: 1rem;
+  }
+}

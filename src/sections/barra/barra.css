@@ -1,0 +1,168 @@
+/* Barra de navegación (Figma: 86 px de alto en 1440). */
+
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--c-white);
+  border-bottom: 1px solid var(--c-gray);
+  color: var(--c-navy);
+}
+
+.barra__fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: var(--header-h);
+  padding: 0.5rem var(--lado);
+}
+
+.barra__logo {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: var(--c-navy);
+}
+
+.barra__marca {
+  display: block;
+  width: 9.5rem;
+  height: auto;
+}
+
+/* ---------- Hamburguesa (celu) ---------- */
+
+.barra__hamburguesa {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0 8px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.barra__linea {
+  display: block;
+  height: 3px;
+  border-radius: 3px;
+  background-color: var(--c-navy);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.barra--abierta .barra__linea:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.barra--abierta .barra__linea:nth-child(2) {
+  opacity: 0;
+}
+
+.barra--abierta .barra__linea:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* El menú en celu: panel que baja debajo de la barra. */
+.barra__menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem var(--lado) 1.5rem;
+  background-color: var(--c-white);
+  border-bottom: 1px solid var(--c-gray);
+}
+
+.barra--abierta .barra__menu {
+  display: flex;
+}
+
+.barra__links {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.barra__link {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  color: var(--c-navy);
+  font-size: 1.125rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.barra__link:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--c-lime);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+.barra__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  min-height: 46px;
+  padding: 0 1.125rem;
+  border-radius: 999px;
+  background-color: var(--c-lime);
+  color: var(--c-navy);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.barra__cta:focus-visible,
+.barra__link:focus-visible,
+.barra__logo:focus-visible,
+.barra__hamburguesa:focus-visible {
+  outline: 3px solid var(--c-magenta);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ---------- Desktop: menú en línea, sin hamburguesa ---------- */
+
+@media (min-width: 900px) {
+  .barra__fila {
+    min-height: 86px;
+  }
+  .barra__marca {
+    width: 12.5rem;
+  }
+  .barra__hamburguesa {
+    display: none;
+  }
+  .barra__menu,
+  .barra--abierta .barra__menu {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.25rem;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+  .barra__links {
+    flex-direction: row;
+    gap: 2.3rem;
+  }
+  .barra__link {
+    min-height: 44px;
+    font-size: 1.0625rem;
+  }
+  .barra__cta {
+    align-self: center;
+  }
+}

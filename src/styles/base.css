@@ -13,7 +13,15 @@
 
   --c-focus: var(--c-magenta);
 
-  --section-y: clamp(3rem, 6vw, 5rem);
+  /* Fondo suave de Figma (crema) resuelto con el gris de marca transparente. */
+  --c-fondo-suave: rgba(220, 220, 220, 0.3);
+
+  /* Aire vertical de las secciones: 110 px en el frame de 1440 de Figma. */
+  --section-y: clamp(3.5rem, 7.6vw, 6.875rem);
+  /* Margen lateral: 96 px en desktop. */
+  --lado: clamp(1.25rem, 6.67vw, 6rem);
+  /* Alto de la barra fija, para que los anclas no queden tapados. */
+  --header-h: 72px;
 }
 
 *, *::before, *::after {
@@ -41,6 +49,12 @@ section[id],
 article[id],
 div[id] {
   scroll-margin-top: calc(var(--header-h, 96px) + 8px);
+}
+
+@media (min-width: 900px) {
+  :root {
+    --header-h: 86px;
+  }
 }
 
 img, video {

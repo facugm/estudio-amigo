@@ -18,7 +18,7 @@
   text-transform: uppercase;
 }
 
-/* Celu: dos copias de la fila que se desplazan juntas, sin corte. */
+/* Dos copias de la fila que se desplazan juntas, sin corte, en todos los tamaños. */
 .clientes__ventana {
   display: flex;
   width: max-content;
@@ -62,34 +62,31 @@
   }
 }
 
-/* Con "reducir movimiento": fila quieta que se desliza con el dedo. */
+/* Si la persona pasa el mouse por encima, el carrusel se frena para leer. */
+.clientes:hover .clientes__ventana {
+  animation-play-state: paused;
+}
+
+/* Es un movimiento lento y continuo, así que se mantiene aunque el sistema pida
+   "reducir movimiento" (Windows suele traerlo activado); solo va más despacio. */
 @media (prefers-reduced-motion: reduce) {
   .clientes__ventana {
-    width: auto;
-    overflow-x: auto;
-    padding: 0 var(--lado);
-  }
-  .clientes__pista--copia {
-    display: none;
+    animation-duration: 56s !important;
+    animation-iteration-count: infinite !important;
   }
 }
 
-/* Desktop: los 7 logos quietos en una fila, como en Figma. */
+/* Desktop: chips del tamaño de Figma (166 × 82). */
 @media (min-width: 1200px) {
   .clientes {
     padding: 2.75rem 0;
   }
   .clientes__ventana {
-    width: auto;
-    justify-content: center;
-    animation: none;
+    animation-duration: 36s;
   }
   .clientes__pista {
     gap: 1.375rem;
-    padding: 0;
-  }
-  .clientes__pista--copia {
-    display: none;
+    padding-right: 1.375rem;
   }
   .clientes__logo {
     width: 10.375rem;

@@ -31,11 +31,15 @@ export interface Pieza {
   descripcion: string;
 }
 
-/** Todas las piezas de un mismo servicio: una tarjeta del carrusel. */
+/** Todas las piezas de un mismo servicio: una tarjeta de "Qué hacemos". */
 export interface GrupoDeServicio {
   servicio: ServiceId;
-  /** Título de la tarjeta, por ejemplo "Sesiones de producto". */
+  /** Nombre del servicio que va arriba, en mayúsculas (por ejemplo "Branding"). */
+  etiqueta: string;
+  /** Título de la tarjeta, por ejemplo "Identidad de marca". */
   titulo: string;
+  /** Una línea sobre qué incluye. */
+  descripcion: string;
   /** Índice de la pieza que se usa de portada. Por defecto, la primera. */
   portada?: number;
   piezas: readonly Pieza[];

@@ -1,0 +1,98 @@
+/* Logos de clientes (Figma: franja de 208 px, chips de 166 × 82). */
+
+.clientes {
+  padding: 2.25rem 0;
+  background-color: var(--c-fondo-suave);
+  overflow: hidden;
+}
+
+.clientes__titulo {
+  margin-bottom: 1.25rem;
+  padding: 0 var(--lado);
+  color: var(--c-navy);
+  opacity: 0.7;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Celu: dos copias de la fila que se desplazan juntas, sin corte. */
+.clientes__ventana {
+  display: flex;
+  width: max-content;
+  animation: clientes-desplazar 28s linear infinite;
+}
+
+.clientes__pista {
+  display: flex;
+  gap: 1rem;
+  padding-right: 1rem;
+  list-style: none;
+}
+
+.clientes__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 9rem;
+  height: 4.5rem;
+  border: 2px dashed rgba(35, 64, 96, 0.28);
+  border-radius: 13px;
+}
+
+.clientes__nombre {
+  color: var(--c-navy);
+  opacity: 0.7;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.clientes__img {
+  max-width: 80%;
+  max-height: 60%;
+  object-fit: contain;
+}
+
+@keyframes clientes-desplazar {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Con "reducir movimiento": fila quieta que se desliza con el dedo. */
+@media (prefers-reduced-motion: reduce) {
+  .clientes__ventana {
+    width: auto;
+    overflow-x: auto;
+    padding: 0 var(--lado);
+  }
+  .clientes__pista--copia {
+    display: none;
+  }
+}
+
+/* Desktop: los 7 logos quietos en una fila, como en Figma. */
+@media (min-width: 1200px) {
+  .clientes {
+    padding: 2.75rem 0;
+  }
+  .clientes__ventana {
+    width: auto;
+    justify-content: center;
+    animation: none;
+  }
+  .clientes__pista {
+    gap: 1.375rem;
+    padding: 0;
+  }
+  .clientes__pista--copia {
+    display: none;
+  }
+  .clientes__logo {
+    width: 10.375rem;
+    height: 5.125rem;
+  }
+}

@@ -1,0 +1,125 @@
+/* Cierre + pie (Figma: navy, amigo lima de 107 px, botón de 307 × 61). */
+
+.cierre {
+  padding: clamp(4rem, 10.8vw, 9.75rem) var(--lado) 2.5rem;
+  background-color: var(--c-navy);
+  color: var(--c-white);
+}
+
+.cierre__centro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.cierre__amigo {
+  width: clamp(7rem, 11.1vw, 10rem);
+  height: auto;
+  color: var(--c-lime);
+}
+
+.cierre__titulo {
+  margin-top: clamp(1rem, 2.8vw, 2.5rem);
+  font-size: clamp(2.25rem, 4.45vw, 4rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.cierre__resaltado {
+  color: var(--c-lime);
+}
+
+.cierre__bajada {
+  margin-top: 1rem;
+  font-size: clamp(1.0625rem, 1.39vw, 1.25rem);
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+.cierre__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 61px;
+  margin-top: clamp(2rem, 3.3vw, 2.75rem);
+  padding: 0 1.875rem;
+  border-radius: 999px;
+  background-color: var(--c-lime);
+  color: var(--c-navy);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.cierre__cta:hover {
+  transform: translateY(-2px);
+}
+
+.cierre__icono {
+  flex: none;
+}
+
+/* ---------- Pie ---------- */
+
+.cierre__pie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: clamp(4rem, 8.3vw, 7.5rem);
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  text-align: center;
+}
+
+.cierre__logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--c-white);
+}
+
+.cierre__marca {
+  display: block;
+  width: 10rem;
+  height: auto;
+}
+
+.cierre__dato {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.cierre__instagram {
+  display: inline-block;
+  padding-block: 0.75rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cierre__instagram:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--c-lime);
+  text-underline-offset: 4px;
+}
+
+.cierre__cta:focus-visible,
+.cierre__logo:focus-visible,
+.cierre__instagram:focus-visible {
+  outline: 3px solid var(--c-white);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+@media (min-width: 900px) {
+  .cierre__pie {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    text-align: left;
+  }
+}

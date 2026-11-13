@@ -1,14 +1,14 @@
-# Casos reales
+# Qué hacemos
 
-Carrusel de servicios + galería a pantalla completa. Pensado primero para celu.
+Una tarjeta por servicio con sus trabajos + galería a pantalla completa. Pensado primero para celu.
 
-- **Carrusel** (`embla-carousel-react`): una tarjeta por servicio. En celu se ve una y asoma la siguiente; desde 640 px se ven 2, y desde 1024 px, 3. Las flechas aparecen desde tablet; en celu se desliza.
+- **Tarjetas** (`embla-carousel-react`): en celu se ven como carrusel (una y asoma la siguiente); desde 640 px se ven 2; desde 1024 px el carrusel se apaga y quedan en grilla de 3 × 2, como en Figma.
 - **Galería** (`yet-another-react-lightbox`): al tocar una tarjeta se abren todas las piezas de ese servicio. Muestra contador, título y descripción de cada pieza; se desliza para pasar y se arrastra hacia abajo para cerrar. Acepta imágenes y videos.
 
 ## Cómo cargar las piezas reales
 
 1. Subir los archivos a `public/casos/` (imágenes livianas: JPG/WebP de ~1600 px de lado mayor como máximo).
-2. Crear `trabajos.ts` con la misma forma que `trabajos.demo.ts`:
+2. Reemplazar las `piezas` de cada servicio en `trabajos.ts`:
 
 ```ts
 import type { GrupoDeServicio } from './types';
@@ -16,7 +16,9 @@ import type { GrupoDeServicio } from './types';
 export const trabajos: readonly GrupoDeServicio[] = [
   {
     servicio: 'fotoproducto',
-    titulo: 'Sesiones de producto',
+    etiqueta: 'Fotoproducto',
+    titulo: 'Sesión de producto',
+    descripcion: 'Fotos listas para usar en redes, web y catálogo.',
     piezas: [
       {
         id: 'foto-catalogo-1',
@@ -35,12 +37,12 @@ export const trabajos: readonly GrupoDeServicio[] = [
 ];
 ```
 
-3. Usarlo: `<CasosReales grupos={trabajos} ctaHref="https://wa.me/…" />`.
+3. `App.tsx` ya usa `trabajos`: no hay que tocar nada más.
 
-- Un servicio sin piezas no aparece en el carrusel.
+- Un servicio sin piezas muestra la tarjeta igual, sin galería.
 - `portada` (opcional) elige qué pieza va en la tarjeta; por defecto, la primera.
-- Si no se pasa `ctaHref`, la galería no muestra el botón "Quiero algo así".
+- "Quiero algo así" va al WhatsApp de `src/content/contacto.ts`. Dentro de la galería, el botón aparece recién cuando esté cargado el número.
 
 ## Probarlo
 
-`npm run dev` y abrir `/casos-reales.html`.
+`npm run dev`: es la sección que sigue a los logos de clientes.

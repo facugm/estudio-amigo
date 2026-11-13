@@ -18,7 +18,7 @@ export function Portada({ ctaHref = linkWhatsApp() }: PortadaProps): JSX.Element
       <p className="portada__dato portada__dato--rubro">
         Estudio de{' '}<br className="portada__salto" />
         comunicación{' '}<br className="portada__salto" />
-        digital.
+        digital
       </p>
 
       <div className="portada__centro">

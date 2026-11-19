@@ -109,3 +109,9 @@ docs/
 
 - Los cambios van directo a `main`. Cada push publica el sitio en GitHub Pages (`.github/workflows/deploy.yml`).
 - Antes de subir: tests, tipos y build en verde.
+
+---
+
+## Tablero de pauta Pelokitos
+
+En `pauta-pelokitos/` está el tablero interno de Meta Ads de Pelokitos. Se publica junto con la web, en `/pauta-pelokitos/`, desde el mismo workflow (`.github/workflows/deploy.yml`), que además corre cada 15 minutos para refrescar los datos. Cómo configurarlo: [`pauta-pelokitos/README.md`](pauta-pelokitos/README.md).

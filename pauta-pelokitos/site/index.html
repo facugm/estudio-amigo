@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pauta Pelokitos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F5F0; --surface: #FFFFFF; --ink: #1F2A44; --ink-2: #4D5670; --muted: #868DA0;
+    --line: #E7E2D9; --grid: #EFEBE4;
+    --brand: #599183; --brand-soft: #CFE0DB; --accent: #f2b279;
+    --good: #2E7D5B; --bad: #B4443B;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.45 "Nunito Sans", system-ui, sans-serif; }
+  button, input, select { font: inherit; color: inherit; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 24px 20px 64px; }
+  .hidden { display: none !important; }
+
+  /* Lock */
+  #lock { min-height: 100vh; display: grid; place-items: center; padding: 20px; }
+  .lock-card { background: var(--surface); border-radius: var(--radius); padding: 32px; width: 100%; max-width: 360px; box-shadow: 0 1px 2px rgba(31,42,68,.06), 0 8px 24px rgba(31,42,68,.06); }
+  .lock-card h1 { margin: 0 0 4px; font-size: 22px; }
+  .lock-card p { margin: 0 0 20px; color: var(--ink-2); }
+  .field { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+  .field:focus { outline: 2px solid var(--brand); outline-offset: 1px; border-color: transparent; }
+  .check { display: flex; gap: 8px; align-items: center; margin: 12px 0 18px; color: var(--ink-2); font-size: 14px; }
+  .btn { border: 0; border-radius: 10px; padding: 10px 16px; font-weight: 700; cursor: pointer; background: var(--brand); color: #fff; }
+  .btn:disabled { opacity: .55; cursor: default; }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn.full { width: 100%; }
+  .err { color: var(--bad); font-size: 14px; margin-top: 10px; min-height: 1.2em; }
+
+  /* Header */
+  header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  header h1 { margin: 0; font-size: 26px; font-weight: 800; }
+  .updated { color: var(--ink-2); font-size: 14px; margin-top: 2px; }
+  .updated.stale { color: var(--bad); font-weight: 700; }
+  .actions { display: flex; gap: 8px; align-items: center; }
+  .status-msg { font-size: 13px; color: var(--ink-2); }
+
+  /* Filtros */
+  .filters { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+  .seg { display: inline-flex; background: #ECE7DF; border-radius: 10px; padding: 3px; }
+  .seg button { border: 0; background: transparent; padding: 7px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; color: var(--ink-2); }
+  .seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(31,42,68,.12); }
+  .range-label { color: var(--muted); font-size: 14px; }
+
+  .banner { background: #FBEAE8; color: #7A2A23; border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; font-size: 14px; }
+
+  /* KPIs */
+  .kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 16px; }
+  .card { background: var(--surface); border-radius: var(--radius); padding: 16px 18px; box-shadow: 0 1px 2px rgba(31,42,68,.05); }
+  .kpi .label { color: var(--ink-2); font-size: 13px; font-weight: 600; }
+  .kpi .value { font-size: 26px; font-weight: 800; margin-top: 4px; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+  .kpi .delta { font-size: 13px; margin-top: 2px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .delta .up-good, .delta .down-good { color: var(--good); font-weight: 700; }
+  .delta .up-bad, .delta .down-bad { color: var(--bad); font-weight: 700; }
+
+  /* Gráficos */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .card h2 { font-size: 15px; margin: 0 0 2px; }
+  .card .sub { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+  .chart svg { display: block; width: 100%; height: 190px; overflow: visible; }
+  .chart .axis text { fill: var(--muted); font-size: 11px; }
+  .chart .gridline { stroke: var(--grid); stroke-width: 1; }
+  .chart .baseline { stroke: var(--line); stroke-width: 1; }
+  .chart .bar { fill: #D9E1DE; }
+  .chart .bar.in { fill: var(--brand); }
+  .chart .bar.hover { fill: var(--ink); }
+  #tip { position: fixed; pointer-events: none; background: var(--ink); color: #fff; font-size: 13px; padding: 7px 10px; border-radius: 8px; z-index: 10; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  /* Nuevos vs anteriores */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .compare .col { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .compare h3 { margin: 0 0 8px; font-size: 14px; }
+  .compare dl { display: grid; grid-template-columns: 1fr auto; margin: 0; gap: 4px 12px; font-size: 14px; }
+  .compare dt { color: var(--ink-2); }
+  .compare dd { margin: 0; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+  .cutoff { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); margin-bottom: 10px; }
+  .cutoff input { padding: 4px 8px; border: 1px solid var(--line); border-radius: 8px; }
+
+  /* Tabla */
+  .table-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+  .tbl-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+  th, td { padding: 9px 10px; border-bottom: 1px solid var(--grid); text-align: right; white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; white-space: normal; min-width: 260px; }
+  th { color: var(--ink-2); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .03em; cursor: pointer; user-select: none; }
+  th.sorted::after { content: " ↓"; }
+  th.sorted.asc::after { content: " ↑"; }
+  td .parent { display: block; color: var(--muted); font-size: 12px; }
+  .chip { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 999px; margin-left: 6px; vertical-align: 1px; }
+  .chip.on { background: #DDEFE7; color: #1F5E44; }
+  .chip.off { background: #ECE7DF; color: var(--ink-2); }
+  .chip.new { background: #FCE7D4; color: #8A4A12; }
+  tr.zero td { color: var(--muted); }
+
+  details { margin-top: 16px; }
+  summary { cursor: pointer; font-weight: 700; }
+  .events { columns: 2; font-size: 13px; margin-top: 10px; }
+  .events div { display: flex; justify-content: space-between; gap: 12px; padding: 3px 0; border-bottom: 1px dashed var(--grid); break-inside: avoid; font-variant-numeric: tabular-nums; }
+  .events code { color: var(--ink-2); }
+
+  /* Ajustes */
+  dialog { border: 0; border-radius: var(--radius); padding: 24px; max-width: 460px; width: calc(100% - 40px); box-shadow: 0 12px 40px rgba(31,42,68,.2); }
+  dialog::backdrop { background: rgba(31,42,68,.35); }
+  dialog h2 { margin: 0 0 12px; font-size: 18px; }
+  dialog label { display: block; font-weight: 700; font-size: 14px; margin: 14px 0 4px; }
+  dialog .hint { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  dialog .row { display: flex; justify-content: space-between; gap: 8px; margin-top: 20px; }
+
+  @media (max-width: 900px) {
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+    .grid2, .compare { grid-template-columns: 1fr; }
+    .events { columns: 1; }
+    .seg button { padding: 6px 10px; white-space: nowrap; }
+    th:first-child, td:first-child { min-width: 190px; }
+    .wrap { padding: 18px 14px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="lock">
+  <form class="lock-card" id="lockForm">
+    <h1>Pauta Pelokitos</h1>
+    <p>Tablero interno de Estudio Amigo.</p>
+    <input class="field" id="pw" type="password" placeholder="Contraseña" autocomplete="current-password" required>
+    <label class="check"><input type="checkbox" id="remember"> Recordar en este dispositivo</label>
+    <button class="btn full" id="unlockBtn">Entrar</button>
+    <div class="err" id="lockErr"></div>
+  </form>
+</div>
+
+<div id="app" class="wrap hidden">
+  <header>
+    <div>
+      <h1>Pauta Pelokitos</h1>
+      <div class="updated" id="updated"></div>
+    </div>
+    <div class="actions">
+      <span class="status-msg" id="refreshMsg"></span>
+      <button class="btn" id="refreshBtn">Actualizar ahora</button>
+      <button class="btn ghost" id="settingsBtn" title="Ajustes">Ajustes</button>
+    </div>
+  </header>
+
+  <div class="filters">
+    <div class="seg" id="marketSeg" role="group" aria-label="País"></div>
+    <div class="seg" id="rangeSeg" role="group" aria-label="Período"></div>
+    <span class="range-label" id="rangeLabel"></span>
+  </div>
+
+  <div id="banners"></div>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="grid2">
+    <div class="card chart"><h2>Inversión por día</h2><div class="sub" id="spendSub"></div><div id="chartSpend"></div></div>
+    <div class="card chart"><h2>Turnos por día</h2><div class="sub" id="turnosSub"></div><div id="chartTurnos"></div></div>
+  </section>
+
+  <section class="card" style="margin-bottom:16px">
+    <h2>Anuncios nuevos vs. anteriores</h2>
+    <div class="sub">Mismo período, separando los anuncios por fecha de creación.</div>
+    <div class="cutoff">Nuevos = creados desde <input type="date" id="cutoff"></div>
+    <div class="compare" id="compare"></div>
+  </section>
+
+  <section class="card">
+    <div class="table-head">
+      <h2>Detalle</h2>
+      <div class="seg" id="levelSeg" role="group" aria-label="Nivel"></div>
+    </div>
+    <div class="tbl-wrap"><table id="tbl"></table></div>
+    <details>
+      <summary>Eventos del píxel en el período</summary>
+      <div class="sub" style="margin-top:6px">Todos los tipos de acción que devuelve Meta. Sirve para encontrar los pasos del turnero (eventos personalizados) y sumarlos al tablero.</div>
+      <div class="events" id="events"></div>
+    </details>
+  </section>
+</div>
+
+<dialog id="settings">
+  <form method="dialog">
+    <h2>Ajustes</h2>
+    <label for="ghToken">Token de GitHub (para "Actualizar ahora")</label>
+    <input class="field" id="ghToken" type="password" placeholder="github_pat_…">
+    <div class="hint">Fine-grained token con acceso solo a este repo y permiso <b>Actions: Read and write</b>. Se guarda únicamente en este navegador.</div>
+    <label for="ghRepo">Repositorio</label>
+    <input class="field" id="ghRepo" placeholder="usuario/repo">
+    <div class="hint">Se completa solo si el sitio está en usuario.github.io/repo.</div>
+    <div class="row">
+      <button class="btn ghost" value="logout" id="logoutBtn">Cerrar sesión</button>
+      <button class="btn" value="save" id="saveSettings">Guardar</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="tip" class="hidden"></div>
+
+<script>
+(() => {
+  // ---------- almacenamiento seguro (puede fallar en algunos contextos) ----------
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch {} },
+  };
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  // ---------- descifrado ----------
+  const unb64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+  async function decrypt(env, password) {
+    const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']);
+    const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: unb64(env.salt), iterations: env.iter, hash: 'SHA-256' },
+      base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(env.iv) }, key, unb64(env.ct));
+    return JSON.parse(new TextDecoder().decode(pt));
+  }
+  async function fetchEnvelope() {
+    const r = await fetch(`data.enc.json?t=${Date.now()}`, { cache: 'no-store' });
+    if (!r.ok) throw new Error(`No se pudo cargar data.enc.json (${r.status})`);
+    return r.json();
+  }
+
+  // ---------- estado ----------
+  let PASSWORD = null, DATA = null, ENV_AT = null;
+  const state = {
+    market: store.get('pk_market') || null,
+    range: store.get('pk_range') || '7',
+    level: 'campaign',
+    sort: { key: 's', asc: false },
+    cutoff: store.get('pk_cutoff') || null,
+  };
+  const RANGES = [['0', 'Hoy'], ['1', 'Ayer'], ['7', '7 días'], ['14', '14 días'], ['30', '30 días']];
+  const LEVELS = [['campaign', 'Campañas'], ['adset', 'Conjuntos'], ['ad', 'Anuncios']];
+
+  // ---------- fechas ----------
+  const addDays = (ymd, n) => { const d = new Date(ymd + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+  const fmtDay = (ymd) => { const [, m, d] = ymd.split('-'); return `${+d}/${+m}`; };
+  function rangeFor(today, r) {
+    if (r === '0') return { from: today, to: today, len: 1 };
+    if (r === '1') { const y = addDays(today, -1); return { from: y, to: y, len: 1 }; }
+    const n = +r; return { from: addDays(today, -(n - 1)), to: today, len: n };
+  }
+
+  // ---------- formato ----------
+  const CUR = { ARS: '$', UYU: '$U', USD: 'US$' };
+  const nf0 = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 });
+  const nf2 = new Intl.NumberFormat('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const money = (v, cur) => v == null || !isFinite(v) ? '—' : `${CUR[cur] || cur + ' '} ${(cur === 'USD' || Math.abs(v) < 100 ? nf2 : nf0).format(v)}`;
+  const int = (v) => nf0.format(v || 0);
+  const pct = (v) => v == null || !isFinite(v) ? '—' : `${nf2.format(v * 100)}%`;
+
+  // ---------- agregación ----------
+  const mkAgg = () => ({ s: 0, i: 0, c: 0, lc: 0, p: 0 });
+  function add(agg, row) {
+    agg.s += row.s; agg.i += row.i; agg.c += row.c; agg.lc += row.lc; agg.p += row.a[DATA.purchaseAction] || 0;
+    return agg;
+  }
+  const cpt = (a) => (a.p ? a.s / a.p : null);
+  const ctr = (a) => (a.i ? a.lc / a.i : null);
+
+  function marketCtx() {
+    const accs = DATA.accounts.filter((a) => a.market === state.market && !a.error);
+    const ids = new Set(accs.map((a) => a.id));
+    const rows = DATA.rows.filter((r) => ids.has(DATA.ads[r.ad]?.acc));
+    const today = accs.map((a) => a.until).sort().pop() || new Date().toISOString().slice(0, 10);
+    const currency = accs[0]?.currency || 'USD';
+    return { accs, rows, today, currency };
+  }
+
+  // ---------- render ----------
+  function renderSeg(el, items, current, onPick) {
+    el.innerHTML = items.map(([k, l]) => `<button type="button" data-k="${k}" aria-pressed="${k === current}">${esc(l)}</button>`).join('');
+    el.onclick = (e) => { const b = e.target.closest('button'); if (b) onPick(b.dataset.k); };
+  }
+
+  function renderUpdated() {
+    if (!DATA) return;
+    const at = new Date(DATA.generated_at);
+    const mins = Math.round((Date.now() - at) / 60000);
+    const hhmm = at.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/Argentina/Buenos_Aires' });
+    const ago = mins < 1 ? 'recién' : mins < 60 ? `hace ${mins} min` : `hace ${Math.floor(mins / 60)} h ${mins % 60} min`;
+    const el = $('updated');
+    el.textContent = `Datos de Meta actualizados ${ago} (${hhmm} hs)` + (mins > 45 ? ' · revisar el workflow' : '');
+    el.classList.toggle('stale', mins > 45);
+  }
+
+  function delta(cur, prev, lowerIsBetter) {
+    if (prev == null || cur == null || !isFinite(prev) || prev === 0) return '<span>sin comparación</span>';
+    const d = (cur - prev) / prev;
+    if (Math.abs(d) < 0.005) return '<span>igual que el período anterior</span>';
+    const up = d > 0;
+    const good = lowerIsBetter ? !up : up;
+    const cls = (up ? 'up-' : 'down-') + (good ? 'good' : 'bad');
+    return `<span class="${cls}">${up ? '▲' : '▼'} ${nf0.format(Math.abs(d) * 100)}%</span> vs. período anterior`;
+  }
+
+  function render() {
+    if (!DATA) return;
+    renderUpdated();
+    renderSeg($('marketSeg'), DATA.markets.map((m) => [m.key, m.label]), state.market, (k) => { state.market = k; store.set('pk_market', k); render(); });
+    renderSeg($('rangeSeg'), RANGES, state.range, (k) => { state.range = k; store.set('pk_range', k); render(); });
+    renderSeg($('levelSeg'), LEVELS, state.level, (k) => { state.level = k; render(); });
+
+    const ctx = marketCtx();
+    const R = rangeFor(ctx.today, state.range);
+    const P = { from: addDays(R.from, -R.len), to: addDays(R.to, -R.len) };
+    $('rangeLabel').textContent = R.from === R.to ? fmtDay(R.from) + (state.range === '0' ? ' (día en curso)' : '') : `${fmtDay(R.from)} al ${fmtDay(R.to)}`;
+
+    // Errores de cuentas
+    const errs = DATA.accounts.filter((a) => a.market === state.market && a.error);
+    $('banners').innerHTML = errs.map((a) => `<div class="banner">No se pudo leer la cuenta ${esc(a.id)}: ${esc(a.error)}</div>`).join('');
+
+    const inR = (r) => r.d >= R.from && r.d <= R.to;
+    const inP = (r) => r.d >= P.from && r.d <= P.to;
+    const cur = ctx.rows.filter(inR).reduce(add, mkAgg());
+    const prevRows = ctx.rows.filter(inP);
+    const hasPrev = state.range !== '0' && prevRows.length > 0;
+    const prev = prevRows.reduce(add, mkAgg());
+    const cpc = (a) => (a.lc ? a.s / a.lc : null);
+
+    const kpis = [
+      ['Inversión', money(cur.s, ctx.currency), cur.s, prev.s, false],
+      ['Turnos confirmados', int(cur.p), cur.p, prev.p, false],
+      ['Costo por turno', money(cpt(cur), ctx.currency), cpt(cur), cpt(prev), true],
+      ['Clics al turnero', int(cur.lc), cur.lc, prev.lc, false],
+      ['CTR (clics al link)', pct(ctr(cur)), ctr(cur), ctr(prev), false],
+    ];
+    $('kpis').innerHTML = kpis.map(([l, v, c, p, low]) => `
+      <div class="card kpi"><div class="label">${l}</div><div class="value">${v}</div>
+      <div class="delta">${hasPrev ? delta(c, p, low) : (state.range === '0' ? 'día en curso' : '&nbsp;')}</div></div>`).join('');
+
+    // Series diarias: últimos 30 días, resaltando el período elegido
+    const days = [];
+    for (let i = 29; i >= 0; i--) days.push(addDays(ctx.today, -i));
+    const byDay = Object.fromEntries(days.map((d) => [d, mkAgg()]));
+    for (const r of ctx.rows) if (byDay[r.d]) add(byDay[r.d], r);
+    const isIn = (d) => d >= R.from && d <= R.to;
+    $('spendSub').textContent = `Últimos 30 días · en ${ctx.currency}`;
+    $('turnosSub').textContent = 'Últimos 30 días · turnos confirmados';
+    barChart($('chartSpend'), days, days.map((d) => byDay[d].s), isIn, (v) => money(v, ctx.currency),
+      (d) => `Turnos: ${int(byDay[d].p)} · Costo/turno: ${money(cpt(byDay[d]), ctx.currency)}`);
+    barChart($('chartTurnos'), days, days.map((d) => byDay[d].p), isIn, (v) => int(v),
+      (d) => `Inversión: ${money(byDay[d].s, ctx.currency)} · Costo/turno: ${money(cpt(byDay[d]), ctx.currency)}`, true);
+
+    // Nuevos vs anteriores
+    if (!state.cutoff) state.cutoff = addDays(ctx.today, -7);
+    $('cutoff').value = state.cutoff;
+    const rowsR = ctx.rows.filter(inR);
+    const groups = { nuevos: { agg: mkAgg(), ads: new Set() }, anteriores: { agg: mkAgg(), ads: new Set() } };
+    for (const r of rowsR) {
+      const ad = DATA.ads[r.ad];
+      const g = ad?.ct && ad.ct >= state.cutoff ? groups.nuevos : groups.anteriores;
+      add(g.agg, r); if (r.s > 0 || r.i > 0) g.ads.add(r.ad);
+    }
+    const col = (title, g) => `<div class="col"><h3>${title}</h3><dl>
+      <dt>Anuncios con entrega</dt><dd>${g.ads.size}</dd>
+      <dt>Inversión</dt><dd>${money(g.agg.s, ctx.currency)}</dd>
+      <dt>Turnos</dt><dd>${int(g.agg.p)}</dd>
+      <dt>Costo por turno</dt><dd>${money(cpt(g.agg), ctx.currency)}</dd>
+      <dt>CTR</dt><dd>${pct(ctr(g.agg))}</dd>
+      <dt>Costo por clic</dt><dd>${money(cpc(g.agg), ctx.currency)}</dd></dl></div>`;
+    $('compare').innerHTML = col(`Nuevos (desde ${fmtDay(state.cutoff)})`, groups.nuevos) + col('Anteriores', groups.anteriores);
+
+    renderTable(rowsR, ctx);
+    renderEvents(rowsR);
+  }
+
+  function renderTable(rows, ctx) {
+    const key = { campaign: (a) => a.c, adset: (a) => a.as, ad: (a, id) => id }[state.level];
+    const map = new Map();
+    for (const r of rows) {
+      const ad = DATA.ads[r.ad]; if (!ad) continue;
+      const k = key(ad, r.ad);
+      if (!map.has(k)) {
+        const name = state.level === 'campaign' ? ad.cn : state.level === 'adset' ? ad.asn : ad.n;
+        const parent = state.level === 'campaign' ? '' : state.level === 'adset' ? ad.cn : `${ad.cn} › ${ad.asn}`;
+        map.set(k, { name, parent, agg: mkAgg(), active: 0, total: new Set(), isNew: false });
+      }
+      const e = map.get(k); add(e.agg, r);
+      if (!e.total.has(r.ad)) { e.total.add(r.ad); if (ad.st === 'ACTIVE') e.active++; if (ad.ct && ad.ct >= state.cutoff) e.isNew = true; }
+    }
+    const list = [...map.values()].map((e) => ({ ...e, s: e.agg.s, i: e.agg.i, lc: e.agg.lc, p: e.agg.p, ctr: ctr(e.agg), cpt: cpt(e.agg) }));
+    const { key: sk, asc } = state.sort;
+    list.sort((a, b) => {
+      const va = a[sk], vb = b[sk];
+      if (sk === 'name') return asc ? va.localeCompare(vb) : vb.localeCompare(va);
+      const na = va == null ? Infinity * (asc ? 1 : -1) : va, nb = vb == null ? Infinity * (asc ? 1 : -1) : vb;
+      return asc ? na - nb : nb - na;
+    });
+    const cols = [['name', 'Nombre'], ['s', 'Inversión'], ['i', 'Impresiones'], ['lc', 'Clics link'], ['ctr', 'CTR'], ['p', 'Turnos'], ['cpt', 'Costo/turno']];
+    const status = (e) => state.level === 'ad'
+      ? (e.active ? '<span class="chip on">Activo</span>' : '<span class="chip off">Pausado</span>')
+      : `<span class="chip ${e.active ? 'on' : 'off'}">${e.active}/${e.total.size} activos</span>`;
+    $('tbl').innerHTML = `<thead><tr>${cols.map(([k, l]) => `<th data-k="${k}" class="${sk === k ? 'sorted' + (asc ? ' asc' : '') : ''}">${l}</th>`).join('')}</tr></thead>
+      <tbody>${list.length ? list.map((e) => `<tr class="${e.s === 0 ? 'zero' : ''}">
+        <td>${esc(e.name)}${status(e)}${e.isNew ? '<span class="chip new">Nuevo</span>' : ''}${e.parent ? `<span class="parent">${esc(e.parent)}</span>` : ''}</td>
+        <td>${money(e.s, ctx.currency)}</td><td>${int(e.i)}</td><td>${int(e.lc)}</td><td>${pct(e.ctr)}</td>
+        <td>${int(e.p)}</td><td>${money(e.cpt, ctx.currency)}</td></tr>`).join('')
+        : `<tr><td colspan="7" style="text-align:center;color:var(--muted)">Sin entrega en este período</td></tr>`}</tbody>`;
+    $('tbl').querySelector('thead').onclick = (ev) => {
+      const th = ev.target.closest('th'); if (!th) return;
+      const k = th.dataset.k;
+      state.sort = state.sort.key === k ? { key: k, asc: !state.sort.asc } : { key: k, asc: k === 'name' || k === 'cpt' };
+      render();
+    };
+  }
+
+  function renderEvents(rows) {
+    const tot = {};
+    for (const r of rows) for (const [k, v] of Object.entries(r.a)) tot[k] = (tot[k] || 0) + v;
+    const list = Object.entries(tot).sort((a, b) => b[1] - a[1]);
+    $('events').innerHTML = list.length
+      ? list.map(([k, v]) => `<div><code>${esc(k)}</code><b>${int(v)}</b></div>`).join('')
+      : '<div>Sin eventos en el período</div>';
+  }
+
+  // ---------- gráfico de barras (SVG, una sola serie) ----------
+  const tip = $('tip');
+  // Escala con pasos "lindos" (1, 2, 2.5, 5 × 10^n); enteros si la serie es de conteos.
+  function niceScale(v, integer) {
+    const raw = Math.max(v, integer ? 1 : 1e-9) / 3;
+    const e = Math.pow(10, Math.floor(Math.log10(raw)));
+    let step = [1, 2, 2.5, 5, 10].map((m) => m * e).find((x) => x >= raw);
+    if (integer) step = Math.max(1, Math.ceil(step));
+    return { step, max: step * Math.max(1, Math.ceil(v / step)) };
+  }
+  function barChart(el, days, vals, isIn, fmt, extra, integer) {
+    const W = Math.max(280, el.clientWidth || 560), H = 190, padL = 62, padR = 6, padT = 8, padB = 22;
+    const { step: tick, max } = niceScale(Math.max(...vals, 0), integer);
+    const iw = W - padL - padR, ih = H - padT - padB;
+    const step = iw / days.length, bw = Math.max(3, step - 3);
+    const y = (v) => padT + ih - (v / max) * ih;
+    let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img">`;
+    for (let v = 0; v <= max + 1e-9; v += tick) {
+      const yy = y(v);
+      s += `<line class="${v ? 'gridline' : 'baseline'}" x1="${padL}" x2="${W - padR}" y1="${yy}" y2="${yy}"/>`;
+      s += `<g class="axis"><text x="${padL - 6}" y="${yy + 4}" text-anchor="end">${v === 0 ? 0 : esc(fmt(v))}</text></g>`;
+    }
+    days.forEach((d, i) => {
+      const x = padL + i * step + (step - bw) / 2, h = Math.max(0, y(0) - y(vals[i]));
+      const r = Math.min(4, bw / 2, h);
+      // barra con extremo superior redondeado, anclada a la base
+      const path = h <= 0 ? '' : `M${x},${y(0)} V${y(0) - h + r} Q${x},${y(0) - h} ${x + r},${y(0) - h} H${x + bw - r} Q${x + bw},${y(0) - h} ${x + bw},${y(0) - h + r} V${y(0)} Z`;
+      s += `<path class="bar ${isIn(d) ? 'in' : ''}" d="${path}" data-i="${i}"/>`;
+      s += `<rect x="${padL + i * step}" y="${padT}" width="${step}" height="${ih}" fill="transparent" data-i="${i}"/>`;
+      if ((days.length - 1 - i) % (W < 420 ? 7 : 5) === 0) s += `<g class="axis"><text x="${x + bw / 2}" y="${H - 6}" text-anchor="middle">${fmtDay(d)}</text></g>`;
+    });
+    el.innerHTML = s + '</svg>';
+    const svg = el.querySelector('svg');
+    svg.onmousemove = (e) => {
+      const i = e.target.dataset?.i; if (i == null) { tip.classList.add('hidden'); return; }
+      svg.querySelectorAll('.bar.hover').forEach((b) => b.classList.remove('hover'));
+      svg.querySelector(`.bar[data-i="${i}"]`)?.classList.add('hover');
+      tip.innerHTML = `<b>${fmtDay(days[i])}: ${esc(fmt(vals[i]))}</b><br>${esc(extra(days[i]))}`;
+      tip.classList.remove('hidden');
+      const tw = tip.offsetWidth;
+      tip.style.left = Math.min(e.clientX + 12, window.innerWidth - tw - 8) + 'px';
+      tip.style.top = e.clientY + 14 + 'px';
+    };
+    svg.onmouseleave = () => { tip.classList.add('hidden'); svg.querySelectorAll('.bar.hover').forEach((b) => b.classList.remove('hover')); };
+  }
+
+  // ---------- carga ----------
+  async function load(password) {
+    const env = await fetchEnvelope();
+    const data = await decrypt(env, password);
+    DATA = data; ENV_AT = env.generated_at; PASSWORD = password;
+    if (!DATA.markets.some((m) => m.key === state.market)) state.market = DATA.markets[0]?.key;
+    $('lock').classList.add('hidden'); $('app').classList.remove('hidden');
+    render();
+  }
+
+  $('lockForm').onsubmit = async (e) => {
+    e.preventDefault();
+    $('unlockBtn').disabled = true; $('lockErr').textContent = '';
+    const pw = $('pw').value;
+    try {
+      await load(pw);
+      if ($('remember').checked) store.set('pk_pw', pw);
+    } catch (err) {
+      $('lockErr').textContent = err.name === 'OperationError' ? 'Contraseña incorrecta.' : err.message;
+    } finally { $('unlockBtn').disabled = false; }
+  };
+
+  const saved = store.get('pk_pw');
+  if (saved) load(saved).catch(() => store.set('pk_pw', null));
+
+  $('cutoff').onchange = (e) => { state.cutoff = e.target.value; store.set('pk_cutoff', state.cutoff); render(); };
+  setInterval(renderUpdated, 30000);
+  let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(render, 150); });
+
+  // Si la pestaña queda abierta, busca datos nuevos cada 5 minutos.
+  setInterval(async () => {
+    if (!PASSWORD || document.hidden) return;
+    try { const env = await fetchEnvelope(); if (env.generated_at !== ENV_AT) await load(PASSWORD); } catch {}
+  }, 5 * 60000);
+
+  // ---------- ajustes ----------
+  function defaultRepo() {
+    const m = location.hostname.match(/^([^.]+)\.github\.io$/);
+    const seg = location.pathname.split('/').filter(Boolean)[0];
+    // usuario.github.io/repo/pauta-pelokitos/ → usuario/repo
+    return m && seg && seg !== 'pauta-pelokitos' && !seg.includes('.') ? `${m[1]}/${seg}` : '';
+  }
+  $('settingsBtn').onclick = () => {
+    $('ghToken').value = store.get('pk_gh') || '';
+    $('ghRepo').value = store.get('pk_repo') || defaultRepo();
+    $('settings').showModal();
+  };
+  $('settings').addEventListener('close', () => {
+    const v = $('settings').returnValue;
+    if (v === 'save') { store.set('pk_gh', $('ghToken').value.trim() || null); store.set('pk_repo', $('ghRepo').value.trim() || null); }
+    if (v === 'logout') { store.set('pk_pw', null); location.reload(); }
+  });
+
+  // ---------- actualizar ahora ----------
+  const msg = (t) => { $('refreshMsg').textContent = t; };
+  $('refreshBtn').onclick = async () => {
+    const token = store.get('pk_gh'), repo = store.get('pk_repo') || defaultRepo();
+    if (!token || !repo) { msg('Cargá el token de GitHub en Ajustes.'); $('settingsBtn').click(); return; }
+    $('refreshBtn').disabled = true; msg('Pidiendo datos nuevos a Meta…');
+    try {
+      const r = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/deploy.yml/dispatches`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+        body: JSON.stringify({ ref: 'main' }),
+      });
+      if (r.status !== 204) throw new Error(r.status === 401 || r.status === 403 ? 'el token de GitHub no tiene permiso' : `GitHub respondió ${r.status}`);
+      msg('Actualizando… tarda 1 a 3 minutos');
+      const before = ENV_AT, t0 = Date.now();
+      while (Date.now() - t0 < 6 * 60000) {
+        await new Promise((res) => setTimeout(res, 15000));
+        try { const env = await fetchEnvelope(); if (env.generated_at !== before) { await load(PASSWORD); msg('Listo ✓'); setTimeout(() => msg(''), 4000); return; } } catch {}
+      }
+      msg('Tardó más de lo normal. Revisá la pestaña Actions del repo.');
+    } catch (err) {
+      msg(`No se pudo actualizar: ${err.message}`);
+    } finally { $('refreshBtn').disabled = false; }
+  };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "apiVersion": "v26.0",
+  "days": 60,
+  "purchaseAction": "offsite_conversion.fb_pixel_purchase",
+  "markets": [
+    { "key": "AR", "label": "Argentina", "accounts": ["act_4023363421012141"] },
+    { "key": "UY", "label": "Uruguay", "accounts": ["act_1759274621921767"] },
+    { "key": "US", "label": "USA", "accounts": ["act_1085024901167295"] }
+  ]
+}

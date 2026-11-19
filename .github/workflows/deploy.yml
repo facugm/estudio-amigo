@@ -1,21 +1,36 @@
 name: Deploy to GitHub Pages
 
+# Publica en un solo sitio de Pages:
+#   /                    → la web de estudio amigo (Vite)
+#   /pauta-pelokitos/    → el tablero de pauta, con datos de Meta cifrados
+# Corre en cada push a main, cada 15 minutos (para refrescar los datos de Meta)
+# y a mano o desde el botón "Actualizar ahora" del tablero.
+#
+# Requiere: Settings → Pages → Source = "GitHub Actions"
+#           Secrets: META_TOKEN y DASHBOARD_PASSWORD
+
 on:
   push:
     branches:
       - main
+  schedule:
+    # Corrido de la hora en punto, que es cuando GitHub más demora los crons.
+    - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: 'pages'
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,17 +38,57 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build project
+      - name: Build web
         run: npm run build
 
-      - name: Deploy to gh-pages branch
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Tablero pauta · traer datos de Meta
+        id: meta
+        continue-on-error: true
+        run: node pauta-pelokitos/scripts/fetch.mjs
+        env:
+          META_TOKEN: ${{ secrets.META_TOKEN }}
+          DASHBOARD_PASSWORD: ${{ secrets.DASHBOARD_PASSWORD }}
+          OUT_DIR: dist/pauta-pelokitos
+
+      # Si Meta falla en una corrida programada, no publicamos: queda online la última versión buena.
+      - name: Cortar si falló Meta en el cron
+        if: steps.meta.outcome == 'failure' && github.event_name == 'schedule'
+        run: |
+          echo "::error::No se pudieron traer los datos de Meta (¿token vencido?). Queda publicada la versión anterior."
+          exit 1
+
+      # En un push o a mano, la web se publica igual y el tablero conserva los datos que ya estaban online.
+      - name: Tablero pauta · conservar datos anteriores
+        if: steps.meta.outcome == 'failure'
+        run: |
+          echo "::warning::No se pudieron traer los datos de Meta. Se publica el tablero con los datos anteriores."
+          mkdir -p dist/pauta-pelokitos
+          cp pauta-pelokitos/site/* dist/pauta-pelokitos/
+          curl -fsSL "${{ steps.pages.outputs.base_url }}/pauta-pelokitos/data.enc.json" -o dist/pauta-pelokitos/data.enc.json \
+            || echo "::warning::Tampoco había datos anteriores publicados."
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: dist
-          branch: gh-pages
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

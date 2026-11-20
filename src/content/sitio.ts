@@ -44,3 +44,10 @@ export const EQUIPO: readonly Integrante[] = [
   { nombre: 'Valentino', rol: 'Diseño gráfico y edición de video', color: 'navy' },
   { nombre: 'Facundo', rol: 'Comunicación y desarrollo web', color: 'magenta' }
 ];
+
+/**
+ * Mientras sea `true`, la web muestra la pantalla "Estamos preparando nuestra web".
+ * Para ver el sitio completo igual, entrar con `?vista=completa` al final de la dirección.
+ * Para lanzar la web, pasarlo a `false`.
+ */
+export const EN_PREPARACION = true;

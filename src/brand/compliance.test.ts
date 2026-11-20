@@ -14,7 +14,8 @@ export const CHECKED_CSS = [
   '/src/sections/clientes/clientes.css',
   '/src/sections/que-hacemos/que-hacemos.css',
   '/src/sections/nosotros/nosotros.css',
-  '/src/sections/cierre/cierre.css'
+  '/src/sections/cierre/cierre.css',
+  '/src/sections/proximamente/proximamente.css'
 ];
 
 it('checks every CSS file in src', () => expect(Object.keys(css).sort()).toEqual([...CHECKED_CSS].sort()));

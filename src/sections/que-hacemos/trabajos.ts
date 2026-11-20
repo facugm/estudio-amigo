@@ -26,14 +26,15 @@ export const trabajos: readonly GrupoDeServicio[] = [
     servicio: 'branding',
     etiqueta: 'Branding',
     titulo: 'Identidad de marca',
-    descripcion: 'Logo, paleta, tipografías y cómo se aplica en cada pieza.',
+    descripcion:
+      'Creamos la identidad de tu marca o la renovamos: logo, colores, tipografías y cómo habla.',
     piezas: provisorias('branding', 'Branding', 5)
   },
   {
     servicio: 'contenido-redes',
     etiqueta: 'Contenido para redes',
-    titulo: 'Contenido para Instagram',
-    descripcion: 'Posteos, reels e historias con la voz de la marca.',
+    titulo: 'Creación y gestión de contenido para Instagram',
+    descripcion: 'Planificamos, publicamos y respondemos. Posteos, reels e historias con la voz de la marca.',
     piezas: provisorias('contenido', 'Contenido para redes', 6)
   },
   {

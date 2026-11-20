@@ -12,6 +12,7 @@ const GRILLA = '(min-width: 1024px)';
 export interface QueHacemosProps {
   grupos: readonly GrupoDeServicio[];
   titulo?: string;
+  bajada?: string;
   /** Destino de "Quiero algo así" (WhatsApp del estudio). */
   ctaHref?: string;
 }
@@ -25,6 +26,7 @@ export interface QueHacemosProps {
 export function QueHacemos({
   grupos,
   titulo = 'Comunicación integral para tu marca',
+  bajada = 'Así se ve nuestro trabajo',
   ctaHref = linkWhatsApp()
 }: QueHacemosProps): JSX.Element {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -60,6 +62,7 @@ export function QueHacemos({
         <h2 id="que-hacemos-titulo" className="que-hacemos__titulo">
           {titulo}
         </h2>
+        <p className="que-hacemos__bajada">{bajada}</p>
       </div>
 
       <div className="que-hacemos__viewport" ref={emblaRef}>

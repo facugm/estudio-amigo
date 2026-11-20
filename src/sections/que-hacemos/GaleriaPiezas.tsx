@@ -6,7 +6,7 @@ import 'yet-another-react-lightbox/styles.css';
 import 'yet-another-react-lightbox/plugins/captions.css';
 import 'yet-another-react-lightbox/plugins/counter.css';
 import type { Pieza } from './types';
-import { atributosLink } from '../../lib/IconoChat';
+import { atributosLink } from '../../lib/links';
 
 const ETIQUETAS = {
   Previous: 'Anterior',

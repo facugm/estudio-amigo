@@ -9,7 +9,7 @@
 }
 
 .que-hacemos__encabezado {
-  margin-bottom: clamp(2rem, 6.9vw, 6.25rem);
+  margin-bottom: clamp(2rem, 4vw, 3.625rem);
   padding: 0 var(--lado);
 }
 
@@ -27,6 +27,12 @@
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
+}
+
+.que-hacemos__bajada {
+  margin-top: 0.75rem;
+  font-size: clamp(1.0625rem, 1.25vw, 1.125rem);
+  opacity: 0.85;
 }
 
 /* ---------- Carrusel (celu y tablet) ---------- */
@@ -81,13 +87,7 @@
   width: 100%;
   border-radius: 22px;
   overflow: hidden;
-  background-color: var(--c-white);
-  transition: background-color 0.2s ease;
-}
-
-/* Hover de Figma: la tarjeta toma el fondo suave. */
-.tarjeta:hover,
-.tarjeta:focus-within {
+  /* Versión nueva de Figma: todas las tarjetas son cajas con fondo gris claro. */
   background-color: var(--c-fondo-suave);
 }
 
@@ -118,18 +118,6 @@
   transform: scale(1.03);
 }
 
-.tarjeta__cantidad {
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  padding: 0.25rem 0.625rem;
-  border-radius: 999px;
-  background-color: var(--c-navy);
-  color: var(--c-white);
-  font-size: 0.8125rem;
-  font-weight: 700;
-}
-
 .tarjeta__imagen:focus-visible {
   outline: 3px solid var(--c-magenta);
   outline-offset: -3px;
@@ -140,7 +128,7 @@
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
-  padding: 1.5rem 1.5rem 1.25rem;
+  padding: 1.375rem 1.5rem 0.75rem;
 }
 
 .tarjeta__servicio {
@@ -177,8 +165,9 @@
   text-underline-offset: 3px;
 }
 
-/* En Figma el link se pinta en hover; usamos magenta porque lima sobre fondo claro no se lee. */
-.tarjeta__link:hover {
+/* Al pasar el mouse por la tarjeta: la imagen se agranda apenas y el link se pinta magenta. */
+.tarjeta:hover .tarjeta__link,
+.tarjeta__link:focus-visible {
   color: var(--c-magenta);
 }
 

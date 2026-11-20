@@ -1,5 +1,9 @@
 name: Deploy to GitHub Pages
 
+# Publica la web de dos maneras, para que funcione con cualquier fuente de Pages:
+# - "GitHub Actions": el job `publicar` sube dist/ directo a Pages.
+# - "Deploy from a branch" (gh-pages): Pages toma la copia que dejamos en la rama gh-pages.
+
 on:
   push:
     branches:
@@ -8,13 +12,15 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: 'pages'
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -32,8 +38,24 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to gh-pages branch
+      - name: Copia en la rama gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
           branch: gh-pages
+
+      - name: Preparar el sitio para Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  publicar:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Wordmark } from '../../brand/Wordmark';
 import { linkWhatsApp } from '../../content/contacto';
 import { NAVEGACION } from '../../content/sitio';
-import { atributosLink } from '../../lib/IconoChat';
+import { atributosLink } from '../../lib/links';
 import './barra.css';
 
 /**

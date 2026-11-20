@@ -34,8 +34,9 @@ afterAll(() => {
 it('muestra el título de la sección y una tarjeta por servicio, como en Figma', () => {
   render(<QueHacemos grupos={trabajos} />);
   expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('Comunicación integral para tu marca');
+  expect(screen.getByText('Así se ve nuestro trabajo')).toBeInTheDocument();
   expect(screen.getAllByRole('article')).toHaveLength(6);
-  ['Identidad de marca', 'Contenido para Instagram', 'Sesión de producto', 'Piezas para el local', 'Campaña en Meta', 'Web institucional'].forEach(t =>
+  ['Identidad de marca', 'Creación y gestión de contenido para Instagram', 'Sesión de producto', 'Piezas para el local', 'Campaña en Meta', 'Web institucional'].forEach(t =>
     expect(screen.getByRole('heading', { level: 3, name: t })).toBeInTheDocument()
   );
 });

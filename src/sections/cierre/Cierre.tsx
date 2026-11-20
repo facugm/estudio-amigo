@@ -2,7 +2,7 @@ import { Isotype } from '../../brand/Isotype';
 import { Wordmark } from '../../brand/Wordmark';
 import { linkWhatsApp } from '../../content/contacto';
 import { INSTAGRAM } from '../../content/sitio';
-import { IconoChat, atributosLink } from '../../lib/IconoChat';
+import { atributosLink } from '../../lib/links';
 import './cierre.css';
 
 /** Cierre con el botón a WhatsApp (es el destino "#contacto") y pie del sitio. */
@@ -14,11 +14,10 @@ export function Cierre({ ctaHref = linkWhatsApp() }: { ctaHref?: string }): JSX.
       <div className="cierre__centro">
         <Isotype className="cierre__amigo" />
         <h2 id="cierre-titulo" className="cierre__titulo">
-          ¿Querés esto para <span className="cierre__resaltado">tu marca?</span>
+          <span className="cierre__liviano">¿Y si hacemos</span> algo juntos?
         </h2>
-        <p className="cierre__bajada">Escribinos y lo charlamos. Sin compromiso y sin formularios.</p>
+        <p className="cierre__bajada">Que sea el comienzo de una linda amistad creativa.</p>
         <a className="cierre__cta" href={ctaHref} {...atributosLink(ctaHref)}>
-          <IconoChat className="cierre__icono" />
           Escribinos por WhatsApp
         </a>
       </div>

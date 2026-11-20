@@ -1,9 +1,19 @@
-/* Cierre + pie (Figma: navy, amigo lima de 107 px, botón de 307 × 61). */
+/* Cierre + pie (Figma: navy con la textura de la portada, amigo lima de 107 px, botón de 275 × 61). */
 
 .cierre {
-  padding: clamp(4rem, 10.8vw, 9.75rem) var(--lado) 2.5rem;
-  background-color: var(--c-navy);
+  padding: clamp(3.5rem, 9.1vw, 8.25rem) var(--lado) 2.5rem;
   color: var(--c-white);
+  /* Misma textura que la portada: vertical en pantallas altas, girada en las anchas. */
+  background-color: var(--c-navy);
+  background-image: url('../portada/img/fondo-vertical.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+@media (min-aspect-ratio: 1 / 1) {
+  .cierre {
+    background-image: url('../portada/img/fondo-horizontal.jpg');
+  }
 }
 
 .cierre__centro {
@@ -20,15 +30,15 @@
 }
 
 .cierre__titulo {
-  margin-top: clamp(1rem, 2.8vw, 2.5rem);
+  margin-top: clamp(0.75rem, 1.8vw, 1.625rem);
   font-size: clamp(2.25rem, 4.45vw, 4rem);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
 }
 
-.cierre__resaltado {
-  color: var(--c-lime);
+.cierre__liviano {
+  font-weight: 300;
 }
 
 .cierre__bajada {
@@ -41,7 +51,6 @@
 .cierre__cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
   min-height: 61px;
   margin-top: clamp(2rem, 3.3vw, 2.75rem);
   padding: 0 1.875rem;
@@ -58,10 +67,6 @@
   transform: translateY(-2px);
 }
 
-.cierre__icono {
-  flex: none;
-}
-
 /* ---------- Pie ---------- */
 
 .cierre__pie {
@@ -69,7 +74,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  margin-top: clamp(4rem, 8.3vw, 7.5rem);
+  margin-top: clamp(4rem, 7.5vw, 6.75rem);
   padding-top: 1.75rem;
   border-top: 1px solid rgba(255, 255, 255, 0.18);
   text-align: center;

@@ -1,4 +1,4 @@
-import { atributosLink } from '../../lib/IconoChat';
+import { atributosLink } from '../../lib/links';
 import type { GrupoDeServicio } from './types';
 
 function portadaDe(grupo: GrupoDeServicio): { src: string } | null {
@@ -16,7 +16,7 @@ export interface TarjetaServicioProps {
 }
 
 /**
- * Tarjeta de un servicio (Figma: 400 × 442, imagen de 260).
+ * Tarjeta de un servicio (Figma: caja de 400 de ancho, imagen de 260 y fondo gris claro).
  * La imagen abre la galería; "Quiero algo así" lleva a WhatsApp.
  */
 export function TarjetaServicio({ grupo, onAbrir, ctaHref }: TarjetaServicioProps): JSX.Element {
@@ -34,7 +34,6 @@ export function TarjetaServicio({ grupo, onAbrir, ctaHref }: TarjetaServicioProp
           aria-label={`Ver ${textoCantidad} de ${grupo.etiqueta}: ${grupo.titulo}`}
         >
           <img src={portada.src} alt="" loading="lazy" className="tarjeta__foto" />
-          <span className="tarjeta__cantidad">{textoCantidad}</span>
         </button>
       ) : (
         <div className="tarjeta__imagen tarjeta__imagen--vacia" aria-hidden="true" />

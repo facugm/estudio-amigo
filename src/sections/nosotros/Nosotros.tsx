@@ -9,7 +9,7 @@ export function Nosotros(): JSX.Element {
       <div className="nosotros__texto">
         <p className="nosotros__etiqueta">Nosotros</p>
         <h2 id="nosotros-titulo" className="nosotros__titulo">
-          <span className="nosotros__liviano">Somos tu</span> estudio amigo.
+          <span className="nosotros__liviano">Somos tu</span> estudio amigo
         </h2>
         <p className="nosotros__bajada">
           Arrancamos en 2025 porque veíamos marcas con muchísima identidad que en redes no se veían

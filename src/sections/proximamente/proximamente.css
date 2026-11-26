@@ -1,12 +1,24 @@
 /* Pantalla de espera: misma textura y amigo lima que la portada. Primero celu. */
 
+/* Si el navegador deja ver algo por debajo (al esconder o mostrar su barra), que sea navy y no blanco. */
+html:has(.proximamente),
+html:has(.proximamente) body {
+  background-color: var(--c-navy);
+}
+
+/* Que el body no sea más alto que la pantalla de espera (en iPhone 100vh queda más alto que lo visible). */
+html:has(.proximamente) body {
+  min-height: 100dvh;
+}
+
 .proximamente {
   display: grid;
   grid-template-rows: auto 1fr auto;
   justify-items: center;
   gap: 2rem;
+  /* dvh sigue a la barra del navegador del celu; vh queda de respaldo. */
   min-height: 100vh;
-  min-height: 100svh;
+  min-height: 100dvh;
   padding: 1.75rem var(--lado);
   color: var(--c-white);
   text-align: center;

@@ -6,6 +6,11 @@ html:has(.proximamente) body {
   background-color: var(--c-navy);
 }
 
+/* Que el body no sea más alto que la pantalla de espera (en iPhone 100vh queda más alto que lo visible). */
+html:has(.proximamente) body {
+  min-height: 100dvh;
+}
+
 .proximamente {
   display: grid;
   grid-template-rows: auto 1fr auto;

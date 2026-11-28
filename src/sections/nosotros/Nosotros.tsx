@@ -4,17 +4,22 @@ import constanza from './img/constanza.jpg';
 import josefina from './img/josefina.jpg';
 import facundo from './img/facundo.jpg';
 import valentino from './img/valentino.jpg';
+import constanzaCelu from './img/constanza-celu.jpg';
+import josefinaCelu from './img/josefina-celu.jpg';
+import facundoCelu from './img/facundo-celu.jpg';
+import valentinoCelu from './img/valentino-celu.jpg';
 import selloMagenta from './img/sello-magenta.png';
 import selloNavy from './img/sello-navy.png';
 import selloLima from './img/sello-lima.png';
 import selloLavanda from './img/sello-lavanda.png';
 import './nosotros.css';
 
-const FOTOS: Record<string, string> = {
-  Constanza: constanza,
-  Josefina: josefina,
-  Facundo: facundo,
-  Valentino: valentino
+/** Cada foto viene recortada igual que en Figma: cuadrada en celu y tablet, 3:4 en desktop. */
+const FOTOS: Record<string, { celu: string; desktop: string }> = {
+  Constanza: { celu: constanzaCelu, desktop: constanza },
+  Josefina: { celu: josefinaCelu, desktop: josefina },
+  Facundo: { celu: facundoCelu, desktop: facundo },
+  Valentino: { celu: valentinoCelu, desktop: valentino }
 };
 
 const SELLOS: Record<Integrante['sello'], string> = {
@@ -48,12 +53,15 @@ export function Nosotros(): JSX.Element {
       <ul className="nosotros__equipo" aria-label="Equipo">
         {EQUIPO.map(persona => (
           <li key={persona.nombre} className={`nosotros__persona nosotros__persona--${clave(persona.nombre)}`}>
-            <img
-              src={FOTOS[persona.nombre]}
-              alt={`${persona.nombre}, ${persona.rol.toLowerCase()}`}
-              className="nosotros__foto"
-              loading="lazy"
-            />
+            <picture>
+              <source media="(min-width: 1200px)" srcSet={FOTOS[persona.nombre].desktop} />
+              <img
+                src={FOTOS[persona.nombre].celu}
+                alt={`${persona.nombre}, ${persona.rol.toLowerCase()}`}
+                className="nosotros__foto"
+                loading="lazy"
+              />
+            </picture>
             <img src={SELLOS[persona.sello]} alt="" className="nosotros__sello" loading="lazy" />
             <p className="nosotros__pie" aria-hidden="true">
               <strong className="nosotros__nombre">{persona.nombre}</strong>

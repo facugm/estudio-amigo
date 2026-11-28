@@ -83,7 +83,6 @@
   width: 50.46%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  object-position: 50% 22%;
   background-color: var(--c-gray);
 }
 
@@ -190,7 +189,6 @@
   .nosotros__foto {
     width: 33.42%;
     aspect-ratio: 249 / 332;
-    object-position: 50% 30%;
   }
   .nosotros__sello {
     width: 5.9%;

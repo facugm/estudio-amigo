@@ -1,11 +1,21 @@
-/* "Nosotros" (Figma: fondo gris claro, texto de 592 px + equipo 2 × 2). */
+/* "Nosotros" (Figma, nov 2026): texto con el logo apilado + fotos del equipo encimadas con sellos.
+   Medidas del SVG de Josefina: collage de 327 × 395 en celu y de 745 × 735 en desktop. */
 
 .nosotros {
   display: grid;
-  gap: 2.5rem;
+  justify-items: center;
+  gap: 3rem;
   padding: var(--section-y) var(--lado);
   background-color: var(--c-fondo-suave);
   color: var(--c-navy);
+  text-align: center;
+}
+
+.nosotros__texto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 30rem;
 }
 
 .nosotros__etiqueta {
@@ -17,95 +27,231 @@
 }
 
 .nosotros__titulo {
-  margin-top: 0.5rem;
-  font-size: clamp(2.25rem, 4.45vw, 4rem);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.75rem;
+  font-weight: 300;
+  line-height: 1.1;
 }
 
-/* Como en la portada: "Somos tu" liviano y "estudio amigo." en negrita. */
 .nosotros__liviano {
-  font-weight: 300;
+  font-size: clamp(1.5rem, 3.5vw, 3.125rem);
+  letter-spacing: -0.01em;
+}
+
+.nosotros__marca {
+  display: block;
+  width: min(67vw, 16.375rem);
+  height: auto;
+  margin-top: 0.5rem;
+  color: var(--c-navy);
+}
+
+.nosotros__marca--izquierda {
+  display: none;
 }
 
 .nosotros__bajada {
-  margin-top: 0.75rem;
-  font-size: clamp(1.0625rem, 1.53vw, 1.375rem);
+  max-width: 19rem;
+  margin-top: 1rem;
+  font-size: 0.9375rem;
   font-weight: 400;
-  line-height: 1.55;
+  line-height: 1.4;
 }
 
+/* ---------- Collage del equipo (celu y tablet: sin nombres a la vista, están en el texto alternativo) ---------- */
+
 .nosotros__equipo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.75rem 1rem;
+  position: relative;
+  width: min(100%, 26rem);
+  aspect-ratio: 327 / 395;
   list-style: none;
 }
 
 .nosotros__persona {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.nosotros__avatar {
-  display: grid;
-  place-items: center;
-  width: clamp(4.75rem, 6.67vw, 6rem);
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border: 3px solid var(--c-navy);
-  border-radius: 50%;
-  background-color: var(--c-white);
-}
-
-.nosotros__amigo {
-  width: 100%;
-  height: auto;
-}
-
-.nosotros__amigo--navy {
-  color: var(--c-navy);
-}
-
-.nosotros__amigo--magenta {
-  color: var(--c-magenta);
+  --x: 0%;
+  --y: 0%;
+  --sello-x: 0%;
+  --sello-y: 0%;
 }
 
 .nosotros__foto {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 50.46%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  object-position: 50% 22%;
+  background-color: var(--c-gray);
 }
 
-.nosotros__nombre {
-  margin-top: 0.75rem;
-  font-size: clamp(1.125rem, 1.53vw, 1.375rem);
-  font-weight: 700;
+.nosotros__sello {
+  position: absolute;
+  z-index: 5;
+  left: var(--sello-x);
+  top: var(--sello-y);
+  width: 8.36%;
+  height: auto;
 }
 
-.nosotros__rol {
-  margin-top: 0.125rem;
-  font-size: 0.9375rem;
-  line-height: 1.35;
-  opacity: 0.85;
+.nosotros__pie {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
 }
 
-@media (min-width: 1024px) {
+/* Orden de las capas como en Figma: Constanza arriba de todo, Josefina abajo. */
+.nosotros__persona--constanza {
+  --x: 2.9%;
+  --y: 3.2%;
+  --sello-x: 0%;
+  --sello-y: 0%;
+}
+.nosotros__persona--constanza .nosotros__foto {
+  z-index: 4;
+}
+
+.nosotros__persona--josefina {
+  --x: 46.5%;
+  --y: 13.4%;
+  --sello-x: 91.7%;
+  --sello-y: 10.9%;
+}
+.nosotros__persona--josefina .nosotros__foto {
+  z-index: 1;
+}
+
+.nosotros__persona--facundo {
+  --x: 2.75%;
+  --y: 48.1%;
+  --sello-x: 47.7%;
+  --sello-y: 45.8%;
+}
+.nosotros__persona--facundo .nosotros__foto {
+  z-index: 3;
+}
+
+.nosotros__persona--valentino {
+  --x: 46.5%;
+  --y: 58.2%;
+  --sello-x: 91.7%;
+  --sello-y: 56.2%;
+}
+.nosotros__persona--valentino .nosotros__foto {
+  z-index: 2;
+}
+
+/* ---------- Desktop: texto a la izquierda, collage con nombres a la derecha ---------- */
+
+@media (min-width: 1200px) {
   .nosotros {
-    grid-template-columns: minmax(0, 37rem) minmax(0, 35rem);
+    grid-template-columns: minmax(0, 27rem) minmax(0, 46.5rem);
     justify-content: space-between;
-    align-items: start;
+    align-items: center;
     gap: 4rem;
+    text-align: left;
+  }
+  .nosotros__texto {
+    align-items: flex-start;
+    max-width: none;
+    padding-left: 1.25rem;
+  }
+  .nosotros__titulo {
+    width: 100%;
+    align-items: flex-start;
+    margin-top: 0.5rem;
+  }
+  .nosotros__marca--centro {
+    display: none;
+  }
+  .nosotros__marca--izquierda {
+    display: block;
+    width: 100%;
+    max-width: 26.75rem;
+    margin-top: 1rem;
   }
   .nosotros__bajada {
-    margin-top: 1.75rem;
+    max-width: none;
+    margin-top: 3.25rem;
+    padding-left: 0.4375rem;
+    font-size: 1.375rem;
+    line-height: 1.42;
   }
+
   .nosotros__equipo {
-    gap: 2rem 2rem;
+    width: 100%;
+    aspect-ratio: 745 / 735;
+  }
+  .nosotros__foto {
+    width: 33.42%;
+    aspect-ratio: 249 / 332;
+    object-position: 50% 30%;
+  }
+  .nosotros__sello {
+    width: 5.9%;
+  }
+  .nosotros__pie {
+    left: var(--pie-x);
+    top: var(--pie-y);
+    width: auto;
+    max-width: 10rem;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  .nosotros__nombre {
+    display: block;
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1.2;
   }
   .nosotros__rol {
-    font-size: 1rem;
+    display: block;
+    margin-top: 0.375rem;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    opacity: 0.85;
+  }
+
+  .nosotros__persona--constanza {
+    --x: 1.6%;
+    --y: 4.8%;
+    --sello-x: 0%;
+    --sello-y: 3%;
+    --pie-x: 1.6%;
+    --pie-y: 54.6%;
+  }
+  .nosotros__persona--josefina {
+    --x: 49.8%;
+    --y: 2.4%;
+    --sello-x: 79.6%;
+    --sello-y: 0%;
+    --pie-x: 85.5%;
+    --pie-y: 16.5%;
+  }
+  .nosotros__persona--josefina .nosotros__pie {
+    max-width: 7rem;
+  }
+  .nosotros__persona--facundo {
+    --x: 23.8%;
+    --y: 30.5%;
+    --sello-x: 53.2%;
+    --sello-y: 28.7%;
+    --pie-x: 23.8%;
+    --pie-y: 79.3%;
+  }
+  .nosotros__persona--valentino {
+    --x: 64%;
+    --y: 41.2%;
+    --sello-x: 94.1%;
+    --sello-y: 38.9%;
+    --pie-x: 64%;
+    --pie-y: 89.7%;
   }
 }

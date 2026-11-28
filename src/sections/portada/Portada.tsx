@@ -1,5 +1,5 @@
 import { Isotype } from '../../brand/Isotype';
-import { Wordmark } from '../../brand/Wordmark';
+import { Wordmark, WordmarkApilado } from '../../brand/Wordmark';
 import { linkWhatsApp } from '../../content/contacto';
 import './portada.css';
 
@@ -23,9 +23,11 @@ export function Portada({ ctaHref = linkWhatsApp() }: PortadaProps): JSX.Element
 
       <div className="portada__centro">
         <Isotype className="portada__amigo" />
-        <h1 id="portada-titulo" className="portada__titulo">
+        <h1 id="portada-titulo" className="portada__titulo" aria-label="somos el estudio amigo de tu marca">
           <span className="portada__linea portada__linea--somos">somos el</span>
-          <Wordmark className="portada__linea portada__marca" />
+          {/* En celu el logo va apilado; en tablet y desktop, en una línea. Uno solo se ve a la vez. */}
+          <WordmarkApilado decorativo className="portada__linea portada__marca portada__marca--apilada" />
+          <Wordmark decorativo className="portada__linea portada__marca portada__marca--linea" />
           <span className="portada__linea portada__linea--marca">de tu marca</span>
         </h1>
         <a

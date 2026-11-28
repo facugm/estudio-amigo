@@ -16,7 +16,9 @@ export function Cierre({ ctaHref = linkWhatsApp() }: { ctaHref?: string }): JSX.
         <h2 id="cierre-titulo" className="cierre__titulo">
           <span className="cierre__liviano">¿Y si hacemos</span> algo juntos?
         </h2>
-        <p className="cierre__bajada">Que sea el comienzo de una linda amistad creativa.</p>
+        <p className="cierre__bajada">
+          Que sea el comienzo de una <strong className="cierre__destacado">linda amistad creativa</strong>
+        </p>
         <a className="cierre__cta" href={ctaHref} {...atributosLink(ctaHref)}>
           Escribinos por WhatsApp
         </a>
@@ -26,8 +28,8 @@ export function Cierre({ ctaHref = linkWhatsApp() }: { ctaHref?: string }): JSX.
         <a href="#inicio" className="cierre__logo" aria-label="estudio amigo, volver al inicio">
           <Wordmark className="cierre__marca" />
         </a>
-        <p className="cierre__dato">
-          Rosario, Argentina ·{' '}
+        <p className="cierre__dato cierre__dato--contacto">
+          <span>Rosario, Argentina</span>{' '}
           <a href={INSTAGRAM.href} className="cierre__instagram" {...atributosLink(INSTAGRAM.href)}>
             {INSTAGRAM.usuario}
           </a>

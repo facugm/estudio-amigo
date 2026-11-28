@@ -48,6 +48,18 @@
   opacity: 0.85;
 }
 
+.cierre__destacado {
+  font-weight: 700;
+}
+
+/* Celu (Figma mobile): "¿Y si hacemos" arriba y "algo juntos?" abajo; lo destacado de la bajada en su propia línea. */
+@media (max-width: 767px) {
+  .cierre__liviano,
+  .cierre__destacado {
+    display: block;
+  }
+}
+
 .cierre__cta {
   display: inline-flex;
   align-items: center;
@@ -99,6 +111,14 @@
   opacity: 0.85;
 }
 
+.cierre__dato--contacto {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 2rem;
+}
+
 .cierre__instagram {
   display: inline-block;
   padding-block: 0.75rem;
@@ -121,6 +141,9 @@
 }
 
 @media (min-width: 900px) {
+  .cierre__dato--contacto {
+    column-gap: 0.75rem;
+  }
   .cierre__pie {
     flex-direction: row;
     justify-content: space-between;

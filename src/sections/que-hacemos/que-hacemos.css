@@ -35,6 +35,17 @@
   opacity: 0.85;
 }
 
+/* Celu (Figma "diseño mobile", nov 2026): encabezado centrado y bajada en negrita. */
+@media (max-width: 767px) {
+  .que-hacemos__encabezado {
+    text-align: center;
+  }
+  .que-hacemos__bajada {
+    font-weight: 700;
+    opacity: 1;
+  }
+}
+
 /* ---------- Carrusel (celu y tablet) ---------- */
 
 .que-hacemos__viewport {
@@ -169,6 +180,14 @@
 .tarjeta:hover .tarjeta__link,
 .tarjeta__link:focus-visible {
   color: var(--c-magenta);
+}
+
+/* En celu y tablet la imagen tiene las cuatro puntas redondeadas (Figma mobile: radio de 19 px). */
+@media (max-width: 1023px) {
+  .tarjeta__imagen {
+    aspect-ratio: 277 / 190;
+    border-radius: 19px;
+  }
 }
 
 /* ---------- Puntos del carrusel ---------- */

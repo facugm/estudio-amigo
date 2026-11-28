@@ -158,6 +158,69 @@
   outline-offset: 3px;
 }
 
+/* ---------- Celu (Figma "diseño mobile", nov 2026) ----------
+   Todo centrado: arriba el lugar, abajo el rubro. Los otros dos datos quedan para pantallas más grandes. */
+
+@media (max-width: 767px) {
+  .portada {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    padding-block: 3.25rem 5.5rem;
+  }
+  .portada__dato {
+    font-weight: 400;
+  }
+  .portada__dato--lugar {
+    grid-column: 1;
+    opacity: 1;
+  }
+  .portada__dato--rubro {
+    grid-column: 1;
+    grid-row: 3;
+    align-self: end;
+    justify-self: center;
+    max-width: none;
+    text-align: center;
+  }
+  .portada__dato--servicios,
+  .portada__dato--amigo {
+    display: none;
+  }
+  /* El SVG del amigo tiene aire alrededor: 6.25rem dejan el sello de unos 67 px, como en Figma. */
+  .portada__amigo {
+    width: 6.25rem;
+    margin-bottom: 1.75rem;
+  }
+  .portada__linea--somos {
+    font-size: 1.5rem;
+  }
+  .portada__marca--linea {
+    display: none;
+  }
+  .portada__marca--apilada {
+    width: 76.4vw;
+    max-width: 22rem;
+    margin-block: 0.25rem 0;
+  }
+  .portada__linea--marca {
+    margin-top: 0.125rem;
+    font-size: 2.5rem;
+  }
+  .portada__cta {
+    min-height: 55px;
+    margin-top: 2.75rem;
+    padding: 0 2.125rem;
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .portada__marca--apilada {
+    display: none;
+  }
+}
+
 /* ---------- Tablet ---------- */
 
 @media (min-width: 768px) {
